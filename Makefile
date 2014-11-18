@@ -1,0 +1,3 @@
+bld:
+	middleman build
+
