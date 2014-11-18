@@ -1,0 +1,10 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">Articles</div>
+  <div class="panel-body">
+    <ul>
+      <% page = sitemap.resources.select {|page| page.destination_path =~ /\.html$/}.each do |page| %>
+      <li><%= link_to(page.data.title, page.destination_path) %>
+	<% end %>
+    </ul>
+  </div>
+</div>

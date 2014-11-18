@@ -1,7 +1,6 @@
 ###
 # Compass
 ###
-
 # Change Compass configuration
 # compass_config do |config|
 #   config.output_style = :compact
@@ -45,6 +44,12 @@ end
 #     "Helping"
 #   end
 # end
+
+helpers do
+  def h(*args)
+    ERB::Util::h(args)
+  end
+end
 
 set :css_dir, 'stylesheets'
 

@@ -2,9 +2,6 @@
 title: サイト構築
 layout: layout
 ---
-asdfa
-
-hogehoge
 
 ** ブログ、文書かき
 
@@ -43,12 +40,13 @@ I  #+include: line
 
 *** install
 
+#+BEGIN_SRC 
 % gem install middleman
 % vi Gemfile
 ...
+#+END_SRC
 
-
-#+BEGIN_SRC 
+#+BEGIN_SRC ruby
 # Reload the browser automatically whenever files change
 configure :development do
   activate :livereload
@@ -58,7 +56,11 @@ end
 
 gem "therubyracer"
 
+[web: bundle exec middleman build && middleman server -p $PORT](http://qiita.com/shu_0115/items/9db7a794356613f1b2cb)
+
 [Middleman(+ middleman-blog)のテンプレートで使える変数まとめ - kotatu.org](http://kotatu.org/blog/2013/09/01/variables-available-in-middleman-templates/)
+
+[Middleman のサイトマップを使ってみる | e2esound.com業務日誌](http://blogged.e2esound.com/2013/12/10/getting_started_sitemap/)
 
 ** スケートラボ
 

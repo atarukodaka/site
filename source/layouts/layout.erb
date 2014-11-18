@@ -13,34 +13,23 @@
     
     <%= stylesheet_link_tag "bootstrap.min.css" %>
     <%= javascript_include_tag "bootstrap.min.js" %>
-
-    <!-- %= stylesheet_link_tag "normalize", "all" % -->
-    <!-- %= javascript_include_tag  "all" % -->
   </head>
   
   <body>
     <div class="navbar navbar-default">
       <ul class="nav navbar-nav">
 	<li><a href="/">top</a></li>
-	<li><a href="/auth/twitter">login</a></li>
-	<li><a href="/protected">protected</a></li>
-	<li><a href="/auth/logout">logout</a></li>
       </ul>
     </div>
     <div class="container <%= page_classes %>">
       <div class="raw">
 	<div class="col-md-3 hidden-xs hidden-sm">
-	  sidebar
+	  <%= partial "partials/sidebar" %>
 	</div>
 	
 	<div class="col-md-9">
-	  <div class="panel panel-primary">
-	    <div class="panel-heading">title</div>
-	    <div class="panel-body">
-              <%= yield %>
-	    </div>
-	  </div>
-
+	  <%= yield %>
+	  
 	  <div class="panel panel-primary">
 	    <div class="panel-heading">debug</div>
 	    <div class="panel-body">
@@ -48,7 +37,6 @@
 	      </pre>
 	    </div>
 	  </div>
-
 
 	</div>
       </div>
