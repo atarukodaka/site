@@ -1,5 +1,6 @@
 ---
 title: 開発環境のセットアップ
+category: software
 ---
 
 ** 仮想OSのインストール

@@ -1,21 +1,37 @@
+<h2>Categories</h2>
+<ul>
+<% sitemap.resources.group_by {|p| p.data.category }.each do |category, pages| %>
+  <% next if category.to_s == "" %>
+  <li><%= h(category) %>
+    <ul>
+    <% pages.each do |page| %>
+      <li><%= link_to(h(page.data.title), page.url) %>
+    <% end %>
+    </ul>
+  </li>
+<% end %>
+</ul>
+
 <h2>Series</h2>
+<ul>
 <% sitemap.resources.group_by {|p| p.data.series }.each do |series, pages| %>
   <% next if series.to_s == "" %>
-  <% index_page = pages.select {|p| p.data.layout == "series_index"}.first %>
-  <% series_str = "<strong>【" + h(series) + "】</strong>" %>
-  <%= (index_page.nil?) ? series_str: link_to(series_str, index_page.url) %><br>
 
-  <% pages.sort {|a, b| a.url <=> b.url }.each do |page| %>
-    [<%= get_series_number(page)%>] <%= link_to(h(page.data.title), page.url) %><br>
+  <li><%= h(series) %>
+    <ol>
+    <% pages.sort {|a, b| a.url <=> b.url }.each do |page| %>
+      <li><%= link_to(h(page.data.title), page.url) %>
+    <% end %>
+    </ol>
+  </li>
   <% end %>
-<% end %>
-
+</ul>
 
 <h2>Recent Updated</h2>
+<ul>
 <% select_html_pages.sort {|a, b| b.modified_at <=> a.modified_at}.first(10).each do |page| %>
-  <% title = page.data.combined_title %>
-  <%= link_to(h(page.data.title), page.url) %>
-  <%= page.modified_at.strftime("%Y/%m/%d %H:%M:%S %Z") %><br>
+  <li>
+  <% title = page.combined_title %>
+  <%= link_to(h(title), page.url) %>
 <% end %>
-
-<%= current_page.class %>
+</ul>

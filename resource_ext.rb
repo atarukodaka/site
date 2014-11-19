@@ -20,8 +20,13 @@ module Middleman
         return $1.to_i
       end
       def combined_title
-        if self.data.series.to_s != ""
-          "【%s】第%d回：%s" % [self.data.series, self.series_number, self.data.title]
+        template_en = "[%{series}] #%{number}: %{title}"
+        template_ja = "【%{series}】第%{number}回：%{title}"
+
+        if self.data.series
+          #"[%s] #%d: %s" % [page.data.series, get_series_number(page), page.data.title]
+          template_en % {series: self.data.series, number: self.series_number, title: self.data.title}
+          
         else
           self.data.title
         end

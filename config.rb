@@ -55,16 +55,30 @@ helpers do
     ERB::Util::h(args)
   end
 
-  def select_html_pages
-    sitemap.resources.select {|p| p.destination_path =~ /\.html$/}
+  def select_html_pages(sort_by = nil, reverse = false)
+    pages = sitemap.resources.select {|p| p.destination_path =~ /\.html$/}
+    pages = 
+      case sort_by
+      when nil
+        pages
+      when :title
+        pages.sort {|a, b| a.combined_title <=> b.combined_title }
+      when :path
+        pages.sort {|a, b| a.path <=> b.path }
+      when :modified_at
+        pages.sort {|a, b| a.modified_at <=> b.modified_at }
+      end
+    (reverse) ? pages.reverse : pages
   end
   def get_series_number(page)
     page.path =~ Regexp.new("/([0-9]+)\-[^/]+\.html$")
     return $1.to_i
   end
   def combined_title(page)
+    template = "[%{series}] #%{number}: %{title}"
     if page.data.series
-      "【%s】第%d回：%s" % [page.data.series, get_series_number(page), page.data.title]
+      #"[%s] #%d: %s" % [page.data.series, get_series_number(page), page.data.title]
+      template % {series: page.data.series, number: page.series_number, title: page.data.title}
     else
       page.data.title
     end
