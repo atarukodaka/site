@@ -1,0 +1,13 @@
+<% wrap_layout :layout do %>
+<div class="panel panel-primary article">
+  <div class="panel-heading">
+    <% if current_page.data.series %>
+      【<%= h current_page.data.series %>】
+    <% end %>
+    <%= h current_page.data.title %>
+  </div>
+  <div class="panel-body content">
+    <%= yield %>
+  </div>
+</div>
+<% end %>

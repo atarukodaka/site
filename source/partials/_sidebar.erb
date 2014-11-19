@@ -3,8 +3,13 @@
   <div class="panel-body">
     <ul>
       <% page = sitemap.resources.select {|page| page.destination_path =~ /\.html$/}.each do |page| %>
-      <li><%= link_to(page.data.title, page.destination_path) %>
-	<% end %>
+        <li>
+	  <% title = (page.data.series) ? page.data.series : "" %>
+	  <% title += page.data.title %>
+	  <%= link_to(title, page.destination_path) %>
+      <% end %>
     </ul>
   </div>
+
 </div>
+

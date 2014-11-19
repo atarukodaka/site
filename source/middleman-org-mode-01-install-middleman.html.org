@@ -1,0 +1,89 @@
+---
+title: 第１回：middleman のインストールと基本設定
+layout: article
+series: middleman と org-mode でサイト構築
+---
+** インストール
+
+gem で入れるんですが、そのまま gem install middleman してしまうと
+競合が起こったりでいやなので、bundler を使ってプロジェクトごとgem を管理します。
+
+#+BEGIN_SRC 
+% gem install bundle   # もし bundle をまだいれてなかったら
+...
+% mkdir site && cd site
+% bundle init
+Writing new Gemfile to /home/foo/site/Gemfile
+% vi Gemfile
+...
+gem 'middleman'
+gem 'middleman-livereload'   # livereload で使う
+gem 'therubyracer'     # これ入れないとエラーが起こることがある
+% bundle install --path ./vendor/bundle
+...
+#+END_SRC
+
+あるいは、middleman 用の bundle として、% bundler install --path ~/.bundle/middleman/vendor/bundle などとしてもよいかもしれません。別の middleman サイトを作ったときにそれを参照すれば install の手間が省けます。
+
+
+
+** サイトの構築と動作確認
+初期化します。
+
+#+BEGIN_EXAMPLE
+% alias mm=bundle exec middleman      # .bashrc にでも加えておく
+% mm init --skip-gemfile  # gemfile をスキップしないと上書きされてしまう
+..
+Use `bundle show [gemname]` to see where a bundled gem is installed.
+      create  site/.gitignore
+      create  site/config.rb
+      create  site/source/index.html.erb
+      create  site/source/layouts/layout.erb
+      create  site/source/stylesheets
+      create  site/source/stylesheets/all.css
+      create  site/source/stylesheets/normalize.css
+      create  site/source/javascripts
+      create  site/source/javascripts/all.js
+      create  site/source/images
+      create  site/source/images/background.png
+      create  site/source/images/middleman.png
+#+END_EXAMPLE
+
+build すると build/ 以下に出力されます。
+
+#+BEGIN_EXAMPLE
+% mm build
+      create  build/stylesheets/all.css
+      create  build/stylesheets/normalize.css
+      create  build/images/background.png
+      create  build/images/middleman.png
+      create  build/javascripts/all.js
+      create  build/index.html
+#+END_EXAMPLE
+
+サーバー起動もしてみます。
+
+#+BEGIN_SRC 
+% mm server
+#+END_SRC
+
+これで http://localhost:4567/ で確認できます。
+
+
+** 設定
+*** LiveReload
+ソースに変更があったら読み込み直すように：
+
+#+BEGIN_SRC ruby
+% vi config.rb
+# Reload the browser automatically whenever files change
+configure :development do
+  activate :livereload
+end
+#+END_SRC
+
+** 参考サイト
+- [[http://qiita.com/shu_0115/items/9db7a794356613f1b2cb][bundle exec middleman build && middleman server -p $PORT]]
+- [[http://kotatu.org/blog/2013/09/01/variables-available-in-middleman-templates/][Middleman(+ middleman-blog)のテンプレートで使える変数まとめ - kotatu.org]]
+- [[http://blogged.e2esound.com/2013/12/10/getting_started_sitemap/][Middleman のサイトマップを使ってみる | e2esound.com業務日誌]]
+

@@ -3,16 +3,33 @@ title: サイト構築
 layout: layout
 ---
 
-** ブログ、文書かき
 
+* ブログ、文書かき
+** ブログ、文書かき
 - とりあえず、org-mode で書きたいことをかく。
 - あまり「ブログ」形式にこだわらない。
 - ファイルに日付がつくのはいやだ。開くのや探すのがメンドイ
 - org/*.org に書いて、org-ruby で .html に落とす？
 - ```ruby 構文をサポート
-jekyll
 
-** org-mode/keybind
+* スケートラボ
+
+- Lze, Fe
+- ダブルジャンプの制限
+ - +2T
+  - コンビネーション NV
+  -  本来の意図。同じダブルジャンプの重複を避ける
+  - +2T, +2T,  2Lo (3Lo intended), 2F+2Lo +1F
+- +REP
+- ショートの要求ジャンプ　* (NV)
+- GOE ガイドライン
+    
+
+
+
+
+* org-mode を使う
+** org-mode:keybind
 
 - <s[TAB] -> #+BEGIN_SRC/+END_SRC
 
@@ -36,41 +53,10 @@ I  #+include: line
 
 
 
-** middleman
-
-*** install
-
-#+BEGIN_SRC 
-% gem install middleman
-% vi Gemfile
-...
-#+END_SRC
-
-#+BEGIN_SRC ruby
-# Reload the browser automatically whenever files change
-configure :development do
-  activate :livereload
-end
-#+END_SRC
 
 
-gem "therubyracer"
 
-[web: bundle exec middleman build && middleman server -p $PORT](http://qiita.com/shu_0115/items/9db7a794356613f1b2cb)
+* memo
+*** cleanup all gems
+- [http://kazu69.net/blog/memo/2026][Ruby2.0で全てのgemを削除する | 69log]
 
-[Middleman(+ middleman-blog)のテンプレートで使える変数まとめ - kotatu.org](http://kotatu.org/blog/2013/09/01/variables-available-in-middleman-templates/)
-
-[Middleman のサイトマップを使ってみる | e2esound.com業務日誌](http://blogged.e2esound.com/2013/12/10/getting_started_sitemap/)
-
-** スケートラボ
-
-- Lze, Fe
-- ダブルジャンプの制限
- - +2T
-  - コンビネーション NV
-  -  本来の意図。同じダブルジャンプの重複を避ける
-  - +2T, +2T,  2Lo (3Lo intended), 2F+2Lo +1F
-- +REP
-- ショートの要求ジャンプ　* (NV)
-- GOE ガイドライン
-    

@@ -2,52 +2,55 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
-    <!-- link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet" -->
     <!-- Always force latest IE rendering engine or request Chrome Frame -->
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     
     <!-- Use title if it's in the page YAML frontmatter -->
-    <title><%= current_page.data.title || "The Middleman" %></title>
+    <title><%= current_page.data.title %> - <%= data.config.site_info.title %></title>
     
-    <%= stylesheet_link_tag "bootstrap.min.css" %>
+    <!-- jquery -->
+    <%= javascript_include_tag "jquery-1.11.0.min.js" %>
+    <!-- bootstrap -->
     <%= javascript_include_tag "bootstrap.min.js" %>
+    <%= stylesheet_link_tag "bootstrap.min.css" %>
+    <!-- site specific styles -->
+    <%= stylesheet_link_tag "style.css" %>
+    <%= stylesheet_link_tag "pygment_trac.css" %>
+
   </head>
   
   <body>
-    <div class="navbar navbar-default">
-      <ul class="nav navbar-nav">
-	<li><a href="/">top</a></li>
-      </ul>
-    </div>
-    <div class="container <%= page_classes %>">
-      <div class="raw">
-	<div class="col-md-3 hidden-xs hidden-sm">
-	  <%= partial "partials/sidebar" %>
-	</div>
-	
-	<div class="col-md-9">
-	  <%= yield %>
-	  
-	  <div class="panel panel-primary">
-	    <div class="panel-heading">debug</div>
-	    <div class="panel-body">
-	      <pre>
-	      </pre>
-	    </div>
+    <div id="wrap" class="content">
+      <div class="navbar navbar-default">
+	<ul class="nav navbar-nav">
+	  <li><a href="/">top</a></li>
+	</ul>
+      </div>
+      <div class="container <%= page_classes %>">
+	<div class="raw">
+	  <div class="col-md-3 hidden-xs hidden-sm">
+	    <%= partial "partials/sidebar" %>
 	  </div>
 
+	  <div class="col-md-9">
+	    <%= yield %>
+
+	    <div class="panel panel-primary">
+	      <div class="panel-heading">debug</div>
+	      <div class="panel-body">
+		<pre>
+		</pre>
+	      </div>
+	    </div>
+
+	  </div>
 	</div>
       </div>
     </div>
     <div id="footer">
       <div class="container">
-	<o>&copy; <%= %>foo@bar powered by middleman and twitter-bootstrap</p>
+	<p>&copy; <%= h data.config.site_info.author %> (<%= h data.config.site_info.email %>) powered by middleman and twitter-bootstrap</p>
       </div>
     </div>
   </body>
 </html>
-
-
-

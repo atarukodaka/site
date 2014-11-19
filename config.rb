@@ -46,7 +46,7 @@ end
 # end
 
 helpers do
-  def h(*args)
+  def h(args)
     ERB::Util::h(args)
   end
 end
@@ -73,9 +73,6 @@ configure :build do
 
   # Or use a different image path
   # set :http_prefix, "/Content/images/"
-end
-
-activate :blog do |blog|
 end
 
 set :markdown_engine, :redcarpet
