@@ -1,11 +1,7 @@
 <% wrap_layout :layout do %>
-<div class="panel panel-primary article">
-  <div class="panel-heading">
-    <%= h current_page.data.title %>
-  </div>
-  <div class="panel-body content">
-    <h1><%= current_page.data.title %></h1>
+  <h1><%= h current_page.data.title %></h1>
+  <hr>
+  <div class="content">
     <%= yield %>
   </div>
-</div>
 <% end %>

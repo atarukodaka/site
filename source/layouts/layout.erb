@@ -37,19 +37,12 @@
 
 	  <div class="col-md-9">
 	    <%= yield %>
-
-	    <div class="panel panel-primary">
-	      <div class="panel-heading">debug</div>
-	      <div class="panel-body">
-		<pre>
-		</pre>
-	      </div>
-	    </div>
-
 	  </div>
 	</div>
       </div>
     </div>
+
+    <%= current_page.inspect %>
     <div id="footer">
       <div class="container">
 	<p>&copy; <%= h data.config.site_info.author %> (<%= h data.config.site_info.email %>) powered by middleman and twitter-bootstrap</p>

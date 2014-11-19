@@ -1,16 +1,11 @@
-<div class="panel panel-primary">
-  <div class="panel-heading">Articles</div>
-  <div class="panel-body">
+  <h2>Articles</h2>
       <% sitemap.resources.select {|page| page.data.layout == "article"}.each do |page| %>
 	<% title = (page.data.series) ? page.data.series : "" %>
 	<% title = page.data.title %>
 	<%= link_to(h(title), page.url) %><br>
       <% end %>
-  </div>
-</div>
-<div class="panel panel-primary">
-  <div class="panel-heading">Series</div>
-  <div class="panel-body">
+
+  <h2>Series</h2>
       <% sitemap.resources.group_by {|p| p.data.series }.each do |series, pages| %>
         <% next if series.to_s == "" %>
         <% index_page = pages.select {|p| p.data.layout == "series_index"}.first %>
@@ -21,6 +16,4 @@
 	  [<%= get_series_number(page)%>] <%= link_to(h(page.data.title), page.url) %><br>
         <% end %>
       <% end %>
-  </div>
-</div>
 

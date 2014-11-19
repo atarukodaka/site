@@ -1,3 +1,7 @@
+h1, h2, h3, h4, h5 {
+   color: green;
+}
+
 
 #footer {
 /*    background-color: #33e; */
@@ -18,8 +22,8 @@ body {
 .content > h2 {
     font-weight: bold;
     line-weight: 1.5em;
-    border-bottom: 1px solid #bce8f1;
-    border-left: 10px solid #bce8f1;
+    border-bottom: 1px solid green;
+    border-left: 10px solid green;
     margin: 20px 0 10px 0;
     padding: 3px 10px 1px 10px;
 
@@ -27,8 +31,8 @@ body {
 .content > h3 {
     font-weight: bold;
     line-weight: 1.5em;
-    border-left: 3px solid #bce8f1;
-    border-bottom: 1px solid #bce8f1;
+    border-left: 3px solid green;
+    border-bottom: 1px solid green;
     padding: 3px 10px 1px 10px;
 }
 .content > h4 {

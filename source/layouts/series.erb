@@ -1,13 +1,12 @@
 <% wrap_layout :layout do %>
-<div class="panel panel-primary article">
-  <div class="panel-body content">
+  <div class="article">
     <h1>
       【<%= h(current_page.data.series) %>】第<%= get_series_number(current_page) %>回：
       <%= h(current_page.data.title) %>
     </h1>
-    <%= yield %>
+    <hr>
+    <div class="content">
+      <%= yield %>
+    </div>
   </div>
-</div>
-
-
 <% end %>
