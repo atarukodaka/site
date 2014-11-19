@@ -1,6 +1,5 @@
 ---
 title: org-mode のインストールと middleman との連携
-layout: article
 series: middleman と org-mode でサイト構築
 ---
 

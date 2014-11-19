@@ -1,9 +1,12 @@
 <% wrap_layout :layout do %>
-  <h1><%= h current_page.data.title %></h1>
+  <h1>
+    <%= current_page.combined_title %>
+  </h1>
   <hr>
+  <div>
+    <%= current_page.modified_at.strftime("%d %b %Y %H:%M:%D") %>
+  </div>
   <div class="content">
     <%= yield %>
   </div>
 <% end %>
-
-

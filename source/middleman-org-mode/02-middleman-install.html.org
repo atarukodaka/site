@@ -1,6 +1,5 @@
 ---
 title: middleman のインストールと基本設定
-layout: article
 series: middleman と org-mode でサイト構築
 ---
 ** インストールと初期化

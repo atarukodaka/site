@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+require "./resource_ext.rb"
+
+# -*- coding: utf-8 -*-
 ###
 # Compass
 ###
@@ -26,6 +30,7 @@
 # Proxy pages (http://middlemanapp.com/basics/dynamic-pages/)
 # proxy "/this-page-has-no-template.html", "/template-file.html", :locals => {
 #  :which_fake_page => "Rendering a fake page with a local variable" }
+set :layout, :page
 
 ###
 # Helpers
@@ -50,9 +55,19 @@ helpers do
     ERB::Util::h(args)
   end
 
+  def select_html_pages
+    sitemap.resources.select {|p| p.destination_path =~ /\.html$/}
+  end
   def get_series_number(page)
     page.path =~ Regexp.new("/([0-9]+)\-[^/]+\.html$")
     return $1.to_i
+  end
+  def combined_title(page)
+    if page.data.series
+      "【%s】第%d回：%s" % [page.data.series, get_series_number(page), page.data.title]
+    else
+      page.data.title
+    end
   end
   def series_summary(series)
     pages = sitemap.resources.select {|p| p.data.series == series && p.data.layout != "index" }
@@ -117,8 +132,8 @@ set :site_keywords, "keyword-one, keyword-two"
 
 ready do
   puts "ready fook"
-  sitemap.resources.select {|p| p.path =~ /\.html$/}.each do |page|
-    puts page.data.modified_at = modified_at(page).strftime("%Y/%m/%d")
-    puts page.data.modified_at
-  end
+#  sitemap.resources.select {|p| p.path =~ /\.html$/}.each do |page|
+#    puts page.data.modified_at = modified_at(page).strftime("%Y/%m/%d")
+#    puts page.data.modified_at
+#  end
 end

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: jekyll bootstrap + github pages でブログ運用
 ---
 

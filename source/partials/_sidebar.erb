@@ -12,9 +12,10 @@
 
 
 <h2>Recent Updated</h2>
-<% sitemap.resources.select {|page| page.data.layout == "article"}.sort {|a, b| puts "hoge"; modified_at(a) <=> modified_at(b)}.each do |page| %>
-  <% title = (page.data.series) ? page.data.series : "" %>
-  <% title = page.data.title %>
-  <%= link_to(h(title), page.url) %><br>
+<% select_html_pages.sort {|a, b| b.modified_at <=> a.modified_at}.first(10).each do |page| %>
+  <% title = page.data.combined_title %>
+  <%= link_to(h(page.data.title), page.url) %>
+  <%= page.modified_at.strftime("%Y/%m/%d %H:%M:%S %Z") %><br>
 <% end %>
 
+<%= current_page.class %>

@@ -1,6 +1,5 @@
 ---
 title: middleman のレイアウト
-layout: article
 series: middleman と org-mode でサイト構築
 ---
 

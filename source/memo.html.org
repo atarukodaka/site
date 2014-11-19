@@ -1,6 +1,5 @@
 ---
 title: Memo
-layout: layout
 group: navigation
 ---
 
@@ -65,3 +64,5 @@ I  #+include: line
 page = sitemap.resources.select {|page| page.destination_path =~ /\.html$/}.each do |page|
 
 
+
+[http://qiita.com/snaka/items/a291423d6ceac9f091a7][CentOS の Timezone 変更 - Qiita]
