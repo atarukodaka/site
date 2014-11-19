@@ -55,7 +55,7 @@ helpers do
     return $1.to_i
   end
   def series_summary(series)
-    pages = sitemap.resources.select {|p| p.data.series == series && p.data.layout == "series"}
+    pages = sitemap.resources.select {|p| p.data.series == series && p.data.layout != "index" }
     
     template = %(
 <ul>
@@ -114,3 +114,11 @@ set :site_title, "Site name"
 set :site_url, "http://www.domain.com"
 set :site_description, "Meta description."
 set :site_keywords, "keyword-one, keyword-two"
+
+ready do
+  puts "ready fook"
+  sitemap.resources.select {|p| p.path =~ /\.html$/}.each do |page|
+    puts page.data.modified_at = modified_at(page).strftime("%Y/%m/%d")
+    puts page.data.modified_at
+  end
+end

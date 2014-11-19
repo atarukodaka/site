@@ -1,5 +1,8 @@
 <% wrap_layout :layout do %>
-  <h1><%= h current_page.data.title %></h1>
+  <h1>
+    <%= (current_page.data.series) ? "【" + current_page.data.series + "】第" + get_series_number(current_page).to_s + "回：" : "" %>
+    <%= h current_page.data.title %> 
+  </h1>
   <hr>
   <div class="content">
     <%= yield %>
