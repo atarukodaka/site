@@ -12,6 +12,7 @@ group: navigation
 - ファイルに日付がつくのはいやだ。開くのや探すのがメンドイ
 - org/*.org に書いて、org-ruby で .html に落とす？
 - ```ruby 構文をサポート
+- 使うレイアウトによって type を規定
 
 * スケートラボ
 
@@ -62,3 +63,5 @@ I  #+include: line
 - [http://kazu69.net/blog/memo/2026][Ruby2.0で全てのgemを削除する | 69log]
 
 page = sitemap.resources.select {|page| page.destination_path =~ /\.html$/}.each do |page|
+
+
