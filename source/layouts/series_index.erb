@@ -1,7 +1,7 @@
 <% wrap_layout :article do %>
   <%= yield %>
 
-  <%= series_summary(current_page) %>
+  <%= series_summary(current_page.data.series) %>
 
 <!--
 

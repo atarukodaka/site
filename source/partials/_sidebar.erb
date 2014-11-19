@@ -14,7 +14,8 @@
       <% sitemap.resources.group_by {|p| p.data.series }.each do |series, pages| %>
         <% next if series.to_s == "" %>
         <% index_page = pages.select {|p| p.data.layout == "series_index"}.first %>
-        <%= (index_page.nil?) ? h(series) : link_to(h(series), index_page.url) %>
+	<% series_str = "<strong>【" + h(series) + "】</strong>" %>
+        <%= (index_page.nil?) ? series_str: link_to(series_str, index_page.url) %><br>
         <% pages.each do |page| %>
           <% next if page.data.layout != "series" %>
 	  [<%= get_series_number(page)%>] <%= link_to(h(page.data.title), page.url) %><br>

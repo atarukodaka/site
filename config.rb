@@ -54,18 +54,12 @@ helpers do
     page.path =~ Regexp.new("/([0-9]+)\-[^/]+\.html$")
     return $1.to_i
   end
-  def series_summary(current_page)
-    current_page.destination_path =~ /^(.*)\/index\.html$/
-    dir = $1
-
-    pages = sitemap.resources.select {|page| 
-      page.destination_path != current_page.destination_path &&
-      page.destination_path =~ /^#{dir}/}.sort {|a, b| a.data.path <=> b.data.path
-    }
+  def series_summary(series)
+    pages = sitemap.resources.select {|p| p.data.series == series && p.data.layout == "series"}
     
     template = %(
 <ul>
-<% pages.each do |page| %>
+<% pages.sort {|a, b| a.url <=> b.url}.each do |page| %>
   <% number = get_series_number(page) %>
   <li><%= link_to("[" + number.to_s + "] " + h(page.data.title), h("/" + page.destination_path)) %></li>
 <% end %>

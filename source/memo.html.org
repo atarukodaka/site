@@ -1,6 +1,7 @@
 ---
-title: サイト構築
+title: Memo
 layout: layout
+group: navigation
 ---
 
 
