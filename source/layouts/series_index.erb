@@ -1,0 +1,21 @@
+<% wrap_layout :article do %>
+  <%= yield %>
+
+  <%= series_summary(current_page) %>
+
+<!--
+
+  <% current_page.path =~ /^(.*)\/index\.html$/ %>
+  <% dir = $1 %>
+
+  <ul>
+  <% sitemap.resources.select {|page| page.path =~ /^#{dir}/}.sort {|a, b| a.data.title <=> b.data.title}.each do |page| %>
+    <% if page.destination_path != current_page.destination_path %>
+    <li><%= link_to(page.data.title, h("/" + page.destination_path)) %>
+    <% end %>
+  <% end %>
+  </ul>
+-->
+
+
+<% end %>

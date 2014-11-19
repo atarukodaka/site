@@ -1,15 +1,25 @@
 <div class="panel panel-primary">
   <div class="panel-heading">Articles</div>
   <div class="panel-body">
-    <ul>
-      <% page = sitemap.resources.select {|page| page.destination_path =~ /\.html$/}.each do |page| %>
-        <li>
-	  <% title = (page.data.series) ? page.data.series : "" %>
-	  <% title += page.data.title %>
-	  <%= link_to(title, page.destination_path) %>
+      <% sitemap.resources.select {|page| page.data.layout == "article"}.each do |page| %>
+	<% title = (page.data.series) ? page.data.series : "" %>
+	<% title = page.data.title %>
+	<%= link_to(h(title), page.url) %><br>
       <% end %>
-    </ul>
   </div>
-
+</div>
+<div class="panel panel-primary">
+  <div class="panel-heading">Series</div>
+  <div class="panel-body">
+      <% sitemap.resources.group_by {|p| p.data.series }.each do |series, pages| %>
+        <% next if series.to_s == "" %>
+        <% index_page = pages.select {|p| p.data.layout == "series_index"}.first %>
+        <%= (index_page.nil?) ? h(series) : link_to(h(series), index_page.url) %>
+        <% pages.each do |page| %>
+          <% next if page.data.layout != "series" %>
+	  [<%= get_series_number(page)%>] <%= link_to(h(page.data.title), page.url) %><br>
+        <% end %>
+      <% end %>
+  </div>
 </div>
 

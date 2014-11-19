@@ -39,6 +39,10 @@ body {
 .content p {
     padding-left: 20px;
 }
+.content pre {
+    padding-left: 20px;
+}
+
 /* .content > h1:before{content: counter(h1) ". ";} */
 .content > h2:before{content: counter(h2) ". ";}
 .content > h3:before{content: counter(h2) "." counter(h3) ". "; }

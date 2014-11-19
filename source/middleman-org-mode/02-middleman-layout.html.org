@@ -1,6 +1,6 @@
 ---
-title: 第２回：middleman のカスタマイズ
-layout: article
+title: middleman のレイアウト
+layout: series
 series: middleman と org-mode でサイト構築
 ---
 
@@ -95,13 +95,17 @@ end
 *** サイドメニュー
 partial を使います。
 
-source/partials/_sidemenu.erb に
+source/partials/_sidemenu.erb が参照されますが、
+長くなるので別項にします。
 
-#+BEGIN_SRC html
+とりあえず作るだけ作っておきます。
 
+#+BEGIN_SRC 
+% vi source/partials/_sidemenu.erb
+<div>
+  sidemenu will be put here.
+</div>
 #+END_SRC
-
-yet
 
 ** article レイアウト
 記事用の子レイアウトを作ります。
@@ -121,3 +125,20 @@ yet
 
 wrap_layout :layout を使うと、layout の子レイアウトに出来ます。
 layout の yield 部にこれが展開されるのですね。
+
+記事ソースファイルで layout: article と指定します。
+
+** index.html の作成
+標準でついてくる index.html.erb はいらないので消します。
+最終的には org-mode 書式を使いたいのですが、
+取り敢えず markdown で試してみます。
+
+#+BEGIN_SRC 
+% rm source/index.html.erb
+% vi source/index.html.md
+## test
+- a
+- b
+- c
+% mm build
+#+END_SRC

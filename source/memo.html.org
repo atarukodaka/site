@@ -60,3 +60,4 @@ I  #+include: line
 *** cleanup all gems
 - [http://kazu69.net/blog/memo/2026][Ruby2.0で全てのgemを削除する | 69log]
 
+page = sitemap.resources.select {|page| page.destination_path =~ /\.html$/}.each do |page|

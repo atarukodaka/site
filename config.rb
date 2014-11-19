@@ -49,6 +49,30 @@ helpers do
   def h(args)
     ERB::Util::h(args)
   end
+
+  def get_series_number(page)
+    page.path =~ Regexp.new("/([0-9]+)\-[^/]+\.html$")
+    return $1.to_i
+  end
+  def series_summary(current_page)
+    current_page.destination_path =~ /^(.*)\/index\.html$/
+    dir = $1
+
+    pages = sitemap.resources.select {|page| 
+      page.destination_path != current_page.destination_path &&
+      page.destination_path =~ /^#{dir}/}.sort {|a, b| a.data.path <=> b.data.path
+    }
+    
+    template = %(
+<ul>
+<% pages.each do |page| %>
+  <% number = get_series_number(page) %>
+  <li><%= link_to("[" + number.to_s + "] " + h(page.data.title), h("/" + page.destination_path)) %></li>
+<% end %>
+</ul>
+)
+    ERB.new(template).result(binding)
+  end
 end
 
 set :css_dir, 'stylesheets'
