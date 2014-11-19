@@ -5,6 +5,7 @@
       <%= h(current_page.data.title) %>
     </h1>
     <hr>
+    <%= modified_at(current_page).strftime("%d %b %Y") %>
     <div class="content">
       <%= yield %>
     </div>

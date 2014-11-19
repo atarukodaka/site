@@ -67,6 +67,15 @@ helpers do
 )
     ERB.new(template).result(binding)
   end
+
+  def modified_at(page)
+    filename = page.source_file
+    return mtime = File.mtime(filename)
+  end
+  def created_at(page)
+    filename = page.source_file
+    return mtime = File.ctime(filename)
+  end
 end
 
 set :css_dir, 'stylesheets'
