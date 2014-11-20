@@ -1,0 +1,8 @@
+<% wrap_layout :page do %>
+  <%= yield %>
+
+  <hr>
+  <div class="series_summary">
+    <%= series_summary(current_page.data.series) %>
+  </div>
+<% end %>

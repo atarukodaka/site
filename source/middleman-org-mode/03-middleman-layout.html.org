@@ -1,6 +1,7 @@
 ---
 title: middleman のレイアウト
 series: middleman と org-mode でサイト構築
+layout: series
 ---
 
 ** レイアウト

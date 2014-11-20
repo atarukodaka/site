@@ -4,3 +4,5 @@ site_info:
   url: http://ak-site.herokuapp.com
   twitter: ataru.kodaka
   email: ataru.kodaka@gmail.com
+series:
+  combined_title_template: "hoadhfo"

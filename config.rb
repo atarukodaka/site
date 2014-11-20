@@ -1,54 +1,24 @@
 # -*- coding: utf-8 -*-
-require "./resource_ext.rb"
 
-# -*- coding: utf-8 -*-
-###
-# Compass
-###
-# Change Compass configuration
-# compass_config do |config|
-#   config.output_style = :compact
-# end
+# activate extensions
 
-###
-# Page options, layouts, aliases and proxies
-###
+require "./series_ext.rb"
 
-# Per-page layout changes:
-#
-# With no layout
-# page "/path/to/file.html", :layout => false
-#
-# With alternative layout
-# page "/path/to/file.html", :layout => :otherlayout
-#
-# A path which all have the same layout
-# with_layout :admin do
-#   page "/admin/*"
-# end
+activate :vcs_time
+activate :series
 
-# Proxy pages (http://middlemanapp.com/basics/dynamic-pages/)
-# proxy "/this-page-has-no-template.html", "/template-file.html", :locals => {
-#  :which_fake_page => "Rendering a fake page with a local variable" }
 set :layout, :page
-
-###
-# Helpers
-###
-
-# Automatic image dimensions on image_tag helper
-# activate :automatic_image_sizes
 
 # Reload the browser automatically whenever files change
 configure :development do
   activate :livereload
 end
-# Methods defined in the helpers block are available in templates
-# helpers do
-#   def some_helper
-#     "Helping"
-#   end
-# end
+
+set :combined_title_template, "【%{series}】第%{number}回：%{title}"
+
+###
+# Helpers
+###
 
 helpers do
   def h(args)
@@ -70,43 +40,6 @@ helpers do
       end
     (reverse) ? pages.reverse : pages
   end
-  def get_series_number(page)
-    page.path =~ Regexp.new("/([0-9]+)\-[^/]+\.html$")
-    return $1.to_i
-  end
-  def series_summary(series)
-    pages = sitemap.resources.select {|p| p.data.series == series && p.data.layout != "index" }
-    
-    template = %(
-<ul>
-<% pages.sort {|a, b| a.url <=> b.url}.each do |page| %>
-  <% number = get_series_number(page) %>
-  <li><%= link_to("[" + number.to_s + "] " + h(page.data.title), h("/" + page.destination_path)) %></li>
-<% end %>
-</ul>
-)
-    ERB.new(template).result(binding)
-  end
-
-=begin
-  def combined_title(page)
-    template = "[%{series}] #%{number}: %{title}"
-    if page.data.series
-      #"[%s] #%d: %s" % [page.data.series, get_series_number(page), page.data.title]
-      template % {series: page.data.series, number: page.series_number, title: page.data.title}
-    else
-      page.data.title
-    end
-  end
-  def modified_at(page)
-    filename = page.source_file
-    return mtime = File.mtime(filename)
-  end
-  def created_at(page)
-    filename = page.source_file
-    return mtime = File.ctime(filename)
-  end
-=end
 end
 
 set :css_dir, 'stylesheets'
@@ -158,5 +91,38 @@ ready do
 #  end
 end
 
-activate :vcs_time
-activate :combined_title
+
+################################################################
+# -*- coding: utf-8 -*-
+###
+# Compass
+###
+# Change Compass configuration
+# compass_config do |config|
+#   config.output_style = :compact
+# end
+
+###
+# Page options, layouts, aliases and proxies
+###
+
+# Per-page layout changes:
+#
+# With no layout
+# page "/path/to/file.html", :layout => false
+#
+# With alternative layout
+# page "/path/to/file.html", :layout => :otherlayout
+#
+# A path which all have the same layout
+# with_layout :admin do
+#   page "/admin/*"
+# end
+
+# Proxy pages (http://middlemanapp.com/basics/dynamic-pages/)
+# proxy "/this-page-has-no-template.html", "/template-file.html", :locals => {
+#  :which_fake_page => "Rendering a fake page with a local variable" }
+
+# Automatic image dimensions on image_tag helper
+# activate :automatic_image_sizes
+

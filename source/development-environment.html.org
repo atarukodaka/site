@@ -67,6 +67,7 @@ vi Vagrantfile で private_network 部分のコメントアウトを外す
 #+END_SRC
 
 *** init files
+
 #+BEGIN_SRC 
 git init
 git remote add origin git@github.com:atarukodaka/dotfiles.git
@@ -74,13 +75,20 @@ git fetch origin
 git merge origin/master
 #+END_SRC
 
-## ruby のインストール
+*** ruby のインストール
 rbenv でruby のヴァージョンを切り替える
-% sudo yum install git -y
+
+先にopenssl を入れておく。
+
+#+BEGIN_SRC 
+% sudo yum -y install openssl-devel
+#+END_SRC
+
 
 https://github.com/sstephenson/rbenv にあるとおりやる。
 
-```
+
+#+BEGIN_SRC 
 % git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
 % echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
 % echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
@@ -92,66 +100,34 @@ open new terminal
 % rbenv rehash
 % rbenv global 2.1.4
 % rbenv versions
-```
-
-openssl がないと怒られる場合は、先に入れておく：
-
-% sudo yum -y install openssl-devel
-
-
-
-- 1.9.3-p547
-- 2.0.0-p594
-- 2.1.4
+#+END_SRC
 
 % sudo yum install ruby-devel もしておく。
 
-### 参考：ruby1.9.x を rpm
+** その他開発環境のセットアップ
 
-http://park1.wakwak.com/~ima/centos_ruby0001.html
-
-
-## その他開発環境のセットアップ
-
-### yum install 
+*** yum install 
 
 - git
+- tree
 
-### gems
+*** gems
 
 gem install bundle
 
+*** timezone の設定
+#+BEGIN_SRC 
+sudo cp -p  /usr/share/zoneinfo/Japan /etc/localtime
+#+END_SRC
 
-
-## sinatra を外部から叩く
-development だと local しか listen しないので、production にする：
-http://qiita.com/u1_fukui/items/b86b21f6ed39f4c10d5d
-
-set :environment, :production
-
-か
-
-set :bind, '0.0.0.0'
-
-をコードに入れる。
-
-## ウェブサーバーの立ち上げ
-```
-% sudo yum install httpd -y
-% sudo yum service httpd start
-% sud yum chkconfig httpd on
-```
-
-ホスト側から http://193.168.33.10/ を確認
-
-## 共有フォルダ
+** 共有フォルダ
 
 hostで Vagrantfile があるディレクトリ（~/vagrant/centos64とする）が仮想側の /vagrant と共有されるので、
 元ソースを host:~/vagrant/centos64/source におき、guest:~/ で
 
-```
+#+BEGIN_SRC 
 % cd ~/; ln -s /vagrant/source .
-```
+#+END_SRC
 
 とすると、host 側の ~/vagrant/centos64/source/*を emacs で編集しつつ guest 側の ~/source で参照することができる。
 
