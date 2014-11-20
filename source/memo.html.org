@@ -12,28 +12,41 @@ gem install rb-readline
 
 
 * middleman series
+** 連載ネタ
 - @app.data, @app.settings が使える
+- gem "middleman-syntax"
+
+** 開発
 - index.html.erb で最新記事表示
 - type の概念？
-- gem "middleman-syntax"
 - combined_title
   - sitemap: list
   - partials/_sidebar: list
   - layouts/page.erb:   title
-  
+- File Change: 問題
+- pagination
+- template for combined title
+- modified_at
+- set :site_author ? or data.config ?
+- twitter
 
-* ブログ、文書かき
 ** ブログ、文書かき
 - とりあえず、org-mode で書きたいことをかく。
 - あまり「ブログ」形式にこだわらない。
 - ファイルに日付がつくのはいやだ。開くのや探すのがメンドイ
 - org/*.org に書いて、org-ruby で .html に落とす？
 - series: ヘッダで「連載」を表現
-- twitter
+
+* tips
+- [http://kazu69.net/blog/memo/2026][Ruby2.0で全てのgemを削除する | 69log]
+- [http://qiita.com/snaka/items/a291423d6ceac9f091a7][CentOS の Timezone 変更 - Qiita]
+- [http://qiita.com/one-a/items/d0f39401404fafb72bee][ローカルで制作したものをgithubに公開するまで - Qiita]
+- [[http://qiita.com/hash/items/1f01aa09ccf148542f21][AdventCalendar - 怠惰にgitを使うためのシェル活用術、またはgst一族 - Qiita]]
 
 
 
-* スケートラボ
+* figureskating 関連
+*** スケートラボ
 
 - Lze, Fe
 - ダブルジャンプの制限
@@ -46,52 +59,6 @@ gem install rb-readline
 - GOE ガイドライン
     
 
-
-
-
-* org-mode を使う
-** org-mode:keybind
-
-- <s[TAB] -> #+BEGIN_SRC/+END_SRC
-
-#+BEGIN_EXAMPLE
-s  #+begin_src ... #+end_src 
-e  #+begin_example ... #+end_example
-q  #+begin_quote ... #+end_quote 
-v  #+begin_verse ... #+end_verse 
-c  #+begin_center ... #+end_center 
-l  #+begin_latex ... #+end_latex 
-L  #+latex: 
-h  #+begin_html ... #+end_html 
-H  #+html: 
-a  #+begin_ascii ... #+end_ascii 
-A  #+ascii: 
-i  #+index: line 
-I  #+include: line 
-#+END_EXAMPLE
-
-################################################################
-
-
-
-
-
-
-* todo for middleman
-- pagination
-- template for combined title
-- modified_at
-- set :site_author ? or data.config ?
-
-* memo
-*** cleanup all gems
-
-
-* tips
-- [http://kazu69.net/blog/memo/2026][Ruby2.0で全てのgemを削除する | 69log]
-- [http://qiita.com/snaka/items/a291423d6ceac9f091a7][CentOS の Timezone 変更 - Qiita]
-- [http://qiita.com/one-a/items/d0f39401404fafb72bee][ローカルで制作したものをgithubに公開するまで - Qiita]
-- [[http://qiita.com/hash/items/1f01aa09ccf148542f21][AdventCalendar - 怠惰にgitを使うためのシェル活用術、またはgst一族 - Qiita]]
 
 
 
