@@ -1,20 +1,21 @@
 ---
 title: Top Page
+layout: layout
 ---
 
-<h2>このサイトについて</h2>
+<h2><%= h(data.config.site_info.title) %></h2>
 ソフトウェア開発、フィギュアスケートなどについての情報をまとめています。
 
 <h3>連載記事</h3>
 <ul>
   <li>middleman と org-mode でサイト構築
-    <%= summary("series", "middleman と org-mode でサイト構築", {list_type: "ol"}){|page|  "---" + page.data.title + "---" }%>
+    <%= summary("series", "middleman と org-mode でサイト構築", {list_type: "ol"}) %>
 
   </li>
 </ul>
 
 <h3>ソフトウェア開発</h3>
-<%= summary("category", "software", {caption_template: "%{title}", list_type: "ul"}) %>
+<%= summary("category", "software", {caption_template: "%{title}"}) %>
 
 <h3>フィギュアスケート</h3>
 <%= summary("category", "figureskating", {list_type: "ol"}) %>
