@@ -6,7 +6,7 @@ group: navigation
 <h2>Sitemap</h2>
 
 <ul>
-<% select_html_pages(:title).each do |page| %>
+<% select_html_pages.each do |page| %>
   <li><%= link_to(h(page.combined_title), page.url) %></li>
 <% end %>
 </ul>

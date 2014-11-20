@@ -3,17 +3,19 @@ module Middleman
   module Sitemap
     class Resource
 
+=begin
       alias :org_initialize :initialize
-      
       
       def initialize(store, path, source_file=nil)
         org_initialize(store, path, source_file)
         @modified_at = File.mtime(self.source_file) if File.exists? @source_file
       end
+=end
 
       def modified_at
         #return mtime = File.mtime(self.source_file)
-        @modified_at
+        #@modified_at
+        mtime
       end
       def series_number
         self.path =~ Regexp.new("/([0-9]+)\-[^/]+\.html$")

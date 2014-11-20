@@ -65,23 +65,14 @@ helpers do
         pages.sort {|a, b| a.combined_title <=> b.combined_title }
       when :path
         pages.sort {|a, b| a.path <=> b.path }
-      when :modified_at
-        pages.sort {|a, b| a.modified_at <=> b.modified_at }
+      when :mtime
+        pages.sort {|a, b| a.mtime <=> b.mtime }
       end
     (reverse) ? pages.reverse : pages
   end
   def get_series_number(page)
     page.path =~ Regexp.new("/([0-9]+)\-[^/]+\.html$")
     return $1.to_i
-  end
-  def combined_title(page)
-    template = "[%{series}] #%{number}: %{title}"
-    if page.data.series
-      #"[%s] #%d: %s" % [page.data.series, get_series_number(page), page.data.title]
-      template % {series: page.data.series, number: page.series_number, title: page.data.title}
-    else
-      page.data.title
-    end
   end
   def series_summary(series)
     pages = sitemap.resources.select {|p| p.data.series == series && p.data.layout != "index" }
@@ -97,6 +88,16 @@ helpers do
     ERB.new(template).result(binding)
   end
 
+=begin
+  def combined_title(page)
+    template = "[%{series}] #%{number}: %{title}"
+    if page.data.series
+      #"[%s] #%d: %s" % [page.data.series, get_series_number(page), page.data.title]
+      template % {series: page.data.series, number: page.series_number, title: page.data.title}
+    else
+      page.data.title
+    end
+  end
   def modified_at(page)
     filename = page.source_file
     return mtime = File.mtime(filename)
@@ -105,6 +106,7 @@ helpers do
     filename = page.source_file
     return mtime = File.ctime(filename)
   end
+=end
 end
 
 set :css_dir, 'stylesheets'
@@ -144,6 +146,11 @@ set :site_url, "http://www.domain.com"
 set :site_description, "Meta description."
 set :site_keywords, "keyword-one, keyword-two"
 
+set :site, {
+  title: "Site",
+  author: "your name"
+}
+
 ready do
   puts "ready fook"
 #  sitemap.resources.select {|p| p.path =~ /\.html$/}.each do |page|
@@ -151,3 +158,5 @@ ready do
 #    puts page.data.modified_at
 #  end
 end
+
+activate :vcs_time

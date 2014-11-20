@@ -15,5 +15,6 @@ gem "tzinfo-data", platforms: [:mswin, :mingw]
 
 gem 'therubyracer'
 
+gem 'middleman-vcs-time'
 gem 'redcarpet'
 gem 'org-ruby'

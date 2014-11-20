@@ -81,6 +81,8 @@ GEM
       sprockets (~> 2.12.1)
       sprockets-helpers (~> 1.1.0)
       sprockets-sass (~> 1.2.0)
+    middleman-vcs-time (0.0.3)
+      middleman-core (~> 3.2)
     minitest (5.4.3)
     multi_json (1.10.1)
     org-ruby (0.9.9)
@@ -134,6 +136,7 @@ PLATFORMS
 DEPENDENCIES
   middleman (~> 3.3.7)
   middleman-livereload (~> 3.1.0)
+  middleman-vcs-time
   org-ruby
   redcarpet
   therubyracer

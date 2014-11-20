@@ -59,6 +59,18 @@ vi Vagrantfile で private_network 部分のコメントアウトを外す
 % sudo chkconfig iptables off
 ```
 
+*** ssh
+% ssh-keygen -t rsa
+% eval `ssh-agent`
+% ssh-add ~/.ssh/id_rsa
+
+*** init files
+git init
+git remote add origin git@github.com:atarukodaka/dotfiles.git
+git fetch origin
+git merge origin/master
+
+
 ## ruby のインストール
 rbenv でruby のヴァージョンを切り替える
 % sudo yum install git -y
@@ -93,35 +105,14 @@ http://park1.wakwak.com/~ima/centos_ruby0001.html
 ## その他開発環境のセットアップ
 
 ### yum install 
-n
+
 - git
 
 ### gems
-bundle である程度一通り：
 
-```
-% vi Gemfile
-source 'https://rubygems.org'
+gem install bundle
 
-gem 'rack'
-gem 'activerecord'
-gem 'actionview'
 
-gem 'sinatra'
-gem 'sinatra-activerecord'
-gem 'sinatra-contrib'
-gem 'sinatra-reloader'
-
-gem 'sqlite3'
-% bundle install
-
-```
-
-## rails
-
-% vi Gemfile
-gem 'therubyracer'	←追加
-% bundle install
 
 ## sinatra を外部から叩く
 development だと local しか listen しないので、production にする：

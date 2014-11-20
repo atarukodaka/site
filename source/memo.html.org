@@ -1,4 +1,4 @@
----
+m---
 title: Memo
 group: navigation
 ---
@@ -57,6 +57,12 @@ I  #+include: line
 
 
 
+* todo for middleman
+- pagination
+- template for combined title
+- modified_at
+- set :site_author ? or data.config ?
+
 * memo
 *** cleanup all gems
 - [http://kazu69.net/blog/memo/2026][Ruby2.0で全てのgemを削除する | 69log]
@@ -66,3 +72,5 @@ page = sitemap.resources.select {|page| page.destination_path =~ /\.html$/}.each
 
 
 [http://qiita.com/snaka/items/a291423d6ceac9f091a7][CentOS の Timezone 変更 - Qiita]
+
+[http://qiita.com/one-a/items/d0f39401404fafb72bee][ローカルで制作したものをgithubに公開するまで - Qiita]
