@@ -110,10 +110,19 @@ open new terminal
 
 - git
 - tree
+- wget
+- curl
 
 *** gems
 
 gem install bundle
+
+*** heroku
+
+https://toolbelt.heroku.com/ より "standalone"でインストール。
+'readline' がないとか言われた場合は、
+gem install rb-readline
+する。
 
 *** timezone の設定
 #+BEGIN_SRC 

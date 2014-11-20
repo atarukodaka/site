@@ -18,3 +18,13 @@ gem 'therubyracer'
 gem 'middleman-vcs-time'
 gem 'redcarpet'
 gem 'org-ruby'
+
+gem "middleman-syntax"
+gem 'rouge'
+
+gem 'rb-readline'   # for heroku toolbelt
+
+
+gem 'pry'
+gem 'pry-doc'
+

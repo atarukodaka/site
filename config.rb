@@ -6,6 +6,7 @@ require "./series_ext.rb"
 
 activate :vcs_time
 activate :series
+activate :syntax
 
 set :layout, :page
 
@@ -26,7 +27,7 @@ helpers do
   end
 
   def select_html_pages(sort_by = nil, reverse = false)
-    pages = sitemap.resources.select {|p| p.destination_path =~ /\.html$/}
+    pages = sitemap.resources.select {|p| p.ext == ".html"}
     pages = 
       case sort_by
       when nil
@@ -39,6 +40,24 @@ helpers do
         pages.sort {|a, b| a.mtime <=> b.mtime }
       end
     (reverse) ? pages.reverse : pages
+  end
+
+  def summary(data_key, value, opt = {})
+    # opt:  :caption_template, :list_type
+    pages = sitemap.resources.select {|p| p.data[data_key] == value }.sort {|a, b| a.path <=> b.path }
+    list_type = (opt[:list_type] =~ /ol/i) ? "ol" : "ul"
+    caption_template = opt[:caption_template] || "%{title}"
+    
+    template = %(
+      <#{list_type}>
+      <% pages.each do |page| %>
+        <% caption_template = "#{caption_template}" %>
+        <% caption = caption_template % {title: page.data.title} %>
+        <li><%= link_to(h(caption), page.url) %></li>
+      <% end %>
+      </#{list_type}>
+      )
+    ERB.new(template).result(binding)
   end
 end
 

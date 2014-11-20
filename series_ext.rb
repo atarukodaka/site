@@ -15,7 +15,8 @@ module Middleman
         #template = data.config.series.combined_title_template || templates[:en]
         #template = config['combined_title_template']
         lang = :en
-        template = @app.settings.combined_title_template
+        #template = @app.settings.combined_title_template
+        template = @app.data.config.series.combined_title_template || templates[:en]
         #puts template = Extension.options.combined_title_template
         #puts @app.settings.combined_title_template
         
