@@ -60,16 +60,19 @@ vi Vagrantfile で private_network 部分のコメントアウトを外す
 ```
 
 *** ssh
+#+BEGIN_SRC 
 % ssh-keygen -t rsa
 % eval `ssh-agent`
 % ssh-add ~/.ssh/id_rsa
+#+END_SRC
 
 *** init files
+#+BEGIN_SRC 
 git init
 git remote add origin git@github.com:atarukodaka/dotfiles.git
 git fetch origin
 git merge origin/master
-
+#+END_SRC
 
 ## ruby のインストール
 rbenv でruby のヴァージョンを切り替える
@@ -90,6 +93,12 @@ open new terminal
 % rbenv global 2.1.4
 % rbenv versions
 ```
+
+openssl がないと怒られる場合は、先に入れておく：
+
+% sudo yum -y install openssl-devel
+
+
 
 - 1.9.3-p547
 - 2.0.0-p594

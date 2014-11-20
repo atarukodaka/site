@@ -152,7 +152,6 @@ set :site, {
 }
 
 ready do
-  puts "ready fook"
 #  sitemap.resources.select {|p| p.path =~ /\.html$/}.each do |page|
 #    puts page.data.modified_at = modified_at(page).strftime("%Y/%m/%d")
 #    puts page.data.modified_at
@@ -160,3 +159,4 @@ ready do
 end
 
 activate :vcs_time
+activate :combined_title

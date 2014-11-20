@@ -4,7 +4,7 @@
   </h1>
   <hr>
   <div>
-    <%= current_page.modified_at.strftime("%d %b %Y %H:%M:%S %Z") %>
+    <%= current_page.mtime.strftime("%d %b %Y %H:%M:%S %Z") %>
   </div>
   <div class="content">
     <%= yield %>
