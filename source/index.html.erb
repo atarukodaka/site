@@ -8,20 +8,14 @@ title: Top Page
 <h3>連載記事</h3>
 <ul>
   <li>middleman と org-mode でサイト構築
-    <%= summary("series", "middleman と org-mode でサイト構築", {list_type: "ol"}) %> 
+    <%= summary("series", "middleman と org-mode でサイト構築", {list_type: "ol"}){|page|  "---" + page.data.title + "---" }%>
+
   </li>
 </ul>
 
 <h3>ソフトウェア開発</h3>
-<%= summary("category", "software", {caption_template: "--- %{title}---", list_type: "ol"}) %>
+<%= summary("category", "software", {caption_template: "%{title}", list_type: "ul"}) %>
 
 <h3>フィギュアスケート</h3>
 <%= summary("category", "figureskating", {list_type: "ol"}) %>
 
-<h2>最新記事</h2>
-
-<ul>
-<% select_html_pages.select {|p| p.data.group != "navigation" }.sort {|a, b| b.mtime <=> a.mtime}.first(10).each do |page| %>
-  <li><%= link_to(h(page.combined_title), page.url) %></li>
-<% end %>
-</ul>

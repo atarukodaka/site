@@ -16,6 +16,11 @@ gem install rb-readline
 - index.html.erb で最新記事表示
 - type の概念？
 - gem "middleman-syntax"
+- combined_title
+  - sitemap: list
+  - partials/_sidebar: list
+  - layouts/page.erb:   title
+  
 
 * ブログ、文書かき
 ** ブログ、文書かき

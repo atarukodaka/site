@@ -43,28 +43,28 @@ helpers do
   end
 
   def summary(data_key, value, opt = {})
-    # opt:  :caption_template, :list_type
-    pages = sitemap.resources.select {|p| p.data[data_key] == value }.sort {|a, b| a.path <=> b.path }
+    # opt:  :caption_template, :list_type,
+    #   yield(page) if block_given?
     list_type = (opt[:list_type] =~ /ol/i) ? "ol" : "ul"
     caption_template = opt[:caption_template] || "%{title}"
     
-    template = %(
-      <#{list_type}>
-      <% pages.each do |page| %>
-        <% caption_template = "#{caption_template}" %>
-        <% caption = caption_template % {title: page.data.title} %>
-        <li><%= link_to(h(caption), page.url) %></li>
-      <% end %>
-      </#{list_type}>
-      )
-    ERB.new(template).result(binding)
+    pages = sitemap.resources.select {|p| p.data[data_key] == value }.sort {|a, b| a.path <=> b.path }
+    
+    ar = ["<#{list_type}>"]
+    pages.each do |page|
+      caption = (block_given?) ? yield(page) : page.data.title
+      ar << "<li>" + link_to(h(caption), page.url) + "</li>"
+    end
+    ar << "</#{list_type}>"
+    return ar.join("\n")
   end
 end
 
+
+## set directories
+
 set :css_dir, 'stylesheets'
-
 set :js_dir, 'javascripts'
-
 set :images_dir, 'images'
 
 # Build-specific configuration
