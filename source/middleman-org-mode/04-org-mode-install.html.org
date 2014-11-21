@@ -2,6 +2,7 @@
 title: org-mode のインストールと middleman との連携
 series: middleman と org-mode でサイト構築
 layout: series
+category: software
 ---
 
 ** org-mode のインストール

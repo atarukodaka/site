@@ -2,6 +2,7 @@
 title: middleman のレイアウト
 series: middleman と org-mode でサイト構築
 layout: series
+category: software
 ---
 
 ** レイアウト

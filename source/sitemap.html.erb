@@ -3,13 +3,14 @@ title: Sitemap
 group: navigation
 ---
 
+<hr>
+
 <ul>
-<% i = 0; j = 0 %>
-<% select_html_pages.stable_sort_by {|p| p.data.destination_path.to_s }.stable_sort_by {|p| p.data.category.to_s }.each do |page| %>
+<% select_html_pages.sort_by {|p| p.data.category.to_s + p.destination_path.to_s }.each do |page| %>
   <li>
     <%= (page.data.category) ? "[" + h(page.data.category) + "] " : "" %>
     <%= link_to(h(page.combined_title), page.url) %>
-    <%= "... " + page.mtime.strftime("%Y/%m/%d %H:%M") %>
+    <%= "... " + page.mtime.strftime("%Y/%m/%d %H:%M:%S") %>
   </li>
 <% end %>
 </ul>

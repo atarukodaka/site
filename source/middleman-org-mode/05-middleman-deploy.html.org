@@ -1,6 +1,7 @@
 ---
 title: heroku への deployと github へのpush
 series: middleman と org-mode でサイト構築
+category: software
 ---
 
 

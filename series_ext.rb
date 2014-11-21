@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 module Enumerable
   def stable_sort_by
     self.sort_by.with_index{ |e, index| [yield(e), index] }
@@ -14,13 +13,7 @@ module Middleman
       end
 
       def combined_title
-        templates = {
-          en: "[%{series}] #%{number}: %{title}",
-          ja: "【%{series}】第%{number}回：%{title}"
-        }
-        lang = :en
-        template = @app.data.config.series.combined_title_template || templates[:en]
-        
+        template = @app.data.config.series.combined_title_template || "[%{series}] #%{number}: %{title}"
         title = self.data.title || "untitled"
         if self.data.series
           template % {series: self.data.series, number: self.series_number, title: title}
