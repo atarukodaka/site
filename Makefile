@@ -1,7 +1,8 @@
-bld:
-	middleman build
+MM = "bundle exec middleman"
 
+bld:
+	$(MM) build
 
 serve:
-	middleman server --force-polling &
+	$(MM) server --force-polling &
 

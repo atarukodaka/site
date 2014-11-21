@@ -15,6 +15,17 @@ group: navigation
 gem install rb-readline
 
 
+*** git alias
+[[http://qiita.com/hash/items/1f01aa09ccf148542f21][AdventCalendar - 怠惰にgitを使うためのシェル活用術、またはgst一族 - Qiita]] より：
+
+#+BEGIN_SRC 
+alias gst="git status -s"
+alias gadd="git add"
+alias gpush="git push"
+alias glg="git log --stat --pretty=format:'%Cblue%h %Cgreen%ar %Cred%an %Creset%s %Cred%d'"
+#+END_SRC
+
+
 ** middleman series
 *** 設計思想
 - とりあえず、org-mode で書きたいことをかく。
