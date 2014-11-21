@@ -28,12 +28,4 @@
 </ul>
 
 <h2>Recent Updated</h2>
-<ul>
-<% select_html_pages.sort {|a, b| b.mtime <=> a.mtime}.first(10).each do |page| %>
-  <li>
-  <% title = page.combined_title %>
-  <%= link_to(h(title), page.url) %>
-<% end %>
-</ul>
-
-<hr>
+<%= recent_pages %>

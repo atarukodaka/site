@@ -2,7 +2,6 @@
   <%= yield %>
 
   <hr>
-  <div class="series_summary">
-    <%= summary("series", current_page.data.series, {list_type: "ol"}) %>
-  </div>
+  
+  <%= list_group("series", current_page.data.series, {list_type: "ol"}){|page| "第" + h(page.series_number) + "回：" + h(page.data.title)} %>
 <% end %>

@@ -58,6 +58,43 @@ helpers do
     ar << "</#{list_type}>"
     return ar.join("\n")
   end
+
+  def list_group(data_key, value, opt = {})
+    # opt:  :caption_template, :list_type,
+    #   yield(page) if block_given?
+    
+    pages = sitemap.resources.select {|p| p.data[data_key] == value }.sort {|a, b| a.path <=> b.path }
+    
+    ar = ['<div class="list-group">']
+    pages.each do |page|
+      active = (page.url == current_page.url) ? " active disabled" : ""
+      caption = (block_given?) ? yield(page) : page.data.title
+      ar << link_to(h(caption), page.url, {:class => "list-group-item" + active})
+    end
+    ar << "</div>"
+    return ar.join("\n")
+  end
+  
+  def recent_pages
+
+    hash = {}
+    select_html_pages.sort {|a, b| b.mtime <=> a.mtime}.first(10).each do |page|
+      dt = DateTime.new(page.mtime.year, page.mtime.month, page.mtime.day)
+      hash[dt] = [] if hash[dt].nil?
+      hash[dt] << link_to(h(page.combined_title), page.url)
+    end
+
+    ["<ul>",
+     hash.keys.sort {|a, b| b<=>a}.map {|dt|
+       ["<li>" + "%04d/%02d/%02d" % [dt.year, dt.month, dt.day],
+        "<ul>",
+        hash[dt].map {|item|
+          "<li>" + h(item)
+        }.join("\n"),
+        "</ul>"].join("\n")
+     },
+     "</ul>"].join("\n")
+  end
 end
 
 

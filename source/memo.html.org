@@ -17,18 +17,15 @@ gem install rb-readline
 - gem "middleman-syntax"
 
 ** 開発
-- index.html.erb で最新記事表示
 - type の概念？
 - combined_title
   - sitemap: list
   - partials/_sidebar: list
   - layouts/page.erb:   title
 - File Change: 問題
-- pagination
 - template for combined title
-- modified_at
 - set :site_author ? or data.config ?
-- twitter
+- twitter, github, prose リンク
 
 ** ブログ、文書かき
 - とりあえず、org-mode で書きたいことをかく。
