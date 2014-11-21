@@ -26,20 +26,8 @@ helpers do
     ERB::Util::h(args)
   end
 
-  def select_html_pages(sort_by = nil, reverse = false)
-    pages = sitemap.resources.select {|p| p.ext == ".html"}
-    pages = 
-      case sort_by
-      when nil
-        pages
-      when :title
-        pages.sort {|a, b| a.combined_title <=> b.combined_title }
-      when :path
-        pages.sort {|a, b| a.path <=> b.path }
-      when :mtime
-        pages.sort {|a, b| a.mtime <=> b.mtime }
-      end
-    (reverse) ? pages.reverse : pages
+  def select_html_pages
+    sitemap.resources.select {|p| p.ext == ".html"}
   end
 
   def summary(data_key, value, opt = {})
@@ -75,18 +63,30 @@ helpers do
     return ar.join("\n")
   end
   
-  def recent_pages
-
+  def category_summary
+    categories 
+    series = []
+    sitemap.resources.group_by {|p| p.data.category }.each do |category, pages|
+      
+    end
+  end
+  def recent_pages(opt = {})
+    # opt: :date_format, :num_display
+    #   yield(page) for title template if block_given?
     hash = {}
-    select_html_pages.sort {|a, b| b.mtime <=> a.mtime}.first(10).each do |page|
+    date_format = opt[:date_format] || "%Y/%m/%d"
+    num_display = opt[:num_display] || 10
+
+    select_html_pages.sort_by {|p| p.mtime}.reverse.first(num_display).each do |page|
       dt = DateTime.new(page.mtime.year, page.mtime.month, page.mtime.day)
       hash[dt] = [] if hash[dt].nil?
-      hash[dt] << link_to(h(page.combined_title), page.url)
+      caption = (block_given?) ? yield(page) : page.combined_title
+      hash[dt] << link_to(h(caption), page.url)
     end
 
     ["<ul>",
      hash.keys.sort {|a, b| b<=>a}.map {|dt|
-       ["<li>" + "%04d/%02d/%02d" % [dt.year, dt.month, dt.day],
+       ["<li>" + dt.strftime(date_format),
         "<ul>",
         hash[dt].map {|item|
           "<li>" + h(item)

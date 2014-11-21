@@ -5,7 +5,7 @@ layout: series
 ---
 
 ** org-mode のインストール
-さて、いよいよ org-mode です。git からもってきて、make, make install するだけ。
+さて、 org-mode です。git からもってきて、make, make install するだけ。
 
 #+BEGIN_SRC 
 % git://orgmode.org/org-mode.git && cd org-mode
@@ -16,7 +16,7 @@ layout: series
 org-mode 自身に html に export したりサーバーにpush したりする機能もありますが、
 ここでは純粋に *.org の編集にのみ使います。
 
-** .org を middleman でテンプレートとして使う
+** *.org を middleman でテンプレートとして使う
 markdown や erb などと違い、org-mode の書式は標準ではついてきてないので、
 config.rb に設定を加える必要があります。
 

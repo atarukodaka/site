@@ -1,6 +1,7 @@
 <% wrap_layout :layout do %>
   <h1 class="page-header">
-    <%= current_page.combined_title %>
+    <%= (current_page.data.series) ? "【" + h(current_page.data.series) +" 】"  + "第" + h(current_page.series_number.to_s) + "回：<br>" : "" %>
+    <%= h(current_page.data.title) %>
   </h1>
 
   <div>

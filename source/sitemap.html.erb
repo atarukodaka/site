@@ -6,7 +6,11 @@ group: navigation
 <h2>Sitemap</h2>
 
 <ul>
-<% select_html_pages.each do |page| %>
-  <li><%= link_to(h(page.combined_title), page.url) %></li>
+<% select_html_pages.sort_by {|p| p.data.destination_path.to_s }.sort_by {|p| p.data.category.to_s }.each do |page| %>
+  <li>
+    <%= (page.data.category) ? "[" + h(page.data.category) + "] " : "" %>
+    <%= link_to(h(page.combined_title), page.url) %>
+    <%= "... " + page.mtime.strftime("%Y/%m/%d %H:%M") %>
+  </li>
 <% end %>
 </ul>
