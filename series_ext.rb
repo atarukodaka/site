@@ -1,4 +1,10 @@
 # -*- coding: utf-8 -*-
+module Enumerable
+  def stable_sort_by
+    self.sort_by.with_index{ |e, index| [yield(e), index] }
+  end
+end
+
 module Middleman
   module Series
     module ResourceIncluded
