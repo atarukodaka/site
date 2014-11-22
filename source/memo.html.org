@@ -61,8 +61,11 @@ alias glg="git log --stat --pretty=format:'%Cblue%h %Cgreen%ar %Cred%an %Creset%
 - template for combined title
 - set :site_author ? or data.config ?
 - twitter, github, prose リンク
+- youtube embed
 - sidemenu: category, series
 - tag
+- org-mode parser
+ - #BEGIN+HTML -> {{{, }}}
 
 ** figureskating 関連
 *** スケートラボ

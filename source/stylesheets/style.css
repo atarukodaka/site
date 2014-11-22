@@ -2,11 +2,15 @@ h1, h2, h3, h4, h5 {
    color: green;
 }
 
+.content {
+    margin-top: 2em;
+}
 
-ol, ul {
-    margin: 0 0 0 2em;
+.content ol, ul {
+    margin: 0 0 1em 2em;
     padding: 0;
 }
+
 #footer {
 /*    background-color: #33e; */
     margin: 30px;
