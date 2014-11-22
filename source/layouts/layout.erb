@@ -16,17 +16,15 @@
     <!-- site specific styles -->
     <%= stylesheet_link_tag "style.css" %>
     <%= stylesheet_link_tag "pygment_trac.css" %>
-    
-    <base href="/site">
   </head>
   
   <body>
     <div id="wrap" class="content">
       <div class="navbar navbar-default">
 	<ul class="nav navbar-nav">
-	  <li><a href="/">top</a></li>
+	  <li><%= link_to("Top", "./") %></li>
 	  <% sitemap.resources.select {|p| p.data.group == "navigation"}.each do |page| %>
-	     <li><%= link_to(h(page.data.title), page.url) %></li>
+	  <li><%= link_to(h(page.data.title), page) %></li>
 	  <% end %>
 	</ul>
       </div>

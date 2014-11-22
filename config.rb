@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 # activate extensions
-
 require "./series_ext.rb"
 require "./mtime_ext.rb"
 
@@ -10,13 +9,21 @@ require "./mtime_ext.rb"
 activate :mtime
 activate :series
 activate :syntax
+=begin
 activate :deploy do |deploy|
   # deploy.build_before = true
   deploy.method = :git
   deploy.branch = 'gh-pages'
 end
+=end
 
 set :layout, :page
+
+# for github project pages issues
+configure :build do
+  activate :asset_host, :host => "/site"  
+end
+
 set :relative_links, true
 
 # Reload the browser automatically whenever files change
@@ -48,7 +55,7 @@ helpers do
     ar = ["<#{list_type}>"]
     pages.each do |page|
       caption = (block_given?) ? yield(page) : page.data.title
-      ar << "<li>" + link_to(h(caption), page.url) + "</li>"
+      ar << "<li>" + link_to(h(caption), page.path) + "</li>"
     end
     ar << "</#{list_type}>"
     return ar.join("\n")
@@ -62,9 +69,9 @@ helpers do
     
     ar = ['<div class="list-group">']
     pages.each do |page|
-      active = (page.url == current_page.url) ? " active disabled" : ""
+      active = (page.path == current_page.path) ? " active disabled" : ""
       caption = (block_given?) ? yield(page) : page.data.title
-      ar << link_to(h(caption), page.url, {:class => "list-group-item" + active})
+      ar << link_to(h(caption), page.path, {:class => "list-group-item" + active})
     end
     ar << "</div>"
     return ar.join("\n")
@@ -88,7 +95,7 @@ helpers do
       dt = DateTime.new(page.mtime.year, page.mtime.month, page.mtime.day)
       hash[dt] = [] if hash[dt].nil?
       caption = (block_given?) ? yield(page) : page.combined_title
-      hash[dt] << link_to(h(caption), page.url)
+      hash[dt] << link_to(h(caption), page.path)
     end
 
     ["<ul>",
@@ -113,7 +120,6 @@ set :images_dir, 'images'
 
 # Build-specific configuration
 configure :build do
-  activate :asset_host, :host => "/site"  
   # For example, change the Compass output style for deployment
   # activate :minify_css
 
