@@ -4,14 +4,15 @@ module SiteHelpers
     ERB::Util::h(args)
   end
 
+  ## sitemap helper
   def top_page
-    sitemap.find_resource_by_path("/index.html")
+    sitemap.find_resource_by_path("/index.html")    # page
   end
   def select_html_pages
-    sitemap.resources.select {|p| p.ext == ".html"}
+    sitemap.resources.select {|p| p.ext == ".html"}   # .each {|page|
   end
   def group_by_category
-    sitemap.resources.group_by {|p| p.data.category}
+    sitemap.resources.group_by {|p| p.data.category}  # .each {|category, pages|
   end
 
   ################################################################

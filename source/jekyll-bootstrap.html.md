@@ -1,5 +1,6 @@
 ---
 title: jekyll bootstrap + github pages でブログ運用
+category: software
 ---
 
 ## 概要

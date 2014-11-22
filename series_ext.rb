@@ -1,8 +1,4 @@
-module Enumerable
-  def stable_sort_by
-    self.sort_by.with_index{ |e, index| [yield(e), index] }
-  end
-end
+
 
 module Middleman
   module Series
@@ -11,9 +7,10 @@ module Middleman
         self.path =~ Regexp.new("/([0-9]+)\-[^/]+\.html$")
         return $1.to_i
       end
-
+      
       def combined_title
-        template = @app.data.config.series.combined_title_template || "[%{series}] #%{number}: %{title}"
+        #template = @app.data.config.series.combined_title_template || "[%{series}] #%{number}: %{title}"
+        template = I18n.t("page.title_template")
         title = self.data.title || "untitled"
         if self.data.series
           template % {series: self.data.series, number: self.series_number, title: title}
@@ -21,6 +18,7 @@ module Middleman
           title
         end
       end
+      alias :page_title :combined_title
     end
     ################
     class Extension < Middleman::Extension

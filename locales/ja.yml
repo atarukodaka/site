@@ -1,0 +1,3 @@
+ja:
+  page:
+    title_template: "【%{series}】第%{number}回：%{title}"
