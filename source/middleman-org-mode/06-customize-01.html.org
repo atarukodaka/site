@@ -55,8 +55,8 @@ current_page あるいはcurrent_resource で現ページの情報が取れま�
 sitemap.resources (class Middleman::Sitemap::Store)にサイト全体のリソース（ページなど）が入ってるので、これを使います。
 
 - 全ページ: sitemap.resources.each {|page|
-- HTML ファイルのみ：pages = sitemap.resources.select {|p| p.ext == "html"}.{|page|
-- 指定したカテゴリのページ：pages = sitemap.resources.select {|p| p.data.category == "software"}.each ||page|
+- HTML ファイルのみ：sitemap.resources.select {|p| p.ext == "html"}.{|page|
+- 指定したカテゴリのページ： sitemap.resources.select {|p| p.data.category == "software"}.each ||page|
 - 指定カテゴリ
 
 

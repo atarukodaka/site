@@ -62,6 +62,7 @@ alias glg="git log --stat --pretty=format:'%Cblue%h %Cgreen%ar %Cred%an %Creset%
 - set :site_author ? or data.config ?
 - twitter, github, prose リンク
 - sidemenu: category, series
+- tag
 
 ** figureskating 関連
 *** スケートラボ
