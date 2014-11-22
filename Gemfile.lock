@@ -157,6 +157,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  i18n
   middleman (~> 3.3.7)
   middleman-deploy
   middleman-gh-pages

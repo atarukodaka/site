@@ -24,7 +24,10 @@ gem 'org-ruby'
 gem "middleman-syntax"
 gem 'rouge'
 
+gem 'i18n'
+
 gem 'rb-readline'   # for heroku toolbelt
+
 
 
 gem 'pry'

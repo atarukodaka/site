@@ -24,7 +24,7 @@ category: software
     <%= stylesheet_link_tag "style.css" %>
     <%= stylesheet_link_tag "pygment_trac.css" %>
 
-    <title><%= data.config.site_info.title %></title>
+    <title>Site Title</title>
   </head>
   <body>
     <div class="navbar navbar-default">
@@ -43,7 +43,7 @@ category: software
       </div>
     </div>
     <div class="footer">
-      &copy; <%= h data.config.site_info.author %> powered by middleman and twitter-bootstrap
+      powered by middleman and twitter-bootstrap
     </div>
   </body>
 </html>
@@ -58,25 +58,6 @@ category: software
 jquery, bootstrap などは適宜 source 以下の当該ディレクトリに入れておいてください。
 
 中身は <%= yield %> で取れます。
-
-title で使われている data.config や partial などは下記参照。
-
-*** サイト情報
-サイトのタイトル、作成者などの情報をいれます。
-config.rb に set してもいいのですが、
-あくまでデータなので data/config.yml の方に入れます。
-
-#+BEGIN_EXAMPLE
-% mkdir data
-% vi data/config.yml
-site_info:
-  title: Site name
-  author: your name
-  url: "http://www.domain.com"
-  description: descr
-#+END_EXAMPLE
-
-こうしておくと、レイアウト内で <%= h data.config.site_info.title %> などと表示できます。
 
 *** エスケープ
 <> などがそのまま表示されてしまうと困るので、ERB::Util::h を使ってエスケープさせます。
@@ -108,26 +89,26 @@ source/partials/_sidemenu.erb が参照されますが、
 </div>
 #+END_SRC
 
-** article レイアウト
+** page レイアウト
 記事用の子レイアウトを作ります。
 
 #+BEGIN_SRC html
+%vi source/layouts/page.erb
 <% wrap_layout :layout do %>
-<div class="panel panel-primary article">
-  <div class="panel-heading">
+  <h1 class="page-header">
     <%= h current_page.data.title %>
-  </div>
-  <div class="panel-body content">
+  </h1>
+  <div class="cntent">
     <%= yield %>
   </div>
-</div>
 <% end %>
 #+END_SRC
 
 wrap_layout :layout を使うと、layout の子レイアウトに出来ます。
 layout の yield 部にこれが展開されるのですね。
 
-記事ソースファイルで layout: article と指定します。
+記事ソースファイルで layout: page と指定します。
+個々に設定するのが面倒なら、config.rb で set :layout, :page とすると省略できます。
 
 ** index.html の作成
 標準でついてくる index.html.erb はいらないので消します。
