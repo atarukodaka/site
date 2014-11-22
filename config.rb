@@ -21,8 +21,6 @@ configure :build do
 end
 
 set :relative_links, true
-
-
 # Reload the browser automatically whenever files change
 configure :development do
   activate :livereload
@@ -35,6 +33,9 @@ set :layout, :page
 ###
 
 helpers do
+  def top_page
+    sitemap.find_resource_by_path("/index.html")
+  end
   def h(args)
     ERB::Util::h(args)
   end
@@ -42,7 +43,9 @@ helpers do
   def select_html_pages
     sitemap.resources.select {|p| p.ext == ".html"}
   end
-
+  def group_by_category
+    sitemap.resources.group_by {|p| p.data.category}
+  end
   def summary(data_key, value, opt = {})
     # opt:  :caption_template, :list_type,
     #   yield(page) if block_given?
@@ -110,6 +113,18 @@ helpers do
   end
 end
 
+## category pages
+
+ready do
+  sitemap.resources.group_by {|p| p.data["category"] }.each do |category, pages|
+    next if category.to_s == ""
+    proxy("/categories/#{category}.html", "category.html", ignore: false,
+          :locals => { :category => category, :pages => pages })
+  end
+end
+
+ignore "category.html"
+
 
 ## set directories
 
@@ -152,14 +167,6 @@ set :site, {
   title: "Site",
   author: "your name"
 }
-
-ready do
-#  sitemap.resources.select {|p| p.path =~ /\.html$/}.each do |page|
-#    puts page.data.modified_at = modified_at(page).strftime("%Y/%m/%d")
-#    puts page.data.modified_at
-#  end
-end
-
 
 ################################################################
 # -*- coding: utf-8 -*-

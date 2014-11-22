@@ -7,9 +7,10 @@ category: software
 
 ** github の gh-pages へのデプロイ
 *** middleman-deploy を使う
-
 [[http://d.hatena.ne.jp/osyo-manga/20140209/1391955805][middleman で構築したサイトを GitHub Pages で公開するまでの流れをまとめてみた - C++でゲームプログラミング]]
 にあるとおりに。
+
+似たようなものに middleman-gh-pages がありますが、ここでは -deploy を使います。
 
 #+BEGIN_SRC 
 vi Gemfile

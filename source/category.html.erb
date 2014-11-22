@@ -1,0 +1,10 @@
+---
+---
+
+<% content_for(:title, "Category: " + h(category)) %>
+
+<ul>
+<% pages.each do |page| %>
+  <li><%= link_to(h(page.data.title), page) %></li>
+<% end %>
+</ul>

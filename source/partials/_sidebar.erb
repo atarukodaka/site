@@ -5,7 +5,8 @@
   <li><%= h(category) %>
     <ul>
     <% pages.each do |page| %>
-      <li><%= link_to(h(page.data.title), page) %>
+      <% opt = (page.path == current_page.path) ? {disabled: "disabled"}  : {} %>
+      <li><%= link_to(h(page.data.title), page, opt) %>
     <% end %>
     </ul>
   </li>
@@ -17,10 +18,13 @@
 <% sitemap.resources.group_by {|p| p.data.series }.each do |series, pages| %>
   <% next if series.to_s == "" %>
 
-  <li><%= h(series) %>
-    <ol>
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= h(series) %></a>
+    <ol class="dropdown-menu">
+    <% i = 1 %>
     <% pages.sort {|a, b| a.url <=> b.url }.each do |page| %>
-      <li><%= link_to(h(page.data.title), page) %>
+      <li><%= link_to(i.to_s + ": " + h(page.data.title), page, {tabindex: "-1", role: "menuitem"}) %>
+      <% i += 1 %>
     <% end %>
     </ol>
   </li>

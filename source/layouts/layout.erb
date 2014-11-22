@@ -22,11 +22,20 @@
     <div id="wrap" class="content">
       <div class="navbar navbar-default">
 	<ul class="nav navbar-nav">
-	  <% top_page = sitemap.find_resource_by_path("/index.html") %>
-	  <li><%= link_to("Top", top_page) %></li>
+	  <li><%= link_to("Top", top_page()) %></li>
 	  <% sitemap.resources.select {|p| p.data.group == "navigation"}.each do |page| %>
-	  <li><%= link_to(h(page.data.title), page) %></li>
+ 	    <li><%= link_to(h(page.data.title), page) %></li>
 	  <% end %>
+
+	  <li class="dropdown">
+	    <%= link_to("Categories", "#", {"class" => "dropdown-toggle", "data-toggle" => "dropdown"}) %>
+	    <ul class="dropdown-menu">
+	    <% group_by_category.each do |category, pages| %>
+	      <% next if category == "" %>
+	      <li><%= link_to(h(category), "/categories/" + h(category) + ".html") %>
+	    <% end %>
+	    </ul>
+	  </li>
 	</ul>
       </div>
       <div class="container <%= page_classes %>">
