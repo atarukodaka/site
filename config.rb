@@ -3,19 +3,26 @@
 # activate extensions
 
 require "./series_ext.rb"
+require "./mtime_ext.rb"
 
-activate :vcs_time
+# Extensions
+#activate :vcs_time
+activate :mtime
 activate :series
 activate :syntax
+activate :deploy do |deploy|
+  # deploy.build_before = true
+  deploy.method = :git
+  deploy.branch = 'gh-pages'
+end
 
 set :layout, :page
+set :relative_links, true
 
 # Reload the browser automatically whenever files change
 configure :development do
   activate :livereload
 end
-
-set :combined_title_template, "【%{series}】第%{number}回：%{title}"
 
 ###
 # Helpers
@@ -106,6 +113,7 @@ set :images_dir, 'images'
 
 # Build-specific configuration
 configure :build do
+  activate :asset_host, :host => "/site"  
   # For example, change the Compass output style for deployment
   # activate :minify_css
 

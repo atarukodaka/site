@@ -25,14 +25,55 @@ web: bundle exec middleman build && middleman server -p $PORT
 #+END_SRC
 
 
-** github へのプッシュ
-ついでに github のレポにもプッシュしておきます。
-git@github.com:username/site.gitというレポへ：
+** github の gh-pages へのデプロイ
+[[http://d.hatena.ne.jp/osyo-manga/20140209/1391955805][middleman で構築したサイトを GitHub Pages で公開するまでの流れをまとめてみた - C++でゲームプログラミング]]
+にあるとおり、moddielman-deploy を使えば簡単らしいのですが、
+いまいちうまく行かなかったので手動でやります。
+
+- [[https://help.github.com/articles/creating-project-pages-manually/][Creating Project Pages manually - User Documentation]]
+
+
+
+*** gh-pages ブランチの作成
+まず、master とは別に build/* を置くための gh-pages という空のブランチを作成します。
 
 #+BEGIN_SRC 
-% git remote add origin git@github.com:username/site.git
-% git push origin master
+mkdir ~/tmp/gh-pages && cd ~/tmp/gh-pages
+git symbolic-ref HEAD refs/heads/gh-pages
+rm .git/index
+git clean -fdx
+echo "My GitHub Page" > index.html
+git add .
+git commit -a -m "First pages commit"
+git push origin gh-pages
 #+END_SRC
 
-github から hook で heroku へ push し deploy するという手もありますが、
-また今度。
+
+cd ~/path/to/site/build
+git init
+git add . 
+git commit -m init 
+
+
+
+
+git-1.7.2 以上が入っている場合は、--orphan オプションで空のブランチが作成できます。
+
+
+
+config.rb の
+
+#+BEGIN_SRC 
+configure :build do
+  activate :asset_host, :host => "/site"  
+  # For example, change the Compass output style for deployment
+  ..
+end
+#+END_SRC
+
+は必要です。
+
+
+
+% 
+

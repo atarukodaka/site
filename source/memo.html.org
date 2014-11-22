@@ -12,9 +12,11 @@ group: navigation
 - [[http://qiita.com/one-a/items/d0f39401404fafb72bee][ローカルで制作したものをgithubに公開するまで - Qiita]]
 - [[http://qiita.com/hash/items/1f01aa09ccf148542f21][AdventCalendar - 怠惰にgitを使うためのシェル活用術、またはgst一族 - Qiita]]
 - [[http://qiita.com/awakia/items/d417c735b869a4db5abc][Ruby - with_indexが便利だという話とstable_sort_by - Qiita]]
+- [[http://heart-shaped-chocolate.hatenablog.jp/entry/2013/07/16/035104][git logのオプションあれこれ - 煙と消えるその前に]]
+- [[http://tomoyamkung.net/2014/08/27/linux-git-install/][CentOS6.5にGitをソースコードからインストールする]]
+- [[http://tomoyamkung.net/2014/08/12/linux-initial-setup/][検証用の CentOS をインストールした直後に行う初期設定手順]]
+- gem install rb-readline
 - heroku requires 'readline'
-gem install rb-readline
-
 
 *** git alias
 [[http://qiita.com/hash/items/1f01aa09ccf148542f21][AdventCalendar - 怠惰にgitを使うためのシェル活用術、またはgst一族 - Qiita]] より：

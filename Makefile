@@ -1,6 +1,8 @@
-MM = "bundle exec middleman"
+MM = bundle exec middleman
 
-bld:
+all:
+
+build:
 	$(MM) build
 
 serve:
