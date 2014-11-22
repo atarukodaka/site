@@ -1,13 +1,69 @@
 ---
-title: heroku への deployと github へのpush
+title: github への deploy
 series: middleman と org-mode でサイト構築
 category: software
 ---
 
 
+** github の gh-pages へのデプロイ
+*** middleman-deploy を使う
+
+[[http://d.hatena.ne.jp/osyo-manga/20140209/1391955805][middleman で構築したサイトを GitHub Pages で公開するまでの流れをまとめてみた - C++でゲームプログラミング]]
+にあるとおりに。
+
+#+BEGIN_SRC 
+vi Gemfile
+...
+gem 'middleman-deploy'
+
+vi config.rb
+# deploy to github proj-page
+activate :deploy do |deploy|
+  # deploy.build_before = true
+  deploy.method = :git
+  deploy.branch = 'gh-pages'
+end
+
+configure :build do
+  activate :asset_host, :host => "/site"    # プロジェクト名を指定
+end
+
+set :relative_links, true
+#+END_SRC
+
+
+#+BEGIN_SRC 
+% mm deploy
+#+END_SRC
+
+*** 手動でやってみる
+メカニズムを理解するために、マニュアルでやってみます。
+参考：[[https://help.github.com/articles/creating-project-pages-manually/][Creating Project Pages manually - User Documentation]]
+
+#+BEGIN_SRC 
+mm build; cd build
+git init
+git remote add origin git@github.com:atarukodaka/site.git
+git checkout --orphan gh-pages
+(1.7.2以前のバージョンで --orphan が無い時は、git symbolic-ref HEAD refs/heads/gh-pages)
+git add . ; git commit -m "init"
+git push origin gh-pages
+#+END_SRC
+
+あとは、更新するときに
+
+#+BEGIN_SRC 
+mm build; cd build
+git commt -m "msg" -a
+git push origin gh-pages
+#+END_SRC
+
+
+
 ** heroku へのデプロイ
+そもそも html をアップするだけなので heroku である必要はないのですが、念のため。
+
 *** Procfile の作成
-ある程度形は出来たので、heroku に deploy してみます。
 ほぼ通常どおりですが、Procfile を以下のように作っておきます。
 
 #+BEGIN_SRC 
@@ -24,56 +80,4 @@ web: bundle exec middleman build && middleman server -p $PORT
 % git push heroku master
 #+END_SRC
 
-
-** github の gh-pages へのデプロイ
-[[http://d.hatena.ne.jp/osyo-manga/20140209/1391955805][middleman で構築したサイトを GitHub Pages で公開するまでの流れをまとめてみた - C++でゲームプログラミング]]
-にあるとおり、moddielman-deploy を使えば簡単らしいのですが、
-いまいちうまく行かなかったので手動でやります。
-
-- [[https://help.github.com/articles/creating-project-pages-manually/][Creating Project Pages manually - User Documentation]]
-
-
-
-*** gh-pages ブランチの作成
-まず、master とは別に build/* を置くための gh-pages という空のブランチを作成します。
-
-#+BEGIN_SRC 
-mkdir ~/tmp/gh-pages && cd ~/tmp/gh-pages
-git symbolic-ref HEAD refs/heads/gh-pages
-rm .git/index
-git clean -fdx
-echo "My GitHub Page" > index.html
-git add .
-git commit -a -m "First pages commit"
-git push origin gh-pages
-#+END_SRC
-
-
-cd ~/path/to/site/build
-git init
-git add . 
-git commit -m init 
-
-
-
-
-git-1.7.2 以上が入っている場合は、--orphan オプションで空のブランチが作成できます。
-
-
-
-config.rb の
-
-#+BEGIN_SRC 
-configure :build do
-  activate :asset_host, :host => "/site"  
-  # For example, change the Compass output style for deployment
-  ..
-end
-#+END_SRC
-
-は必要です。
-
-
-
-% 
 

@@ -22,7 +22,8 @@
     <div id="wrap" class="content">
       <div class="navbar navbar-default">
 	<ul class="nav navbar-nav">
-	  <li><%= link_to("Top", "./") %></li>
+	  <% top_page = sitemap.find_resource_by_path("/index.html") %>
+	  <li><%= link_to("Top", top_page) %></li>
 	  <% sitemap.resources.select {|p| p.data.group == "navigation"}.each do |page| %>
 	  <li><%= link_to(h(page.data.title), page) %></li>
 	  <% end %>

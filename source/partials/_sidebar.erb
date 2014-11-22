@@ -5,7 +5,7 @@
   <li><%= h(category) %>
     <ul>
     <% pages.each do |page| %>
-      <li><%= link_to(h(page.data.title), page.path) %>
+      <li><%= link_to(h(page.data.title), page) %>
     <% end %>
     </ul>
   </li>
@@ -20,7 +20,7 @@
   <li><%= h(series) %>
     <ol>
     <% pages.sort {|a, b| a.url <=> b.url }.each do |page| %>
-      <li><%= link_to(h(page.data.title), page.path) %>
+      <li><%= link_to(h(page.data.title), page) %>
     <% end %>
     </ol>
   </li>

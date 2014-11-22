@@ -18,6 +18,15 @@ group: navigation
 - gem install rb-readline
 - heroku requires 'readline'
 
+*** git 1.7.2~
+#+BEGIN_SRC 
+wget http://pkgs.repoforge.org/git/git-1.7.12.4-1.el6.rfx.x86_64.rpm
+wget http://pkgs.repoforge.org/git/perl-Git-1.7.12.4-1.el6.rfx.x86_64.rpm
+sudo yum remove git perl-Git
+sudo yum localinstall git-1.7.12.4-1.el6.rfx.x86_64.rpm perl-Git-1.7.12.4-1.el6.rfx.x86_64.rpm
+#+END_SRC
+
+
 *** git alias
 [[http://qiita.com/hash/items/1f01aa09ccf148542f21][AdventCalendar - 怠惰にgitを使うためのシェル活用術、またはgst一族 - Qiita]] より：
 
