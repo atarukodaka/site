@@ -24,13 +24,19 @@ activate :deploy do |deploy|
   deploy.method = :git
   deploy.branch = 'gh-pages'
 end
-
 configure :build do
-  activate :asset_host, :host => "/site"    # プロジェクト名を指定
+  activate :asset_host, :host => "/project"    # プロジェクト名を指定
 end
 
 set :relative_links, true
 #+END_SRC
+
+gh-pages の場合は root url がプロジェクト名以下 (http://username.github.io/project など)
+となるため、リンクを張る場合は注意と設定が必要です。
+具体的には、上記のとおり 
+
+- activate :asset_host, :host => "/project"： javascript_include_tag, stylesheet_link_tag などで参照urlの頭に :host で指定したのをつけてくれる
+- set: relative_links, true： link_to() で相対urlに変換してくれる
 
 
 #+BEGIN_SRC 
@@ -60,6 +66,10 @@ git push origin gh-pages
 #+END_SRC
 
 
+
+
+set :relative_links, true
+#+END_SRC
 
 ** heroku へのデプロイ
 そもそも html をアップするだけなので heroku である必要はないのですが、念のため。

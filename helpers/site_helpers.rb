@@ -1,18 +1,36 @@
 
 module SiteHelpers
-  def top_page
-    sitemap.find_resource_by_path("/index.html")
-  end
   def h(args)
     ERB::Util::h(args)
   end
 
+  def top_page
+    sitemap.find_resource_by_path("/index.html")
+  end
   def select_html_pages
     sitemap.resources.select {|p| p.ext == ".html"}
   end
   def group_by_category
     sitemap.resources.group_by {|p| p.data.category}
   end
+
+  ################################################################
+  def list_group(data_key, value, opt = {})
+    # opt:  :caption_template, :list_type,
+    #   yield(page) if block_given?
+    
+    pages = sitemap.resources.select {|p| p.data[data_key] == value }.sort {|a, b| a.path <=> b.path }
+    
+    ar = ['<div class="list-group">']
+    pages.each do |page|
+      active = (page.path == current_page.path) ? " active disabled" : ""
+      caption = (block_given?) ? yield(page) : page.data.title
+      ar << link_to(h(caption), page, {:class => "list-group-item" + active})
+    end
+    ar << "</div>"
+    return ar.join("\n")
+  end
+  
   def summary(data_key, value, opt = {})
     # opt:  :caption_template, :list_type,
     #   yield(page) if block_given?
@@ -30,29 +48,6 @@ module SiteHelpers
     return ar.join("\n")
   end
 
-  def list_group(data_key, value, opt = {})
-    # opt:  :caption_template, :list_type,
-    #   yield(page) if block_given?
-    
-    pages = sitemap.resources.select {|p| p.data[data_key] == value }.sort {|a, b| a.path <=> b.path }
-    
-    ar = ['<div class="list-group">']
-    pages.each do |page|
-      active = (page.path == current_page.path) ? " active disabled" : ""
-      caption = (block_given?) ? yield(page) : page.data.title
-      ar << link_to(h(caption), page, {:class => "list-group-item" + active})
-    end
-    ar << "</div>"
-    return ar.join("\n")
-  end
-  
-  def category_summary
-    categories 
-    series = []
-    sitemap.resources.group_by {|p| p.data.category }.each do |category, pages|
-      
-    end
-  end
   def recent_pages(opt = {})
     # opt: :date_format, :num_display
     #   yield(page) for title template if block_given?
