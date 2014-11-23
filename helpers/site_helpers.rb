@@ -11,6 +11,9 @@ module SiteHelpers
   def select_html_pages
     sitemap.resources.select {|p| p.ext == ".html"}   # .each {|page|
   end
+  def select_resources_by(key, value)
+    sitemap.resources.select {|p| p.send(key.to_sym) == value}
+  end
   def group_by_category
     sitemap.resources.group_by {|p| p.data.category}  # .each {|category, pages|
   end
