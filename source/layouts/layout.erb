@@ -28,10 +28,10 @@
 	    <span class="icon-bar"></span>
 	    <span class="icon-bar"></span>
 	  </button>
+	  <%= link_to("Top", top_page(), {"class" => "navbar-brand"}) %>
 	</div>
 	<div class="collapse navbar-collapse" id="topHeader">
 	  <ul class="nav navbar-nav">
-	    <li><%= link_to("Top", top_page()) %></li>
 	    <% sitemap.resources.select {|p| p.data.group == "navigation"}.each do |page| %>
 	    <li><%= link_to(h(page.data.title), page) %></li>
 	    <% end %>

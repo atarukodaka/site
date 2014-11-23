@@ -17,6 +17,7 @@ group: navigation
 - [[http://tomoyamkung.net/2014/08/12/linux-initial-setup/][検証用の CentOS をインストールした直後に行う初期設定手順]]
 - gem install rb-readline
 - heroku requires 'readline'
+- [[http://d.hatena.ne.jp/replication/20140202/1391350251][Google アナリティクスのフィルタ機能で参照元URLを記録する方法(2014年2月版) - 大人になったら肺呼吸]]
 
 *** git 1.7.2~
 #+BEGIN_SRC 

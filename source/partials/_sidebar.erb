@@ -3,9 +3,9 @@
   <section>
     <h2>Categories</h2>
     <ul>
-    <% sitemap.resources.group_by {|p| p.data.category }.each do |category, pages| %>
+      <% sitemap.resources.group_by {|p| p.data.category }.each do |category, pages| %>
       <% next if category.to_s == "" %>
-      <li><%= h(category) %>
+      <li><%= link_to(h(category), "/categories/" + h(category) + ".html") %>
 	<ul>
 	<% pages.each do |page| %>
 	  <% opt = (page.path == current_page.path) ? {disabled: "disabled"}  : {} %>
