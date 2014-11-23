@@ -1,3 +1,8 @@
+PATH
+  remote: ./middleman-mtime
+  specs:
+    middleman-mtime (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -166,6 +171,7 @@ DEPENDENCIES
   middleman-gh-pages
   middleman-google-analytics
   middleman-livereload (~> 3.1.0)
+  middleman-mtime!
   middleman-syntax
   middleman-vcs-time
   org-ruby

@@ -7,6 +7,8 @@ gem 'middleman-deploy'
 gem 'middleman-gh-pages'
 gem 'middleman-google-analytics'
 
+gem 'middleman-mtime', :path => "./middleman-mtime"
+
 # Live-reloading plugin
 gem "middleman-livereload", "~> 3.1.0"
 

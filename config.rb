@@ -2,7 +2,7 @@
 
 # Extensions
 require "./series_ext.rb"
-require "./mtime_ext.rb"
+#require "./mtime_ext.rb"
 
 #activate :vcs_time
 activate :mtime

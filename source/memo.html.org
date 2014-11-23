@@ -52,14 +52,12 @@ alias glg="git log --stat --pretty=format:'%Cblue%h %Cgreen%ar %Cred%an %Creset%
 - gem "middleman-syntax"
 
 *** 開発
-- type の概念？
 - combined_title
   - layouts/page.erb:   title
   - partials/_sidebar: list
   - sitemap: list
 - File Change: 問題
 - template for combined title
-- twitter, github, prose リンク
 - sidemenu: category, series
 - tag
 - ul, ol: style margin
@@ -69,6 +67,7 @@ alias glg="git log --stat --pretty=format:'%Cblue%h %Cgreen%ar %Cred%an %Creset%
 
 done
 - youtube embed
+- twitter, github, prose リンク
 
 ** figureskating 関連
 *** スケートラボ

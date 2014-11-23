@@ -10,9 +10,9 @@
   </h1>
 
   <div>
+    <%= current_page.mtime.strftime("%d %b %Y %H:%M:%S %Z") %>
     <%= prose_edit_link(data.config.site_info.github, "site") %>
     <%= share_twitter(data.config.site_info.twitter) %>
-    <%= current_page.mtime.strftime("%d %b %Y %H:%M:%S %Z") %>
   </div>
   <div class="content">
     <%= yield %>

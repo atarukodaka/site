@@ -1,0 +1,3 @@
+[submodule "middleman-mtime"]
+	path = middleman-mtime
+	url = git@github.com:atarukodaka/middleman-mtime.git
