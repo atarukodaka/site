@@ -1,5 +1,7 @@
-PATH
-  remote: ./extensions/middleman-mtime
+GIT
+  remote: git@github.com:atarukodaka/middleman-mtime.git
+  revision: a6a356022343e10ff84029b34d8c17ff6944a46a
+  branch: master
   specs:
     middleman-mtime (0.0.1)
 

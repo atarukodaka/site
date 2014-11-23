@@ -19,44 +19,53 @@
   </head>
   
   <body>
-    <div id="wrap">
-      <div class="navbar navbar-default">
-	<ul class="nav navbar-nav">
-	  <li><%= link_to("Top", top_page()) %></li>
-	  <% sitemap.resources.select {|p| p.data.group == "navigation"}.each do |page| %>
- 	    <li><%= link_to(h(page.data.title), page) %></li>
-	  <% end %>
-
-	  <li class="dropdown">
-	    <%= link_to("Categories", "#", {"class" => "dropdown-toggle", "data-toggle" => "dropdown"}) %>
-	    <ul class="dropdown-menu">
-	    <% group_by_category.each do |category, pages| %>
-	      <% next if category == "" %>
-	      <li><%= link_to(h(category), "/categories/" + h(category) + ".html") %>
+    <nav class="navbar navbar-default">
+      <div class="container">
+	<div class="navbar-header">
+	  <button type="button" data-toggle="collapse" data-target="#topHeader" class="navbar-toggle">
+	    <span class="sr-only">Toggle navigation</span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	  </button>
+	</div>
+	<div class="collapse navbar-collapse" id="topHeader">
+	  <ul class="nav navbar-nav">
+	    <li><%= link_to("Top", top_page()) %></li>
+	    <% sitemap.resources.select {|p| p.data.group == "navigation"}.each do |page| %>
+	    <li><%= link_to(h(page.data.title), page) %></li>
 	    <% end %>
-	    </ul>
-	  </li>
-	</ul>
+	    
+	    <li class="dropdown">
+	      <%= link_to("Categories", "#", {"class" => "dropdown-toggle", "data-toggle" => "dropdown"}) %>
+	      <ul class="dropdown-menu">
+		<% group_by_category.each do |category, pages| %>
+		<% next if category == "" %>
+		<li><%= link_to(h(category), "/categories/" + h(category) + ".html") %></li>
+		<% end %>
+	      </ul>
+	    </li>
+	  </ul>
+	</div>
       </div>
-      <div class="container <%= page_classes %>">
-	<div class="raw">
-	  <div class="col-md-3 hidden-xs hidden-sm">
-	    <%= partial "partials/sidebar" %>
-	  </div>
+    </nav>
 
-	  <div class="col-md-9">
-	    <%= yield %>
-	  </div>
+    <div class="container">
+      <div class="row">
+	<div class="col-md-3 hidden-xs hidden-sm">
+	  <%= partial "partials/sidebar" %>
+	</div>
+	<div class="col-md-9">
+	  <%= yield %>
 	</div>
       </div>
     </div>
-
-    <div id="footer">
+    <footer class="footer">
       <div class="container">
 	<p>&copy; <%= h data.config.site_info.author %> (<%= h data.config.site_info.email %>) powered by middleman and twitter-bootstrap</p>
       </div>
       <%= google_analytics_tag %>
-    </div>
+    </footer>
   </body>
 </html>
 

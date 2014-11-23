@@ -18,6 +18,17 @@ module SiteHelpers
     sitemap.resources.group_by {|p| p.data.category}  # .each {|category, pages|
   end
 
+  def tags
+    ar = []
+    sitemap.resources.group_by {|p| p.data.tag }.each do |tag, pages|
+      puts tag
+      next if tag == ""
+      ar << tag
+    end
+    puts ar
+    ar
+  end
+
   ## prose.io
   def prose_edit_link(github_username, github_repo)
     hash = {github_username: h(github_username), repo: h(github_repo), page_url: current_page.source_file, branch: "master"}

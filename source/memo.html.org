@@ -57,12 +57,13 @@ alias glg="git log --stat --pretty=format:'%Cblue%h %Cgreen%ar %Cred%an %Creset%
   - partials/_sidebar: list
   - sitemap: list
 - File Change: 問題
-- template for combined title
 - sidemenu: category, series
 - tag
 - ul, ol: style margin
 - org-mode parser
  - #BEGIN+HTML -> {{{, }}}
+- middleman-mtime
+- tilt, parse
 
 
 done

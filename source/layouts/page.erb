@@ -1,5 +1,5 @@
 <% wrap_layout :layout do %>
-<div class="page">
+<article class="page">
   <h1 class="page-header">
     <% if content_for?(:title) %>
       <%= yield_content(:title) %>
@@ -29,5 +29,5 @@
     <li>data: <%= h page.data %>
     <li>data.title: <%= h page.data.title %>
   </ul>
-</div>
+</article>
 <% end %>
