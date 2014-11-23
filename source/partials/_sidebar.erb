@@ -1,3 +1,5 @@
+<div class="sidebar">
+
 <h2>Categories</h2>
 <ul>
 <% sitemap.resources.group_by {|p| p.data.category }.each do |category, pages| %>
@@ -33,3 +35,5 @@
 
 <h2>Recent Updated</h2>
 <%= recent_pages({date_format: "%d %b %Y"}) %>
+
+</div>

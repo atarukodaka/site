@@ -15,6 +15,23 @@ module SiteHelpers
     sitemap.resources.group_by {|p| p.data.category}  # .each {|category, pages|
   end
 
+
+
+  ## prose.io
+  def prose_edit_link(github_username, github_repo)
+    hash = {github_username: h(github_username), repo: h(github_repo), page_url: current_page.url, branch: "gh-pages"}
+    template = %Q{<span><a href="http://prose.io/#%{github_username}/%{repo}/edit/%{branch}%{page_url}"  target="_blank"><i class="glyphicon glyphicon-edit"></i></a></span>}
+    template % hash
+  end
+  ## share_twitter
+  def share_twitter(twitter_account_name)
+    hash = { username: h(twitter_account_name) }
+    template = %Q{<span>
+	<a href="https://twitter.com/share" class="twitter-share-button" data-via="%{username}">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      </span>}
+    template % hash
+  end
   ## youtube
   def youtube(id, width=560, height=420, opt = {})
     opt_str = opt.map {|key, value| h(key.to_s) + "=" + h(value.to_s)}.join("&")

@@ -9,6 +9,7 @@ activate :mtime
 activate :series
 activate :syntax
 activate :i18n
+activate :google_analytics, :tracking_id => "UA-56531446-2"
 
 # deploy to github proj-page
 activate :deploy do |deploy|

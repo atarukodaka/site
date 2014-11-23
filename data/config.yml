@@ -1,8 +1,9 @@
 site_info:
   title: Ataru Kodaka Site
   author: Ataru Kodaka
-  url: http://ak-site.herokuapp.com
+  url: http://atarukodaka.github.io/site/
   twitter: ataru.kodaka
+  github: atarukodaka
   email: ataru.kodaka@gmail.com
 series:
   combined_title_template: "【%{series}】第%{number}回：%{title}"

@@ -6,7 +6,11 @@ h1, h2, h3, h4, h5 {
     margin-top: 2em;
 }
 
-.content ol, ul {
+.sidebar ol {
+    margin: 0 0 1em 2em;
+    padding: 0;
+}
+.sidebar ul {
     margin: 0 0 1em 2em;
     padding: 0;
 }
