@@ -53,6 +53,13 @@ alias glg="git log --stat --pretty=format:'%Cblue%h %Cgreen%ar %Cred%an %Creset%
 - gem "middleman-syntax"
 
 *** 開発
+**** すぐ治せるの
+- prose.io のリンクが間違えてる
+- 一覧で mtime 表示
+- middleman-mtime
+ - README.md 書く
+   
+**** 考えるの
 - combined_title
   - layouts/page.erb:   title
   - partials/_sidebar: list
@@ -63,8 +70,9 @@ alias glg="git log --stat --pretty=format:'%Cblue%h %Cgreen%ar %Cred%an %Creset%
 - ul, ol: style margin
 - org-mode parser
  - #BEGIN+HTML -> {{{, }}}
-- middleman-mtime
 - tilt, parse
+- category by directory-name
+
 
 
 done
@@ -91,3 +99,4 @@ done
 
 
 
+*** 全日本ジュニア

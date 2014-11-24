@@ -1,0 +1,16 @@
+competitions:
+  - name: 全日本ジュニア
+    date:
+      from: 2014/11/23
+      to: 2014/11/24
+    rink: 新潟
+    result: http://www.jsfresults.com/National/2014-2015/fs_j/national_jr/index.htm
+    comment:
+      "ああ
+      あせふぁ
+      あせｆあふぇｓ"
+  - name: オール関東
+    date:
+      from: 2014/12/13
+      to: 2014/12/14
+    rink: 東伏見
