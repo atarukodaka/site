@@ -5,7 +5,7 @@
     <ul>
       <% sitemap.resources.group_by {|p| p.data.category }.each do |category, pages| %>
       <% next if category.to_s == "" %>
-      <li><%= link_to(h(category), "/categories/" + h(category) + ".html") %>
+      <li><%= link_to(h(category), "/categories.html#" + h(category)) %>
 	<ul>
 	<% pages.each do |page| %>
 	  <% opt = (page.path == current_page.path) ? {disabled: "disabled"}  : {} %>
@@ -21,8 +21,10 @@
     <h2>Tags</h2>
     <ul class="tag_box inline">
       <% sitemap.resources.group_by {|p| p.data.tag }.each do |tag, pages| %>
+        <% next if tag == "" %>
         <% num = pages.count %>
-        <li><%= link_to(h(tag), "/tags.html#" + h(tag)) %></li>
+	<% caption =  h(tag) %>
+        <li><%= link_to(caption.html_safe, "/tags.html#" + h(tag)) %></li>
       <% end %>
     </ul>
   </section>

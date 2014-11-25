@@ -55,6 +55,8 @@ alias glg="git log --stat --pretty=format:'%Cblue%h %Cgreen%ar %Cred%an %Creset%
 
 *** 開発
 **** すぐ治せるの
+- tag
+  - count
 - prose.io のリンクが間違えてる
 - middleman-mtime
  - README.md 書く
@@ -66,7 +68,6 @@ alias glg="git log --stat --pretty=format:'%Cblue%h %Cgreen%ar %Cred%an %Creset%
   - sitemap: list
 - File Change: 問題
 - sidemenu: category, series
-- tag
 - ul, ol: style margin
 - org-mode parser
  - #BEGIN+HTML -> {{{, }}}
