@@ -33,18 +33,10 @@
 	<div class="collapse navbar-collapse" id="topHeader">
 	  <ul class="nav navbar-nav">
 	    <% sitemap.resources.select {|p| p.data.group == "navigation"}.each do |page| %>
-	    <li><%= link_to(h(page.data.title), page) %></li>
+ 	      <li><%= link_to(h(page.data.title), page) %></li>
 	    <% end %>
-	    
-	    <li class="dropdown">
-	      <%= link_to("Categories", "#", {"class" => "dropdown-toggle", "data-toggle" => "dropdown"}) %>
-	      <ul class="dropdown-menu">
-		<% group_by_category.each do |category, pages| %>
-		<% next if category == "" %>
-		<li><%= link_to(h(category), "/categories/" + h(category) + ".html") %></li>
-		<% end %>
-	      </ul>
-	    </li>
+	    <li><%= link_to("Categories", "/categories.html") %></li>
+	    <li><%= link_to("Tags", "/tags.html") %></li>
 	  </ul>
 	</div>
       </div>
@@ -60,7 +52,7 @@
 	</div>
       </div>
     </div>
-    <footer class="footer">
+    <footer id="footer">
       <div class="container">
 	<p>&copy; <%= h data.config.site_info.author %> (<%= h data.config.site_info.email %>) powered by middleman and twitter-bootstrap</p>
       </div>

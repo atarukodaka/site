@@ -6,6 +6,7 @@ module Middleman
         return $1.to_i
       end
       
+=begin
       def combined_title
         template = I18n.t("page.title_template")
         title = self.data.title || "untitled"
@@ -15,8 +16,12 @@ module Middleman
           title
         end
       end
-      alias :page_title :combined_title
+      def formatted_title(format="%{title}")
+        self.data.title % data.to_hash
+      end
+=end
     end
+    
     ################
     class Extension < Middleman::Extension
       def after_configuration

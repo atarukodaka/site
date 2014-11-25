@@ -31,6 +31,13 @@ module SiteHelpers
 
   ## prose.io
   def prose_edit_link(github_username, github_repo)
+    # http://prose.io/#atarukodaka/site/edit/master/source/sitemap.html.erb
+    #  source_file: /vagrant/source/site/source/memo.html.org
+    #  path: memo.html
+
+    #  source_file: /vagrant/source/site/source/memo.html.org
+    #  source_file2: source/memo.html.org
+    #  => source/memo.html.org
     hash = {github_username: h(github_username), repo: h(github_repo), page_url: current_page.source_file, branch: "master"}
     template = %Q{<span><a href="http://prose.io/#%{github_username}/%{repo}/edit/%{branch}%{page_url}"  target="_blank"><i class="glyphicon glyphicon-edit"></i></a></span>}
     template % hash
@@ -82,11 +89,12 @@ module SiteHelpers
     hash = {}
     date_format = opt[:date_format] || "%Y/%m/%d"
     num_display = opt[:num_display] || 10
+    title_format = opt[:title_format] || "%{title}"
 
     select_html_pages.sort_by {|p| p.mtime}.reverse.first(num_display).each do |page|
       dt = DateTime.new(page.mtime.year, page.mtime.month, page.mtime.day)
       hash[dt] = [] if hash[dt].nil?
-      caption = (block_given?) ? yield(page) : page.combined_title
+      caption = (block_given?) ? yield(page) : page.data.title
       hash[dt] << link_to(h(caption), page)
     end
 

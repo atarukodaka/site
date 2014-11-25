@@ -1,10 +1,11 @@
 ---
 title: Tags
+layout: layout
 ---
 
 <% sitemap.resources.group_by {|p| p.data.tag }.each do |tag, pages | %>
-  <% next if tag.to_s == "" %>
-  <h2><a name="<%= h(tag) %>"/><%= h(tag) %></h2>
+  <% next if tag == "" %>
+  <h2 id="<%= h(tag) %>"><%= h(tag) %></h2>
     <ul>
     <% pages.each do |page| %>
       <li><%= link_to(h(page.data.title), page) %></li>

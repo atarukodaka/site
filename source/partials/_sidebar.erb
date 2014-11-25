@@ -1,4 +1,4 @@
-<aslide class="sidebar">
+<aside class="sidebar">
 
   <section>
     <h2>Categories</h2>
@@ -20,9 +20,11 @@
   <section>
     <h2>Tags</h2>
     <ul class="tag_box inline">
+      <% tags = [] %>
       <% sitemap.resources.group_by {|p| p.data.tag }.each do |tag, pages| %>
-        <% next if tag == "" %>
-        <% num = pages.count %>
+        <% tags << tag unless tag == "" %>
+      <% end %>
+      <% tags.flatten.each do |tag| %>
 	<% caption =  h(tag) %>
         <li><%= link_to(caption.html_safe, "/tags.html#" + h(tag)) %></li>
       <% end %>
@@ -53,4 +55,4 @@
     <h2>Recent Updated</h2>
     <%= recent_pages({date_format: "%d %b %Y"}) %>
   </section>
-</aslide>
+</aside>
