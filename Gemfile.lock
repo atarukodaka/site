@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:atarukodaka/middleman-mtime.git
-  revision: a6a356022343e10ff84029b34d8c17ff6944a46a
+  revision: cd71c6f410c3dfcc7daf0f4deb6e1f64bbd0ccde
   branch: master
   specs:
     middleman-mtime (0.0.1)
@@ -68,6 +68,8 @@ GEM
       middleman-sprockets (>= 3.1.2)
       sass (>= 3.4.0, < 4.0)
       uglifier (~> 2.5)
+    middleman-alias (0.0.9)
+      middleman-core (~> 3.2)
     middleman-core (3.3.7)
       activesupport (~> 4.1.0)
       bundler (~> 1.1)
@@ -166,6 +168,7 @@ PLATFORMS
 DEPENDENCIES
   i18n
   middleman (~> 3.3.7)
+  middleman-alias
   middleman-deploy
   middleman-gh-pages
   middleman-google-analytics

@@ -2,7 +2,7 @@
 title: 拡張機能によるカスタマイズ
 series: middleman と org-mode でサイト構築
 category: software
-tag: [middleman, org-mode]
+tag: middleman
 ---
 
 ** 値のカスタマイズ

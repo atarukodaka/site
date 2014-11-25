@@ -1,5 +1,3 @@
-
-
 module Middleman
   module Series
     module ResourceIncluded
@@ -9,7 +7,6 @@ module Middleman
       end
       
       def combined_title
-        #template = @app.data.config.series.combined_title_template || "[%{series}] #%{number}: %{title}"
         template = I18n.t("page.title_template")
         title = self.data.title || "untitled"
         if self.data.series

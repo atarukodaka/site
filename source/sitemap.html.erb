@@ -6,11 +6,14 @@ group: navigation
 <hr>
 
 <ul>
-<% select_html_pages.sort_by {|p| p.data.category.to_s + p.destination_path.to_s }.each do |page| %>
+<% group_by_category.each do |category, pages| %>
+  <% pages.each do |page| %>
+    <% next if page.ext != ".html" %>
   <li>
-    <%= (page.data.category) ? "[" + h(page.data.category) + "] " : "" %>
+    <%= (category) ? "[" + h(category) + "] " : "" %>
     <%= link_to(h(page.page_title), page.url) %>
-    <%= "... " + page.mtime.strftime("%Y/%m/%d %H:%M:%S") %>
+    ...<small><%= page.mtime.strftime("%Y/%m/%d %H:%M:%S") %></small>
   </li>
+  <% end %>
 <% end %>
 </ul>

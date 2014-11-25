@@ -51,17 +51,17 @@ alias glg="git log --stat --pretty=format:'%Cblue%h %Cgreen%ar %Cred%an %Creset%
 - helper: config.rb
 - @app.data, @app.settings が使える
 - gem "middleman-syntax"
+- redirect: [[https://github.com/Octo-Labs/middleman-alias][Octo-Labs/middleman-alias]]
 
 *** 開発
 **** すぐ治せるの
 - prose.io のリンクが間違えてる
-- 一覧で mtime 表示
 - middleman-mtime
  - README.md 書く
    
 **** 考えるの
 - combined_title
-  - layouts/page.erb:   title
+  - layouts/page.erb: title
   - partials/_sidebar: list
   - sitemap: list
 - File Change: 問題
@@ -71,13 +71,12 @@ alias glg="git log --stat --pretty=format:'%Cblue%h %Cgreen%ar %Cred%an %Creset%
 - org-mode parser
  - #BEGIN+HTML -> {{{, }}}
 - tilt, parse
-- category by directory-name
-
 
 
 done
 - youtube embed
 - twitter, github, prose リンク
+- 一覧で mtime 表示
 
 ** figureskating 関連
 *** スケートラボ

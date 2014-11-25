@@ -10,6 +10,7 @@ activate :series
 activate :syntax
 activate :i18n
 activate :google_analytics, :tracking_id => "UA-56531446-2"
+activate :alias
 
 # deploy to github proj-page
 activate :deploy do |deploy|
@@ -37,16 +38,19 @@ set :layout, :page
 
 ## proxy for category pages
 
+=begin
 ready do
   sitemap.resources.group_by {|p| p.data["category"] }.each do |category, pages|
     next if category.to_s == ""
     proxy("/categories/#{category}.html", "category.html", ignore: false,
           :locals => { :category => category, :pages => pages })
   end
+
+  redirect "test3.html", :to => "test1.html"
 end
 
 ignore "category.html"
-
+=end
 
 ## set directories
 
@@ -112,4 +116,3 @@ set :org, :layout_engine => :org
 
 # Automatic image dimensions on image_tag helper
 # activate :automatic_image_sizes
-

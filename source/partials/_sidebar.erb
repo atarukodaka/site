@@ -19,7 +19,11 @@
 
   <section>
     <h2>Tags</h2>
-    <ul>
+    <ul class="tag_box inline">
+      <% sitemap.resources.group_by {|p| p.data.tag }.each do |tag, pages| %>
+        <% num = pages.count %>
+        <li><%= link_to(h(tag), "/tags.html#" + h(tag)) %></li>
+      <% end %>
     </ul>
   </section>
   
