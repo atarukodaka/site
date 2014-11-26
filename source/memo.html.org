@@ -1,6 +1,7 @@
 ---
 title: Memo
 group: navigation
+layout: page
 ---
 
 ** 開発

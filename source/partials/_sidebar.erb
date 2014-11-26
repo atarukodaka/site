@@ -4,6 +4,7 @@
     <h2>Categories</h2>
     <ul>
       <% categories.each do |category, pages| %>
+      <% next if category.to_s == "" %>
       <li><%= link_to(h(category), "/categories.html#" + h(category)) %>
 	<ul>
 	<% pages.each do |page| %>
@@ -25,7 +26,6 @@
     <ul>
       <% sitemap.resources.group_by {|p| p.data.series }.each do |series, pages| %>
       <% next if series.to_s == "" %>
-      
       <li>
 	<%= h(series) %>
 	<ol>

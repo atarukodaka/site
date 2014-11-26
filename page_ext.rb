@@ -12,13 +12,15 @@ module Middleman
         return self.data.category if self.data.category.to_s != "" || data.series.to_s != ""
         
         dir, fname = File.split(self.path.to_s)
-        return (dir == ".") ? "" : dir
+        return (dir == ".") ? nil : dir
       end
       def tags
         if data.tag.is_a? Array
           data.tag 
-        else
+        elsif data.tag.is_a? String
           data.tag.split(/\s*,\s/).map(&:strip)
+        else
+          []
         end
       end
       def title

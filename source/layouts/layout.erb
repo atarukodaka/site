@@ -35,8 +35,6 @@
 	    <% sitemap.resources.select {|p| p.data.group == "navigation"}.each do |page| %>
  	      <li><%= link_to(h(page.data.title), page) %></li>
 	    <% end %>
-	    <li><%= link_to("Categories", "/categories.html") %></li>
-	    <li><%= link_to("Tags", "/tags.html") %></li>
 	  </ul>
 	</div>
       </div>

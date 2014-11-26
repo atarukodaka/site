@@ -37,7 +37,7 @@ configure :development do
   activate :livereload
 end
 
-set :layout, :page
+set :layout, :article
 
 #config[:file_watcher_ignore] += [/^\.extensions\//, /stylesheets\//, /fonts\//, /javascript\//]
 #puts config[:file_watcher_ignore]

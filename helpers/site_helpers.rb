@@ -14,7 +14,7 @@ module SiteHelpers
     sitemap.resources.select {|p| p.send(key.to_sym) == value}
   end
   def categories
-    select_html_pages.group_by(&:category).reject {|category, pages| category.to_s == "" || pages.count == 0 }  # .each {|category, pages|
+    select_html_pages.group_by(&:category)  # .reject {|category, pages| category.to_s == "" || pages.count == 0 }  # .each {|category, pages|
   end
 
   def tags
@@ -29,7 +29,11 @@ module SiteHelpers
     end
     hash
   end
+  def series
+    select_html_pages.reject {|p| p.data.series.nil?}.group_by {|p| p.data.series }
+  end
 
+  ################
   def recent_pages(num_display = 10)
     # activate middleman-mtime
     hash = {}
