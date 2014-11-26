@@ -59,13 +59,8 @@ alias glg="git log --stat --pretty=format:'%Cblue%h %Cgreen%ar %Cred%an %Creset%
 **** すぐ治せるの
 - middleman-mtime
  - README.md 書く
-- develop, production
    
 **** 考えるの
-- combined_title
-  - layouts/page.erb: title
-  - partials/_sidebar: list
-  - sitemap: list
 - sidemenu: category, series
 - ul, ol: style margin
 - org-mode parser

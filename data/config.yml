@@ -5,5 +5,3 @@ site_info:
   twitter: ataru.kodaka
   github: atarukodaka
   email: ataru.kodaka@gmail.com
-series:
-  combined_title_template: "【%{series}】第%{number}回：%{title}"

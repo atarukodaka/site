@@ -2,11 +2,11 @@
 
 # Extensions
 activate :syntax
-activate :i18n
 activate :google_analytics, :tracking_id => "UA-56531446-2"
 
 #activate :alias
 #activate :vcs_time
+#activate :i18n
 
 #activate :blog do |blog|
 #  blog.layout = "blog"
@@ -21,8 +21,6 @@ activate :deploy do |deploy|
   # deploy.build_before = true
   deploy.method = :git
   deploy.branch = 'gh-pages'
-
-#  activate :asset_host, :host => "/site"
 end
 
 configure :build do
@@ -32,11 +30,13 @@ configure :build do
 end
 
 set :relative_links, true
+
 # Reload the browser automatically whenever files change
 configure :development do
   activate :livereload
 end
 
+#set :layout, :article
 set :layout, :article
 
 #config[:file_watcher_ignore] += [/^\.extensions\//, /stylesheets\//, /fonts\//, /javascript\//]
