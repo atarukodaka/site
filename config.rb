@@ -8,9 +8,9 @@ activate :google_analytics, :tracking_id => "UA-56531446-2"
 #activate :alias
 #activate :vcs_time
 
-activate :blog do |blog|
-  blog.layout = "blog"
-end
+#activate :blog do |blog|
+#  blog.layout = "blog"
+#end
 
 require "./page_ext.rb"
 activate :mtime

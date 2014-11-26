@@ -1,7 +1,7 @@
 ---
 title: middleman, org-mode の概要
 series: middleman と org-mode でサイト構築
-category: software
+tag: middleman, org-mode
 layout: series
 ---
 

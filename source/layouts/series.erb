@@ -2,6 +2,5 @@
   <%= yield %>
 
   <hr>
-  <h2>連載</h2>
   <%= list_group("series", current_page.data.series, {list_type: "ol"}){|page| "第" + h(page.series_number) + "回：" + h(page.data.title)} %>
 <% end %>

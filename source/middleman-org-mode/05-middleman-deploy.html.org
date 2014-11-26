@@ -1,7 +1,6 @@
 ---
 title: github への deploy
 series: middleman と org-mode でサイト構築
-category: software
 ---
 
 

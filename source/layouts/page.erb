@@ -4,8 +4,7 @@
     <% if content_for?(:title) %>
       <%= yield_content(:title) %>
     <% else %>
-      <%= (current_page.data.series) ? "【" + h(current_page.data.series) +" 】"  + "第" + h(current_page.series_number.to_s) + "回：<br>" : "" %>
-      <%= h(current_page.data.title) %>
+      <%= h(current_page.title) %>
     <% end %>
   </h1>
 

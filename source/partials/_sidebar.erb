@@ -3,13 +3,16 @@
   <section>
     <h2>Categories</h2>
     <ul>
-      <% sitemap.resources.group_by {|p| p.data.category }.each do |category, pages| %>
-      <% next if category.to_s == "" %>
+      <% categories.each do |category, pages| %>
       <li><%= link_to(h(category), "/categories.html#" + h(category)) %>
 	<ul>
 	<% pages.each do |page| %>
-	  <% opt = (page.path == current_page.path) ? {disabled: "disabled"}  : {} %>
-	  <li><%= link_to(h(page.data.title), page, opt) %>
+	  <li>
+	  <% if page.path == current_page.path %>
+	    <%= h(page.title) %>
+	  <% else %>
+	    <%= link_to(h(page.title), page) %>
+	  <% end %>
 	<% end %>
 	</ul>
       </li>
@@ -54,7 +57,7 @@
       <li><%= date.strftime("%d %b %Y") %>
 	<ul>
 	  <% pages.each do |page| %>
-	  <li><%= link_to(h(page.data.title), page) %></li>
+	  <li><%= link_to(h(page.title), page) %></li>
 	  <% end %>
 	</ul>
     <% end %>

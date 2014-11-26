@@ -1,4 +1,3 @@
-
 module SiteHelpers
   def h(args)
     ERB::Util::h(args)
@@ -15,7 +14,7 @@ module SiteHelpers
     sitemap.resources.select {|p| p.send(key.to_sym) == value}
   end
   def categories
-    select_html_pages.group_by {|p| p.category}  # .each {|category, pages|
+    select_html_pages.group_by(&:category).reject {|category, pages| category.to_s == ""}  # .each {|category, pages|
   end
 
   def tags
@@ -23,14 +22,17 @@ module SiteHelpers
     select_html_pages.each do |page|
       next if page.data.tag.to_s == ""
       #binding.pry
-      if page.data.tag.is_a? Array
-        page.data.tag.each do |t|
-          hash[t] ||= [] 
-          hash[t] << page
+      
+      tgs = 
+        if page.data.tag.is_a? Array
+          page.data.tag 
+        else
+          page.data.tag.split(/\s*,\s/).map(&:strip)
         end
-      else
-        hash[page.data.tag] ||= [] 
-        hash[page.data.tag] << page
+          
+      tgs.each do |t|
+        hash[t] ||= [] 
+        hash[t] << page
       end
     end
     hash
