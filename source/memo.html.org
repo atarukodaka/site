@@ -56,11 +56,6 @@ alias glg="git log --stat --pretty=format:'%Cblue%h %Cgreen%ar %Cred%an %Creset%
 
 *** 開発
 **** すぐ治せるの
-- tag
-  - count
-  - [a, b, c]
-- prose.io のリンクが間違えてる
-  - page_ext へ
 - middleman-mtime
  - README.md 書く
 - develop, production
@@ -83,6 +78,11 @@ done
 - File Change: 問題
 - site asset
   ASSET_HOST=/host middleman build
+- tag
+  - count
+  - [a, b, c]
+- prose.io のリンクが間違えてる
+  - page_ext へ
 
 ** figureskating 関連
 *** スケートラボ

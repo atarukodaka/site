@@ -39,7 +39,7 @@ end
 
 set :layout, :page
 
-#config[:file_watcher_ignore] += [/^\.extensions\//]
+#config[:file_watcher_ignore] += [/^\.extensions\//, /stylesheets\//, /fonts\//, /javascript\//]
 #puts config[:file_watcher_ignore]
 
 ###

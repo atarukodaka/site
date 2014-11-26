@@ -9,11 +9,18 @@ module Middleman
       end
 
       def category
-        return self.data.category if self.data.category.to_s != ""
+        return self.data.category if self.data.category.to_s != "" || data.series.to_s != ""
+        
         dir, fname = File.split(self.path.to_s)
         return (dir == ".") ? "" : dir
       end
-
+      def tags
+        if data.tag.is_a? Array
+          data.tag 
+        else
+          data.tag.split(/\s*,\s/).map(&:strip)
+        end
+      end
       def title
         return data.title if data.series.to_s == ""
         %Q{[%{series}:\#%{series_number}]%{title}} % {title: data.title, series_number: series_number, series: data.series}

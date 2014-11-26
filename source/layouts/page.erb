@@ -9,6 +9,9 @@
   </h1>
 
   <div>
+    <% if current_page.category %>
+      [<%= link_to(h(current_page.category), "/categories.html\#" + current_page.category ) %>]
+    <% end %>
     <%= current_page.mtime.strftime("%d %b %Y %H:%M:%S %Z") %>
     <%= current_page.prose_edit_link(data.config.site_info.github, "site") %>
     <%= share_twitter(data.config.site_info.twitter) %>
@@ -16,6 +19,16 @@
   <div class="content">
     <%= yield %>
   </div>
+  <hr>
+  <section class="page_footer">
+    <ul class="tag_box inline">
+      <li>tag:</li>
+      <% tags.each do |tag, pages| %>
+        <% caption = "%{tag} <span>%{count}</span>" % {tag: h(tag), count: pages.count} %>
+        <li><%= link_to(caption, "/tags.html#" + h(tag)) %></li>
+      <% end %>
+    </ul>
+  </section>
   <hr>
   <h2>debug</h2>
   <% page = current_page %>

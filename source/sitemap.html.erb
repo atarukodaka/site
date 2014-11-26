@@ -11,7 +11,7 @@ group: navigation
     <% next if page.ext != ".html" %>
   <li>
     <%= (category) ? "[" + h(category) + "] " : "" %>
-    <%= link_to(h(page.data.title), page.url) %>
+    <%= link_to(h(page.title), page.url) %>
     ...<small><%= page.mtime.strftime("%Y/%m/%d %H:%M:%S") %></small>
   </li>
   <% end %>
