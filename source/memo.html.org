@@ -18,6 +18,7 @@ group: navigation
 - gem install rb-readline
 - heroku requires 'readline'
 - [[http://d.hatena.ne.jp/replication/20140202/1391350251][Google アナリティクスのフィルタ機能で参照元URLを記録する方法(2014年2月版) - 大人になったら肺呼吸]]
+- [[http://futurismo.biz/archives/2213][EmacsでRubyの開発環境をさらにめちゃガチャパワーアップしたまとめ | Futurismo]]
 
 *** git 1.7.2~
 #+BEGIN_SRC 
@@ -59,26 +60,31 @@ alias glg="git log --stat --pretty=format:'%Cblue%h %Cgreen%ar %Cred%an %Creset%
   - count
   - [a, b, c]
 - prose.io のリンクが間違えてる
+  - page_ext へ
 - middleman-mtime
  - README.md 書く
+- develop, production
    
 **** 考えるの
 - combined_title
   - layouts/page.erb: title
   - partials/_sidebar: list
   - sitemap: list
-- File Change: 問題
 - sidemenu: category, series
 - ul, ol: style margin
 - org-mode parser
  - #BEGIN+HTML -> {{{, }}}
 - tilt, parse
+- blog ?
 
 
 done
 - youtube embed
 - twitter, github, prose リンク
 - 一覧で mtime 表示
+- File Change: 問題
+- site asset
+  ASSET_HOST=/host middleman build
 
 ** figureskating 関連
 *** スケートラボ

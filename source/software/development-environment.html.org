@@ -112,6 +112,7 @@ open new terminal
 - tree
 - wget
 - curl
+- ruby-devel
 
 *** gems
 

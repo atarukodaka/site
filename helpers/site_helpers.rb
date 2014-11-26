@@ -29,19 +29,6 @@ module SiteHelpers
     ar
   end
 
-  ## prose.io
-  def prose_edit_link(github_username, github_repo)
-    # http://prose.io/#atarukodaka/site/edit/master/source/sitemap.html.erb
-    #  source_file: /vagrant/source/site/source/memo.html.org
-    #  path: memo.html
-
-    #  source_file: /vagrant/source/site/source/memo.html.org
-    #  source_file2: source/memo.html.org
-    #  => source/memo.html.org
-    hash = {github_username: h(github_username), repo: h(github_repo), page_url: current_page.source_file, branch: "master"}
-    template = %Q{<span><a href="http://prose.io/#%{github_username}/%{repo}/edit/%{branch}%{page_url}"  target="_blank"><i class="glyphicon glyphicon-edit"></i></a></span>}
-    template % hash
-  end
   ## youtube
   def youtube(id, width=560, height=420, opt = {})
     opt_str = opt.map {|key, value| h(key.to_s) + "=" + h(value.to_s)}.join("&")

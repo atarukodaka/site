@@ -2,14 +2,17 @@
 # the following line to use "http://" instead
 source 'https://rubygems.org'
 
-gem "middleman", "~>3.3.7"
-gem 'middleman-deploy'
-gem 'middleman-gh-pages'
-gem 'middleman-google-analytics'
-gem 'middleman-alias'
+ext_dir = "../extensions/"
 
-#gem 'middleman-mtime', :path => "../middleman-mtime"
-gem 'middleman-mtime', :git => "git@github.com:atarukodaka/middleman-mtime.git", :branch => "master"
+gem "middleman", "~>3.3.7"
+#gem "middleman", "~>3.3.7", :path => File.join(ext_dir, "middleman")
+gem 'middleman-deploy'
+gem 'middleman-google-analytics'
+#gem 'middleman-alias'
+#gem 'middleman-gh-pages'
+
+gem 'middleman-mtime', :path => File.join(ext_dir, "middleman-mtime")
+#gem 'middleman-mtime', :git => "git@github.com:atarukodaka/middleman-mtime.git", :branch => "master"
 
 # Live-reloading plugin
 gem "middleman-livereload", "~> 3.1.0"
@@ -32,7 +35,8 @@ gem "middleman-syntax"
 gem 'rouge'
 
 
-#gem 'rb-readline'   # for heroku toolbelt
 gem 'pry'
+gem 'pry-byebug'
 #gem 'pry-doc'
+gem 'rb-readline'   # for pry
 

@@ -1,26 +1,29 @@
 # -*- coding: utf-8 -*-
 
 # Extensions
-require "./series_ext.rb"
-#require "./mtime_ext.rb"
-
-#activate :vcs_time
-activate :mtime
-activate :series
 activate :syntax
 activate :i18n
 activate :google_analytics, :tracking_id => "UA-56531446-2"
-activate :alias
+#activate :alias
+#activate :vcs_time
+
+require "./page_ext.rb"
+activate :mtime
+activate :page
 
 # deploy to github proj-page
 activate :deploy do |deploy|
   # deploy.build_before = true
   deploy.method = :git
   deploy.branch = 'gh-pages'
+
+#  activate :asset_host, :host => "/site"
 end
 
 configure :build do
-  activate :asset_host, :host => "/site"  
+  if ah = ENV['ASSET_HOST']
+    activate :asset_host, :host => ah
+  end
 end
 
 set :relative_links, true
@@ -30,6 +33,9 @@ configure :development do
 end
 
 set :layout, :page
+
+#config[:file_watcher_ignore] += [/^\.extensions\//]
+#puts config[:file_watcher_ignore]
 
 ###
 # Helpers

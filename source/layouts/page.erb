@@ -11,7 +11,7 @@
 
   <div>
     <%= current_page.mtime.strftime("%d %b %Y %H:%M:%S %Z") %>
-    <%= prose_edit_link(data.config.site_info.github, "site") %>
+    <%= current_page.prose_edit_link(data.config.site_info.github, "site") %>
     <%= share_twitter(data.config.site_info.twitter) %>
   </div>
   <div class="content">
@@ -29,6 +29,8 @@
     <li>data: <%= h page.data %>
     <li>data(hashed): <%= h page.data.to_hash %>
     <li>data.title: <%= h page.data.title %>
+    <li>.root <%= Middleman::Application.root %>
+    <li>.root_path <%= Middleman::Application.root_path %>
   </ul>
 </article>
 <% end %>
