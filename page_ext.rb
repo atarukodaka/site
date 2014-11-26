@@ -1,11 +1,17 @@
 
 module Middleman
-  module Series
+  module PageAccessor
     module ResourceIncluded
       include ERB::Util
       def series_number
         self.path =~ Regexp.new("/([0-9]+)\-[^/]+\.html$")
         return $1.to_i
+      end
+
+      def category
+        return data.category if data.category
+        dir, fname = File.split(data.path.to_s)
+        return (dir == ".") ? "" : dir
       end
       
       ## prose.io
@@ -52,5 +58,5 @@ module Middleman
   end
 end
 
-Middleman::Series::Extension.register :page
+Middleman::PageAccessor::Extension.register :page
 

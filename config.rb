@@ -46,23 +46,6 @@ set :layout, :page
 # Helpers
 ###
 
-
-## proxy for category pages
-
-=begin
-ready do
-  sitemap.resources.group_by {|p| p.data["category"] }.each do |category, pages|
-    next if category.to_s == ""
-    proxy("/categories/#{category}.html", "category.html", ignore: false,
-          :locals => { :category => category, :pages => pages })
-  end
-
-  redirect "test3.html", :to => "test1.html"
-end
-
-ignore "category.html"
-=end
-
 ## set directories
 
 set :css_dir, 'stylesheets'

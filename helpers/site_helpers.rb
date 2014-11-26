@@ -15,7 +15,7 @@ module SiteHelpers
     sitemap.resources.select {|p| p.send(key.to_sym) == value}
   end
   def categories
-    select_html_pages.group_by {|p| p.data.category}  # .each {|category, pages|
+    select_html_pages.group_by {|p| p.category}  # .each {|category, pages|
   end
 
   def tags
@@ -25,13 +25,26 @@ module SiteHelpers
       #binding.pry
       if page.data.tag.is_a? Array
         page.data.tag.each do |t|
-          hash[t] ||= [] << page
+          hash[t] ||= [] 
+          hash[t] << page
         end
       else
-        hash[page.data.tag] ||= [] << page
+        hash[page.data.tag] ||= [] 
+        hash[page.data.tag] << page
       end
     end
     hash
+  end
+
+  def recent_pages(num_display = 10)
+    # activate middleman-mtime
+    hash = {}
+    select_html_pages.sort_by(&:mtime).reverse.first(num_display).each do |page|
+      dt = DateTime.new(page.mtime.year, page.mtime.month, page.mtime.day)
+      hash[dt] ||= []
+      hash[dt] << page
+    end
+    return hash.sort {|(dt1, v1), (dt2, v2)| dt2 <=> dt1 } # reverse sorted by date
   end
 
   ## youtube
@@ -75,21 +88,4 @@ module SiteHelpers
     return ar.join("\n")
   end
 
-  def recent_pages(opt = {})
-    # activate middleman-mtime
-    # opt: :date_format, :num_display
-    #   yield(page) for title template if block_given?
-    hash = {}
-    date_format = opt[:date_format] || "%Y/%m/%d"
-    num_display = opt[:num_display] || 10
-    title_format = opt[:title_format] || "%{title}"
-
-    select_html_pages.sort_by(&:mtime).reverse.first(num_display).each do |page|
-      puts page.data.title
-      dt = DateTime.new(page.mtime.year, page.mtime.month, page.mtime.day)
-      hash[dt] ||= []
-      hash[dt] << page
-    end
-    return hash.sort {|(dt1, v1), (dt2, v2)| dt2 <=> dt1 } # reverse sorted by date
-  end
 end
