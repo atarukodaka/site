@@ -3,8 +3,7 @@ title: Tags
 layout: layout
 ---
 
-<% sitemap.resources.group_by {|p| p.data.tag }.each do |tag, pages | %>
-  <% next if tag == "" %>
+<% tags.each do |tag, pages| %>
   <h2 id="<%= h(tag) %>"><%= h(tag) %></h2>
     <ul>
     <% pages.each do |page| %>

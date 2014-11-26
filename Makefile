@@ -10,4 +10,4 @@ deploy:
 	ASSET_HOST=/site $(MM) deploy -b
 
 server:
-	ruby server.rb --port 1234 &
+	ruby server.rb --port 1234 > /dev/null&

@@ -75,8 +75,6 @@ alias glg="git log --stat --pretty=format:'%Cblue%h %Cgreen%ar %Cred%an %Creset%
 - org-mode parser
  - #BEGIN+HTML -> {{{, }}}
 - tilt, parse
-- blog ?
-
 
 done
 - youtube embed

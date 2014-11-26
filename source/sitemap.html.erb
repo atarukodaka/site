@@ -6,7 +6,7 @@ group: navigation
 <hr>
 
 <ul>
-<% group_by_category.each do |category, pages| %>
+<% categories.each do |category, pages| %>
   <% pages.each do |page| %>
     <% next if page.ext != ".html" %>
   <li>

@@ -14,19 +14,24 @@ module SiteHelpers
   def select_resources_by(key, value)
     sitemap.resources.select {|p| p.send(key.to_sym) == value}
   end
-  def group_by_category
-    sitemap.resources.group_by {|p| p.data.category}  # .each {|category, pages|
+  def categories
+    select_html_pages.group_by {|p| p.data.category}  # .each {|category, pages|
   end
 
   def tags
-    ar = []
-    sitemap.resources.group_by {|p| p.data.tag }.each do |tag, pages|
-      puts tag
-      next if tag == ""
-      ar << tag
+    hash = {}
+    select_html_pages.each do |page|
+      next if page.data.tag.to_s == ""
+      #binding.pry
+      if page.data.tag.is_a? Array
+        page.data.tag.each do |t|
+          hash[t] ||= [] << page
+        end
+      else
+        hash[page.data.tag] ||= [] << page
+      end
     end
-    puts ar
-    ar
+    hash
   end
 
   ## youtube
@@ -71,6 +76,7 @@ module SiteHelpers
   end
 
   def recent_pages(opt = {})
+    # activate middleman-mtime
     # opt: :date_format, :num_display
     #   yield(page) for title template if block_given?
     hash = {}
@@ -78,22 +84,12 @@ module SiteHelpers
     num_display = opt[:num_display] || 10
     title_format = opt[:title_format] || "%{title}"
 
-    select_html_pages.sort_by {|p| p.mtime}.reverse.first(num_display).each do |page|
+    select_html_pages.sort_by(&:mtime).reverse.first(num_display).each do |page|
+      puts page.data.title
       dt = DateTime.new(page.mtime.year, page.mtime.month, page.mtime.day)
-      hash[dt] = [] if hash[dt].nil?
-      caption = (block_given?) ? yield(page) : page.data.title
-      hash[dt] << link_to(h(caption), page)
+      hash[dt] ||= []
+      hash[dt] << page
     end
-
-    ["<ul>",
-     hash.keys.sort {|a, b| b<=>a}.map {|dt|
-       ["<li>" + dt.strftime(date_format),
-        "<ul>",
-        hash[dt].map {|item|
-          "<li>" + h(item)
-        }.join("\n"),
-        "</ul>"].join("\n")
-     },
-     "</ul>"].join("\n")
+    return hash.sort {|(dt1, v1), (dt2, v2)| dt2 <=> dt1 } # reverse sorted by date
   end
 end
