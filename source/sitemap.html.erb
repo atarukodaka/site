@@ -5,16 +5,29 @@ group: navigation
 
 <hr>
 
+<h2>Articles</h2>
 <ul>
-<% categories.each do |category, pages| %>
+<% blog.categories.each do |category, pages| %>
   <% pages.each do |page| %>
     <% next if page.ext != ".html" %>
   <li>
     <%= (category) ? "[" + h(category) + "] " : "" %>
-    <%= link_to(h(page.data.title), page.url) %>
+    <%= link_to(h(page.data.title), page) %>
     ...<small><%= page.mtime.strftime("%Y/%m/%d %H:%M:%S") %></small>
   </li>
   <% end %>
 <% end %>
-
 </ul>
+
+<h2>Other Pages</h2>
+<ul>
+<% prefix = blog.options.prefix %>
+<% binding.pry %>
+<% sitemap.resources.select {|p| !p.is_a?(Middleman::Blog::BlogArticle) && p.ext == ".html"}.each do |page| %>
+  <li>
+    <%= link_to(h(page.data.title), page) %>
+    ...<small><%= page.mtime.strftime("%Y/%m/%d %H:%M:%S") %></small>
+  </li>
+<% end %>
+</ul>
+
