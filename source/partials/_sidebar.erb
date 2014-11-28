@@ -51,7 +51,7 @@
   <section>
     <h2>Recent Updated</h2>
     <ul>
-    <% recent_pages.each do |date, pages| %>
+      <% blog.recent_articles_date_hash.each do |date, pages| %>
       <li><%= date.strftime("%d %b %Y") %>
 	<ul>
 	  <% pages.each do |page| %>

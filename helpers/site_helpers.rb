@@ -13,28 +13,6 @@ module SiteHelpers
   def select_resources_by(key, value)
     sitemap.resources.select {|p| p.send(key.to_sym) == value}
   end
-=begin
-  def categories
-    select_html_pages.group_by {|p| p.data.category }   # .reject {|category, pages| category.to_s == "" || pages.count == 0 }  # .each {|category, pages|
-  end
- 
-  def tags
-    hash = {}
-    select_html_pages.each do |page|
-      next if page.data.tag.to_s == ""
-
-      page.tags.each do |t|
-        hash[t] ||= [] 
-        hash[t] << page
-      end
-    end
-    hash
-  end
-=end
-
- def series
-    select_html_pages.reject {|p| p.data.series.nil?}.group_by {|p| p.data.series }
-  end
 
   ################
   def recent_pages(num_display = 10)
