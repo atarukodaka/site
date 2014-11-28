@@ -38,10 +38,11 @@ module SiteHelpers
     # activate middleman-mtime
     hash = {}
 #    select_html_pages.sort_by(&:mtime).reverse.first(num_display).each do |page|
-    blog.articles.first(num_display).each do |page|
-      dt = DateTime.new(page.mtime.year, page.mtime.month, page.mtime.day)
+    blog.articles.first(num_display).each do |article|
+#      binding.pry
+      dt = article.date.to_date
       hash[dt] ||= []
-      hash[dt] << page
+      hash[dt] << article
     end
     return hash.sort {|(dt1, v1), (dt2, v2)| dt2 <=> dt1 } # reverse sorted by date
   end

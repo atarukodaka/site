@@ -2,6 +2,7 @@
 title: Memo
 group: navigation
 layout: page
+date: 2014/11/28
 ---
 
 ** 開発
@@ -48,6 +49,12 @@ alias glg="git log --stat --pretty=format:'%Cblue%h %Cgreen%ar %Cred%an %Creset%
 - ファイルに日付がつくのはいやだ。開くのや探すのがメンドイ
 - org/*.org に書いて、org-ruby で .html に落とす？
 - series: ヘッダで「連載」を表現
+
+- middleman-blog をベースに
+- articles/ 以下に記事を
+  - frontmatter に date: ccyy/mm/dd を必ずつける
+  - blog.sources = "{category}/{title}.html"
+  - blog.permalink = "{category}/{title}.html"
 
 *** 連載ネタ
 - helper: config.rb

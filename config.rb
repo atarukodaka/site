@@ -14,6 +14,7 @@ activate :blog do |blog|
 #  blog.sources = "{category}/{title}-{year}-{month}-{day}.html"
   blog.sources = "{category}/{title}.html"
   blog.permalink = "{category}/{title}.html"
+  blog.default_extension = ".org"
 end
 
 require "./page_ext.rb"
