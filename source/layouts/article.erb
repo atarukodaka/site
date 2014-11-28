@@ -24,7 +24,7 @@
   <hr>
   <section class="page_footer">
     <ul class="tag_box inline">
-      <% tags.each do |tag, pages| %>
+      <% blog.tags.each do |tag, pages| %>
         <% if current_article.tags.include? tag %>
           <li>
 	    <% caption = "%{tag} <span>%{count}</span>" % {tag: h(tag), count: pages.count} %>

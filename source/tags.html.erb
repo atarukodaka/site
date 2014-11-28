@@ -5,7 +5,7 @@ group: navigation
 layout: page
 ---
 
-<% tags.each do |tag, pages| %>
+<% blog.tags.each do |tag, pages| %>
   <h2 id="<%= h(tag) %>"><%= h(tag) %></h2>
     <ul>
     <% pages.each do |page| %>

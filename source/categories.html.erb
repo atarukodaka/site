@@ -5,7 +5,7 @@ group: navigation
 layout: page
 ---
 
-<% categories.each do |category, pages | %>
+<% blog.categories.each do |category, pages | %>
   <% next if category.to_s == "" %>
   <h2 id="<%= h(category) %>"><%= h(category) %></h2>
     <ul>

@@ -22,7 +22,6 @@ group: navigation
 <h2>Other Pages</h2>
 <ul>
 <% prefix = blog.options.prefix %>
-<% binding.pry %>
 <% sitemap.resources.select {|p| !p.is_a?(Middleman::Blog::BlogArticle) && p.ext == ".html"}.each do |page| %>
   <li>
     <%= link_to(h(page.data.title), page) %>
