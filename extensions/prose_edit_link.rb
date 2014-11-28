@@ -20,7 +20,8 @@ module Middleman
     ################
     class Extension < Middleman::Extension
       def after_configuration
-        Middleman::Sitemap::Resource.class_eval do
+#        Middleman::Sitemap::Resource.class_eval do
+        Middleman::Blog::BlogArticle.class_eval do
           include ResourceIncluded
         end
       end

@@ -1,0 +1,21 @@
+---
+title: ジュニア、ローカル大会
+category: figureskating
+date: 2014-11-27
+---
+
+<%   now = Time.now %>
+  
+<h2>開催予定</h2>
+
+<% data.figureskating["competitions"].select {|c| !passed?(c, now) }.each {|c| %>
+  <%= showdata(c) %>
+<% } %>
+  
+
+<h2>開催済み</h2>
+
+<% data.figureskating["competitions"].select {|c| passed?(c, now) }.each {|c| %>
+  <%= showdata(c) %>
+<% } %>
+  

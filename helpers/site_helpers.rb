@@ -35,6 +35,7 @@ module SiteHelpers
 
   ################
   def recent_pages(num_display = 10)
+#    binding.pry
     # activate middleman-mtime
     hash = {}
 #    select_html_pages.sort_by(&:mtime).reverse.first(num_display).each do |page|

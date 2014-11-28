@@ -20,6 +20,10 @@ end
 require "./page_ext.rb"
 activate :page
 activate :mtime
+require './extensions/prose_edit_link.rb'
+activate :prose_edit_link
+require './extensions/middleman-blog-enhanced.rb'
+activate :blog_enhanced
 
 # deploy to github proj-page
 activate :deploy do |deploy|

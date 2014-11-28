@@ -8,6 +8,7 @@ module Middleman
         return $1.to_i
       end
 
+=begin
       def category
         return self.data.category if self.data.category.to_s != "" || data.series.to_s != ""
         
@@ -27,7 +28,6 @@ module Middleman
         return data.title if data.series.to_s == ""
         %Q{[%{series}:\#%{series_number}]%{title}} % {title: data.title, series_number: series_number, series: data.series}
       end
-
       ## prose.io
       def prose_edit_link(github_username, github_repo)
         # http://prose.io/#atarukodaka/site/edit/master/source/sitemap.html.erb
@@ -44,6 +44,7 @@ module Middleman
         template = %Q{<span><a href="http://prose.io/#%{github_username}/%{repo}/edit/%{branch}%{source_path}"  target="_blank"><i class="glyphicon glyphicon-edit"></i></a></span>}
         template % hash
       end
+=end
     end
 
     ################
