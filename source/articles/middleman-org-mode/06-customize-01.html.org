@@ -1,0 +1,71 @@
+---
+title: 拡張機能によるカスタマイズ
+series: middleman と org-mode でサイト構築
+tag: middleman, org-mode
+date: 2014/11/01
+---
+
+** 値のカスタマイズ
+サイト情報などの値は、config.rb ではなく data/config.yml に入れます。
+
+#+BEGIN_EXAMPLE
+% mkdir data
+% vi data/config.yml
+site_info:
+  title: Site name
+  author: your name
+  url: "http://www.domain.com"
+  description: descr
+#+END_EXAMPLE
+
+こうしておくと、レイアウト内で <%= h data.config.site_info.title %> などと表示できます。
+
+** ページ情報
+
+current_page あるいはcurrent_resource で現ページの情報が取れます
+(Middleman::Sitemap::Resource class; see [[http://www.rubydoc.info/gems/middleman-core/Middleman/Sitemap/Resource]])：
+
+- page.source_file: ソースファイル名
+- page.path: パス
+- page.data.title: タイトル
+- page.data.*： YAML matter で指定したハッシュデータが入っている
+
+これらを使うと、
+
+
+#+BEGIN_SRC html
+% vi layout.html.erb
+<html>
+  <head>
+    <title><%= h(current_page.data.title) + "- " + h(data.config.site_info.title) %></title>
+  </head>
+  <body>
+    ...
+    <div class="footer">
+      <p>&copy; <%= h data.config.site_info.author %> (<%= h data.config.site_info.email %>) powered by middleman and twitter-bootstrap</p>
+    </div>
+  </body>
+</html>
+#+END_SRC
+
+などと書けます。
+
+
+
+** サイトマップの利用
+sitemap.resources (class Middleman::Sitemap::Store)にサイト全体のリソース（ページなど）が入ってるので、これを使います。
+
+- 全ページ: sitemap.resources.each {|page|
+- HTML ファイルのみ：sitemap.resources.select {|p| p.ext == "html"}.{|page|
+- 指定したカテゴリのページ： sitemap.resources.select {|p| p.data.category == "software"}.each ||page|
+- 指定カテゴリ
+
+
+sitemap.resource.select {|p| p == condition }  で指定した condition にあるページ抽出
+sitemap.resource.group_by
+
+
+** ヘルパー
+
+sitemap.resources.
+
