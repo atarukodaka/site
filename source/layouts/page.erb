@@ -1,54 +1,13 @@
 <% wrap_layout :layout do %>
 <section class="page">
   <h1 class="page_header">
-    <% if content_for?(:title) %>
-      <%= yield_content(:title) %>
-    <% else %>
-      <%= h(current_page.title) %>
-    <% end %>
+    <%= h(current_page.data.title) %>
   </h1>
 
-  <section class="page_info">
-    <% if current_page.category.to_s != "" %>
-      [<%= link_to(h(current_page.category), "/categories.html\#" + current_page.category ) %>]
-    <% end %>
-    <%= current_page.mtime.strftime("%d %b %Y %H:%M:%S %Z") %>
-    <%= current_page.prose_edit_link(data.config.site_info.github, "site") %>
-    <%= share_twitter(data.config.site_info.twitter) %>
-  </section>
   <section class="page_content">
     <%= yield %>
   </section>
   <hr>
-  <section class="page_footer">
-    <ul class="tag_box inline">
-      <% tags.each do |tag, pages| %>
-        <% if current_page.tags.include? tag %>
-          <li>
-	    <% caption = "%{tag} <span>%{count}</span>" % {tag: h(tag), count: pages.count} %>
-            <%= link_to(caption, "/tags.html#" + h(tag)) %>
-	  </li>
-	<% end %>
-      <% end %>
-    </ul>
-  </section>
-  <hr>
-<!-- 
-  <h2>debug</h2>
-  <% page = current_page %>
-  <ul>
-    <li>source_file: <%= h page.source_file %>
-    <li>path: <%= h page.path %>
-    <li>destination_path: <%= h page.destination_path %>
-    <li>url: <%= h page.url %>
-    <li>data.class: <%= h page.data.class %>
-    <li>data: <%= h page.data %>
-    <li>data(hashed): <%= h page.data.to_hash %>
-    <li>data.title: <%= h page.data.title %>
-    <li>.root <%= Middleman::Application.root %>
-    <li>.root_path <%= Middleman::Application.root_path %>
-  </ul>
--->
 </section>
 <% end %>
 

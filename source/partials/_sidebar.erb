@@ -3,16 +3,16 @@
   <section>
     <h2>Categories</h2>
     <ul>
-      <% categories.each do |category, pages| %>
+      <% blog.articles.group_by {|p| p.data.category }.each do |category, pages| %>
       <% next if category.to_s == "" %>
       <li><%= link_to(h(category), "/categories.html#" + h(category)) %>
 	<ul>
 	<% pages.each do |page| %>
 	  <li>
 	  <% if page.path == current_page.path %>
-	    <%= h(page.title) %>
+	    <%= h(page.data.title) %>
 	  <% else %>
-	    <%= link_to(h(page.title), page) %>
+	    <%= link_to(h(page.data.title), page) %>
 	  <% end %>
 	<% end %>
 	</ul>
@@ -41,7 +41,7 @@
   <section>
     <h2>Tags</h2>
     <ul class="tag_box inline">
-      <% tags.each do |tag, pages| %>
+      <% blog.tags.each do |tag, pages| %>
         <% caption = "%{tag} <span>%{count}</span>" % {tag: h(tag), count: pages.count} %>
         <li><%= link_to(caption, "/tags.html#" + h(tag)) %></li>
       <% end %>

@@ -27,7 +27,7 @@ module Middleman
         return data.title if data.series.to_s == ""
         %Q{[%{series}:\#%{series_number}]%{title}} % {title: data.title, series_number: series_number, series: data.series}
       end
-      
+
       ## prose.io
       def prose_edit_link(github_username, github_repo)
         # http://prose.io/#atarukodaka/site/edit/master/source/sitemap.html.erb
@@ -45,11 +45,12 @@ module Middleman
         template % hash
       end
     end
-    
+
     ################
     class Extension < Middleman::Extension
       def after_configuration
-        Middleman::Sitemap::Resource.class_eval do
+#        Middleman::Sitemap::Resource.class_eval do
+        ::Middleman::Blog::BlogArticle.class_eval do
           include ResourceIncluded
         end
       end

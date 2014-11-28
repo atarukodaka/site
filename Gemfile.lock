@@ -1,4 +1,12 @@
 PATH
+  remote: ../extensions/middleman-blog
+  specs:
+    middleman-blog (3.5.3)
+      addressable (~> 2.3.5)
+      middleman-core (~> 3.2)
+      tzinfo (>= 0.3.0)
+
+PATH
   remote: ../extensions/middleman-mtime
   specs:
     middleman-mtime (0.0.1)
@@ -12,6 +20,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    addressable (2.3.6)
     byebug (3.5.1)
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
@@ -72,6 +81,8 @@ GEM
       middleman-sprockets (>= 3.1.2)
       sass (>= 3.4.0, < 4.0)
       uglifier (~> 2.5)
+    middleman-alias (0.0.9)
+      middleman-core (~> 3.2)
     middleman-core (3.3.7)
       activesupport (~> 4.1.0)
       bundler (~> 1.1)
@@ -104,14 +115,11 @@ GEM
     middleman-syntax (2.0.0)
       middleman-core (~> 3.2)
       rouge (~> 1.0)
-    mini_portile (0.6.1)
     minitest (5.4.3)
     multi_json (1.10.1)
     net-sftp (2.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
-    nokogiri (1.6.4.1)
-      mini_portile (~> 0.6.0)
     org-ruby (0.9.9)
       rubypants (~> 0.2)
     padrino-helpers (0.12.4)
@@ -174,17 +182,17 @@ PLATFORMS
 DEPENDENCIES
   i18n
   middleman (~> 3.3.7)
+  middleman-alias
+  middleman-blog!
   middleman-deploy
   middleman-google-analytics
   middleman-livereload (~> 3.1.0)
   middleman-mtime!
   middleman-syntax
-  nokogiri
   org-ruby
   pry-byebug
   rb-readline
   redcarpet
-  rouge
   therubyracer
   tzinfo-data
   wdm (~> 0.1.0)

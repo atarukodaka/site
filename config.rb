@@ -8,13 +8,17 @@ activate :google_analytics, :tracking_id => "UA-56531446-2"
 #activate :vcs_time
 #activate :i18n
 
-#activate :blog do |blog|
-#  blog.layout = "blog"
-#end
+activate :blog do |blog|
+  blog.layout = "article"
+  blog.prefix = "articles"
+#  blog.sources = "{category}/{title}-{year}-{month}-{day}.html"
+  blog.sources = "{category}/{title}.html"
+  blog.permalink = "{category}/{title}.html"
+end
 
 require "./page_ext.rb"
-activate :mtime
 activate :page
+activate :mtime
 
 # deploy to github proj-page
 activate :deploy do |deploy|
@@ -37,7 +41,7 @@ configure :development do
 end
 
 #set :layout, :article
-set :layout, :article
+set :layout, :page
 
 #config[:file_watcher_ignore] += [/^\.extensions\//, /stylesheets\//, /fonts\//, /javascript\//]
 #puts config[:file_watcher_ignore]
