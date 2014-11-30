@@ -1,7 +1,7 @@
 ---
 title: middleman のインストールと基本設定
 series: middleman と org-mode でサイト構築
-tag: middleman, org-mode
+tags: middleman
 date: 2014/11/01
 layout: series
 ---

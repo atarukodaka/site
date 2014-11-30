@@ -62,6 +62,20 @@ alias glg="git log --stat --pretty=format:'%Cblue%h %Cgreen%ar %Cred%an %Creset%
 - gem "middleman-syntax"
 - redirect: [[https://github.com/Octo-Labs/middleman-alias][Octo-Labs/middleman-alias]]
 
+**** webrick 単体サーバーの立ち上げ
+livereload を使ってもいいのですが、いまいち反応悪いことがあるので、
+いじくってる時は、webrick 単体で立ち上げて build/ を見るようにしたほうが早いかも。
+
+#+BEGIN_SRC suby
+require 'webrick'
+
+port = 5000
+s = WEBrick::HTTPServer.new(:Port => 5000, :DocumentRoot => File.join(Dir::pwd, "build"))
+trap("INT"){ s.shutdown }
+s.start
+#+END_SRC
+
+
 *** 開発
 **** すぐ治せるの
 - middleman-mtime
@@ -108,3 +122,5 @@ done
 
 
 *** 全日本ジュニア
+
+

@@ -12,7 +12,7 @@
     <% if current_article.data.category.to_s != "" %>
       [<%= link_to(h(current_article.data.category), "/categories.html\#" + current_article.data.category ) %>]
     <% end %>
-    <%= current_article.mtime.strftime("%d %b %Y %H:%M:%S %Z") %>
+    <%= current_article.date.strftime("%d %b %Y %Z") %>
     <%= current_article.prose_edit_link(data.config.site_info.github, "site") %>
     <%= share_twitter(data.config.site_info.twitter) %>
   </section>

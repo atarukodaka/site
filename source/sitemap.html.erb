@@ -13,7 +13,7 @@ group: navigation
   <li>
     <%= (category) ? "[" + h(category) + "] " : "" %>
     <%= link_to(h(page.data.title), page) %>
-    ...<small><%= page.mtime.strftime("%Y/%m/%d %H:%M:%S") %></small>
+    ...<small><%= page.date.strftime("%Y/%m/%d %H:%M:%S") %></small>
   </li>
   <% end %>
 <% end %>
@@ -25,7 +25,6 @@ group: navigation
 <% sitemap.resources.select {|p| !p.is_a?(Middleman::Blog::BlogArticle) && p.ext == ".html"}.each do |page| %>
   <li>
     <%= link_to(h(page.data.title), page) %>
-    ...<small><%= page.mtime.strftime("%Y/%m/%d %H:%M:%S") %></small>
   </li>
 <% end %>
 </ul>

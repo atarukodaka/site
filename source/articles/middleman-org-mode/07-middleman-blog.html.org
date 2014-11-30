@@ -1,0 +1,57 @@
+---
+title: middleman-blog の導入
+series: middleman と org-mode でサイト構築
+tag: middleman, org-mode
+date: 2014/11/29
+---
+
+** インストール
+
+Gemfile に gem 'middleman-blog' を加え、
+config.rb に active :middleman-blog を加える。
+
+** 設定
+
+*** sources
+標準だと、{year}-{month}-{day}-{title}.html などと
+ファイル名に日付情報を埋め込むのですが、
+これは好みに合わないので、
+ファイル名ではなくフロントマターで指定します。
+
+*** 記事用ディレクトリ
+about.html, sitemap.html などは source/ 直下に、
+日々更新する記事は source/articles 以下に入れます。
+
+また source/articles/figureskating などとディレクトリを掘ると、
+自動的に "figureskating" カテゴリと見做されます。
+
+*** レイアウト
+記事用のレイアウトファイルを別に作ります：source/layout/article.erb
+
+*** config.rb 
+これらを config.rb に反映します
+
+#+BEGIN_SRC ruby
+% vi config.rb
+activate :blog do |blog|
+  blog.layout = "article"
+  blog.prefix = "articles"
+  blog.sources = "{category}/{title}.html"
+  blog.permalink = "{category}/{title}.html"
+  blog.default_extension = ".org"
+end
+#+END_SRC
+
+*** 記事のフロントマター
+articles/* には、frontmatter に date: ccyy/mm/dd を入れないとエラーになります。
+middleman article コマンドを使ってひな形を作るか、
+
+#+BEGIN_SRC elisp
+;; middleman-blog: article-front matter
+(defun insert-article-frontmatter ()
+  (interactive)
+  (insert (concat "---\ntitle: \ndate: " (format-time-string "%Y-%m-%d") "\n---\n")))
+(define-key global-map "\C-ca" 'insert-article-frontmatter)
+#+END_SRC
+
+などして手軽に追加できるようにします。

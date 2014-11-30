@@ -65,7 +65,3 @@ sitemap.resource.select {|p| p == condition }  で指定した condition にあ�
 sitemap.resource.group_by
 
 
-** ヘルパー
-
-sitemap.resources.
-
