@@ -1,25 +1,33 @@
 # -*- coding: utf-8 -*-
 
+# Time Zone
+Time.zone = "Tokyo"
+
 # Extensions
 activate :syntax
 activate :google_analytics, :tracking_id => "UA-56531446-2"
 
-#activate :alias
+activate :alias
 #activate :vcs_time
 #activate :i18n
 
 activate :blog do |blog|
   blog.layout = "article"
   blog.prefix = "articles"
-#  blog.sources = "{category}/{title}-{year}-{month}-{day}.html"
   blog.sources = "{category}/{title}.html"
+#  blog.sources = "{category}/{year}-{month}-{day}-{title}.html"
   blog.permalink = "{category}/{title}.html"
-  blog.default_extension = ".org"
+#  blog.permalink = "{category}/{year}-{month}-{day}-{title}.html"
+  blog.default_extension = ".md"
+end
+
+activate :bootstrap_navbar do |bootstrap_navbar|
+  bootstrap_navbar.bootstrap_version = '3.0.3'
 end
 
 require "./page_ext.rb"
 activate :page
-activate :mtime
+#activate :mtime
 require './extensions/prose_edit_link.rb'
 activate :prose_edit_link
 require './extensions/middleman-blog-enhanced.rb'
@@ -42,7 +50,7 @@ set :relative_links, true
 
 # Reload the browser automatically whenever files change
 configure :development do
-  activate :livereload
+#  activate :livereload
 end
 
 #set :layout, :article
