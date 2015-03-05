@@ -6,19 +6,19 @@ ext_dir = "../extensions/"
 
 gem "middleman", "~>3.3.7"
 #gem "middleman", "~>3.3.7", :path => File.join(ext_dir, "middleman")
-#gem 'middleman-blog'
-gem "middleman-blog", :path => File.join(ext_dir, "middleman-blog")
+gem 'middleman-blog'
+#gem "middleman-blog", :path => File.join(ext_dir, "middleman-blog")
 gem 'middleman-deploy'
 gem 'middleman-google-analytics'
-#gem 'middleman-alias'
-gem 'middleman-alias', :path => File.join(ext_dir, "middleman-alias")
+gem 'middleman-alias'
+#gem 'middleman-alias', :path => File.join(ext_dir, "middleman-alias")
 gem 'therubyracer'
 gem 'middleman-bootstrap-navbar'
 
 #gem 'middleman-mtime', :path => File.join(ext_dir, "middleman-mtime")
 #gem 'middleman-mtime', :git => "git@github.com:atarukodaka/middleman-mtime.git", :branch => "master"
 
-#gem 'nokogiri'   # for middleman-blog summary
+gem 'nokogiri'   # for middleman-blog summary
 
 # Live-reloading plugin
 gem "middleman-livereload", "~> 3.1.0"
@@ -31,6 +31,8 @@ gem 'org-ruby'
 
 gem "middleman-syntax"
 #gem 'rouge'
+
+gem "amazon-ecs"
 
 ## debug
 gem 'pry-byebug'

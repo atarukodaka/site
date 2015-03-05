@@ -1,7 +1,6 @@
+# -*- coding: utf-8 -*-
 module SiteHelpers
-  def h(args)
-    ERB::Util::h(args)
-  end
+  include ERB::Util
 
   ## sitemap helper
   def top_page
@@ -28,6 +27,30 @@ module SiteHelpers
     end
     return hash.sort {|(dt1, v1), (dt2, v2)| dt2 <=> dt1 } # reverse sorted by date
   end
+
+  ################
+  def page_info(page)
+    ["", 
+     (!page.data.category.nil?) ? link_to(h(page.data.category), "/categories.html\#" + page.data.category)  : "",
+     link_to(page.date.strftime("%d %b %Y %Z"), page),
+     prose_edit_link(page, data.config.site_info.github, "site") +
+     share_twitter(data.config.site_info.twitter)
+     ].join(" | ")
+  end
+
+  def prose_edit_link(page, github_username, github_repo, branch="master")
+    app_root = Middleman::Application.root
+    source_path = page.source_file.sub(/#{app_root}/, "")
+    hash = {
+      github_username: h(github_username), 
+      repo: h(github_repo), 
+      source_path: h("#{source_path}"),
+      branch: branch
+    }
+    template = %Q{<span><a href="http://prose.io/#%{github_username}/%{repo}/edit/%{branch}%{source_path}"  target="_blank"><i class="glyphicon glyphicon-edit"></i></a></span>}
+    template % hash
+  end
+
 
   ################################################################
   def list_group(data_key, value, opt = {})
@@ -62,5 +85,44 @@ module SiteHelpers
     ar << "</#{list_type}>"
     return ar.join("\n")
   end
+
+  ################
+  def img_link(url, alt, width=nil, height=nil)
+    
+  end
+
+
+  def begin_fold(id)
+    %Q[
+<script type="text/javascript">
+$(function(){
+ $("#box_#{id}").hide();
+ $("#btn_toggle_#{id}").click(function(){
+  if ($("#box_#{id}").css('display') == 'none'){
+   $("#box_#{id}").show();
+   $("#btn_toggle_#{id}").html("--");
+  } else {
+   $("#box_#{id}").hide();
+   $("#btn_toggle_#{id}").html("+");
+  }
+ });
+});
+</script>
+<style type="text/css">
+#btn_toggle_#{id} {
+  cursor: pointer;
+  border: solid 1px;
+  padding-left: 0.1em;
+}
+</style>
+<span id="btn_toggle_#{id}">+</span>
+<div id="box_#{id}">
+]
+  end
+
+  def end_fold
+    "</div>"
+  end
+
 
 end

@@ -1,28 +1,28 @@
 <% wrap_layout :layout do %>
-<section class="page">
-  <h1 class="page_header">
-    <% if content_for?(:title) %>
+<article>
+  <header>
+    <h1>
+      <% if content_for?(:title) %>
       <%= yield_content(:title) %>
-    <% else %>
+      <% else %>
       <%= h(current_article.title) %>
-    <% end %>
-  </h1>
+      <% end %>
+    </h1>
 
-  <section class="page_info">
-    <% if current_article.data.category.to_s != "" %>
-      [<%= link_to(h(current_article.data.category), "/categories.html\#" + current_article.data.category ) %>]
-    <% end %>
-    <%= current_article.date.strftime("%d %b %Y %Z") %>
-    <%= current_article.prose_edit_link(data.config.site_info.github, "site") %>
-    <%= share_twitter(data.config.site_info.twitter) %>
-  </section>
-  <section class="page_content">
-    <article class="article">
-      <%= yield %>
-    </article>
-  </section>
+    <section class="page_info">
+      <%= page_info(current_article) %>
+    </section>
+  </header>
+
   <hr>
-  <section class="page_footer">
+
+  <section class="page_content">
+    <%= yield %>
+  </section>
+
+  <hr>
+
+  <footer>
     <ul class="tag_box inline">
       <% blog.tags.each do |tag, pages| %>
         <% if current_article.tags.include? tag %>
@@ -33,8 +33,7 @@
 	<% end %>
       <% end %>
     </ul>
-  </section>
-  <hr>
+  </footer>
 <!-- 
   <h2>debug</h2>
   <% page = current_article %>
@@ -51,6 +50,6 @@
     <li>.root_path <%= Middleman::Application.root_path %>
   </ul>
 -->
-</section>
+</article>
 <% end %>
 

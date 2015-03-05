@@ -8,54 +8,64 @@
     <!-- Use title if it's in the page YAML frontmatter -->
     <title><%= current_page.data.title %> - <%= data.config.site_info.title %></title>
     
-    <!-- jquery -->
     <%= javascript_include_tag "jquery-1.11.0.min.js" %>
-    <!-- bootstrap -->
     <%= javascript_include_tag "bootstrap.min.js" %>
     <%= stylesheet_link_tag "bootstrap.min.css" %>
-    <!-- site specific styles -->
     <%= stylesheet_link_tag "style.css" %>
+    <%= stylesheet_link_tag "amazon.css" %>
     <%= stylesheet_link_tag "pygment_trac.css" %>
   </head>
   
   <body>
-    <nav class="navbar navbar-default">
-      <div class="container">
-	<div class="navbar-header">
-	  <button type="button" data-toggle="collapse" data-target="#topHeader" class="navbar-toggle">
-	    <span class="sr-only">Toggle navigation</span>
-	    <span class="icon-bar"></span>
-	    <span class="icon-bar"></span>
-	    <span class="icon-bar"></span>
-	  </button>
-	  <%= link_to("Top", top_page(), {"class" => "navbar-brand"}) %>
-	</div>
-	<div class="collapse navbar-collapse" id="topHeader">
-	  <ul class="nav navbar-nav">
-	    <% sitemap.resources.select {|p| p.data.group == "navigation"}.each do |page| %>
- 	      <li><%= link_to(h(page.data.title), page) %></li>
-	    <% end %>
-	  </ul>
-	</div>
-      </div>
-    </nav>
-
     <div class="container">
       <div class="row">
-	<div class="col-md-3 hidden-xs hidden-sm">
+	<!-- header eyecatch -->
+	<header class="eyecatch">
+	  <span class="sitename"><%= h(data.config.site_info.title) %></span>
+	  <span class="description"><%= h(data.config.site_info.description) %></span>
+	</header>
+
+        <!-- navbar -->	
+	<nav class="navbar navbar-default">
+	  <div class="navbar-header">
+	    <button type="button" data-toggle="collapse" data-target="#topHeader" class="navbar-toggle">
+	      <span class="sr-only">Toggle navigation</span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	    </button>
+	    <%= link_to("Top", top_page(), {"class" => "navbar-brand"}) %>
+	  </div>
+	  <div class="collapse navbar-collapse" id="topHeader">
+	    <ul class="nav navbar-nav">
+	      <% sitemap.resources.select {|p| p.data.group == "navigation"}.each do |page| %>
+ 	      <li><%= link_to(h(page.data.title), page) %></li>
+	      <% end %>
+	    </ul>
+	  </div>
+	</nav>
+      </div>
+
+      <!-- sidebar / main -->
+      <div class="row">
+	<div class="sidebar col-sm-3">  <!--  hidden-xs hidden-sm" -->
 	  <%= partial "partials/sidebar" %>
 	</div>
-	<div class="col-md-9">
+	<div class="main col-sm-9">
 	  <%= yield %>
 	</div>
       </div>
-    </div>
-    <footer id="footer">
-      <div class="container">
-	<p>&copy; <%= h data.config.site_info.author %> (<%= h data.config.site_info.email %>) powered by middleman and twitter-bootstrap</p>
+      <!-- footer -->
+      <div class="row">
+	<footer id="footer">
+	  <span>
+	    &copy; <%= h data.config.site_info.author %> 
+	    (<%= h data.config.site_info.email %>) 
+	    powered by middleman and twitter-bootstrap</span>
+	</footer>
       </div>
-      <%= google_analytics_tag %>
-    </footer>
+    </div>
+    <%= google_analytics_tag() %>
   </body>
 </html>
 

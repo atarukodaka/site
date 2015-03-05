@@ -19,6 +19,11 @@ activate :blog do |blog|
   blog.permalink = "{category}/{title}.html"
 #  blog.permalink = "{category}/{year}-{month}-{day}-{title}.html"
   blog.default_extension = ".md"
+
+  ## summary
+  blog.paginate = true
+  blog.page_link = "p{num}"
+  blog.per_page = 10
 end
 
 activate :bootstrap_navbar do |bootstrap_navbar|
@@ -28,8 +33,8 @@ end
 require "./page_ext.rb"
 activate :page
 #activate :mtime
-require './extensions/prose_edit_link.rb'
-activate :prose_edit_link
+#require './extensions/prose_edit_link.rb'
+#activate :prose_edit_link
 require './extensions/middleman-blog-enhanced.rb'
 activate :blog_enhanced
 
@@ -87,13 +92,11 @@ configure :build do
   # set :http_prefix, "/Content/images/"
 end
 
+set :markdown_engine, :kramdown #:redcarpet
 set :markdown_engine, :redcarpet
-set :markdown, :fenced_code_blocks => true,
-               :autolink => true, 
-               :smartypants => true
+set :markdown, :fenced_code_blocks => true, :autolink => true, :smartypants => true, :tables => true
 
 set :org, :layout_engine => :org
-
  
 ################################################################
 ###

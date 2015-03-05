@@ -3,6 +3,7 @@ title: middleman-blog の導入
 series: middleman と org-mode でサイト構築
 tag: middleman, org-mode
 date: 2014/11/29
+layout: series
 ---
 
 ** インストール

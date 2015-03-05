@@ -1,13 +1,12 @@
-<aside class="sidebar">
-
-  <section>
+  <aside>
     <h2>Categories</h2>
-    <ul>
+    <div>
       <% blog.articles.group_by {|p| p.data.category }.each do |category, pages| %>
       <% next if category.to_s == "" %>
-      <li><%= link_to(h(category), "/categories.html#" + h(category)) %>
-	<ul>
-	<% pages.each do |page| %>
+      <h3><%= h(category) %></h3>
+      <ul>
+	<% num = 10 %>
+	<% pages[0..num-1].each do |page| %>
 	  <li>
 	  <% if page.path == current_page.path %>
 	    <%= h(page.data.title) %>
@@ -15,19 +14,22 @@
 	    <%= link_to(h(page.data.title), page) %>
 	  <% end %>
 	<% end %>
-	</ul>
-      </li>
+	<% if pages.size > num %>
+	  <li><%= link_to("...", "/categories.html#" + h(category)) %>
+	<% end %>
+      </ul>
     <% end %>
-    </ul>
-  </section>
+    </div>
+  </aside>
 
-  <section>
+  <hr>
+
+  <aside>
     <h2>Series</h2>
-    <ul>
+
       <% sitemap.resources.group_by {|p| p.data.series }.each do |series, pages| %>
       <% next if series.to_s == "" %>
-      <li>
-	<%= h(series) %>
+	<h3><%= h(series) %></h3>
 	<ol>
 	  <% pages.sort {|a, b| a.url <=> b.url }.each do |page| %>
 	    <li><%= link_to(h(page.data.title), page) %>
@@ -35,10 +37,12 @@
 	</ol>
       </li>
       <% end %>
-    </ul>
-  </section>
 
-  <section>
+  </aside>
+
+  <hr>
+
+  <aside>
     <h2>Tags</h2>
     <ul class="tag_box inline">
       <% blog.tags.each do |tag, pages| %>
@@ -46,19 +50,20 @@
         <li><%= link_to(caption, "/tags.html#" + h(tag)) %></li>
       <% end %>
     </ul>
-  </section>
+  </aside>
   
-  <section>
+  <hr>
+
+  <aside>
     <h2>Recent Articles</h2>
-    <ul>
-      <% blog.recent_articles_date_hash.each do |date, pages| %>
-      <li><%= date.strftime("%d %b %Y") %>
+    
+    <% blog.recent_articles_with_date.each do |date, pages| %>
+      <h4><%= date.strftime("%d %b %Y") %></h4>
 	<ul>
 	  <% pages.each do |page| %>
 	  <li><%= link_to(h(page.title), page) %></li>
 	  <% end %>
 	</ul>
     <% end %>
-    </ul>
-  </section>
-</aside>
+
+  </aside>

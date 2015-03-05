@@ -1,7 +1,39 @@
 ---
 title: Top Page
 layout: layout
+pageable: true
 ---
+
+<% page_articles.each do | article | %>
+  <article>
+    <header>
+      <h1 class="page_title"><%= h(article.title) %></h1>
+      <section class="page_info">
+        <%= page_info(article) %>
+      </section>
+    </header>
+    <hr>
+    <section class="page_content">
+      <%= article.summary(250) %>
+      <%= link_to("... read more", article) %>
+    </section>
+    <hr>
+  </article>
+<% end %>
+
+<% if paginate %>
+<nav>
+  <ul class="pager">
+    <% binding.pry %>
+    <% opt = {}; opt[:class] = 'disabled' if prev_page.nil? %>
+    <% content_tag(:li, opt) do; link_to('Prev', prev_page); end %>
+    <% opt = {}; opt[:class] = 'disabled' if next_page.nil? %>
+    <% content_tag(:li, opt) do; link_to('Next', next_page); end %>
+  </ul>
+</nav>
+<% end %>
+
+<!--
 
 <h2><%= h(data.config.site_info.title) %></h2>
 ソフトウェア開発、フィギュアスケートなどについての情報をまとめています。
@@ -19,4 +51,4 @@ layout: layout
 
 <h3>フィギュアスケート</h3>
 <%= summary("category", "figureskating") %>
-
+-->

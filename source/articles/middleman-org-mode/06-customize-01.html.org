@@ -3,6 +3,7 @@ title: 拡張機能によるカスタマイズ
 series: middleman と org-mode でサイト構築
 tag: middleman, org-mode
 date: 2014/11/01
+layout: series
 ---
 
 ** 値のカスタマイズ
