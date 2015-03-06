@@ -1,0 +1,16 @@
+---
+title: Recent
+layout: layout
+group: navigation
+---
+
+<h2>Recent Posted</h2>
+
+<% blog.articles_with_date.each do |date, pages|   %>
+<h3><%= date.strftime("%d %b %Y") %></h3>
+<ul>
+  <% pages.each do |page| %>
+  <li><%= link_to(h(page.title), page) %></li>
+  <% end %>
+</ul>
+<% end %>
