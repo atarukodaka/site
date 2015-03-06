@@ -1,16 +1,20 @@
 # -*- coding: utf-8 -*-
 
-# Time Zone
-Time.zone = "Tokyo"
+################
+## set directories
 
+set :css_dir, 'stylesheets'
+set :js_dir, 'javascripts'
+set :images_dir, 'images'
+
+################
+# layout
+
+#set :layout, :article
+set :layout, :page
+
+################
 # Extensions
-activate :syntax
-activate :google_analytics, :tracking_id => "UA-56531446-2"
-
-activate :alias
-#activate :vcs_time
-#activate :i18n
-
 activate :blog do |blog|
   blog.layout = "article"
   blog.prefix = "articles"
@@ -30,14 +34,18 @@ activate :bootstrap_navbar do |bootstrap_navbar|
   bootstrap_navbar.bootstrap_version = '3.0.3'
 end
 
-require "./page_ext.rb"
-activate :page
-#activate :mtime
-#require './extensions/prose_edit_link.rb'
-#activate :prose_edit_link
-require './extensions/middleman-blog-enhanced.rb'
+activate :syntax
+activate :google_analytics, :tracking_id => "UA-56531446-2"
+activate :alias
+#activate :vcs_time
+#activate :i18n
+
+require './extensions/series'
+activate :series
+require './extensions/middleman-blog-enhanced'
 activate :blog_enhanced
 
+################
 # deploy to github proj-page
 activate :deploy do |deploy|
   # deploy.build_before = true
@@ -51,29 +59,26 @@ configure :build do
   end
 end
 
+Time.zone = "Tokyo"
 set :relative_links, true
 
+################
 # Reload the browser automatically whenever files change
 configure :development do
-#  activate :livereload
+  activate :livereload
 end
 
-#set :layout, :article
-set :layout, :page
+################
+# markdown
 
-#config[:file_watcher_ignore] += [/^\.extensions\//, /stylesheets\//, /fonts\//, /javascript\//]
-#puts config[:file_watcher_ignore]
+set :markdown_engine, :kramdown #:redcarpet
+set :markdown_engine, :redcarpet
+set :markdown, :fenced_code_blocks => true, :autolink => true, :smartypants => true, :tables => true
 
-###
-# Helpers
-###
+set :org, :layout_engine => :org
+ 
 
-## set directories
-
-set :css_dir, 'stylesheets'
-set :js_dir, 'javascripts'
-set :images_dir, 'images'
-
+################
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment
@@ -92,12 +97,6 @@ configure :build do
   # set :http_prefix, "/Content/images/"
 end
 
-set :markdown_engine, :kramdown #:redcarpet
-set :markdown_engine, :redcarpet
-set :markdown, :fenced_code_blocks => true, :autolink => true, :smartypants => true, :tables => true
-
-set :org, :layout_engine => :org
- 
 ################################################################
 ###
 # Compass

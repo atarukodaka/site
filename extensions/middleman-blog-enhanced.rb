@@ -24,7 +24,12 @@ module Middleman
         end
         return hash.sort {|(dt1, v1), (dt2, v2)| dt2 <=> dt1 } # reverse sorted by date
       end
-    end
+
+      def series_number
+        self.path =~ Regexp.new("/([0-9]+)\-[^/]+\.html$")
+        return $1.to_i
+      end
+    end  ################
 
     class Extension < Middleman::Extension
       Middleman::Blog::BlogData.class_eval do 

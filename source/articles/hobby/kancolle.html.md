@@ -22,7 +22,6 @@ category: hobby
 
 - 若葉、初霜
 - 古鷹
-- 初雪
 
 ### 育成
 
@@ -74,6 +73,10 @@ http://zekamashi.net/kancolle-kouryaku/4-2-syuukai/
 
 ### 単発
 
+###	「第十一駆逐隊」を編成せよ！
+特Ⅰ型駆逐艦「吹雪」「白雪」「初雪」「叢雲」4隻による第十一駆逐隊を編成せよ！
+※表記4隻「のみ」の艦隊を作ると達成
+
 #### 「戦艦部隊」北方海域に突入せよ！
 - 戦艦2隻と直援軽空母1隻(正規空母無し)基幹の艦隊で北方AL海域に突入、敵を撃滅せよ！
 - ※「北方増援部隊主力」（3-5ボス戦）にS勝利で達成
@@ -90,7 +93,8 @@ http://blog.gamelogbook.com/2014/10/3-5senkanbutai.html
 ※「東方主力艦隊」（4-3ボス戦）にS勝利で達成
 「蒼龍改二」を旗艦に置いた上で「飛龍改二」+駆逐艦2隻が必要+他に艦がいてもOK
 
-蒼龍、飛龍、航巡、軽巡（対潜）、駆逐２
+蒼龍（彩雲）、長門、重巡（夜偵、バルジ）、雪風（連撃、対潜）、駆逐（対潜）、飛龍（烈風、攻撃）
+単、横、複縦
 
 参考：http://kankoreshuukai.blog.jp/archives/1006425599.html
 
@@ -141,6 +145,9 @@ http://zekamashi.net/kancolle-kouryaku/suizyoudagekibutai-nanpou/
 
 ### 2015冬
 
+
+<a data-toggle="collapse" data-target="#c1">event</a>
+<div id="c1" class="collapse">
 
 ~~~
 １．雪風改　　Lv96
@@ -196,3 +203,4 @@ AEHJKルート
 ~~~
 
 
+</div>

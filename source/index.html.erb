@@ -24,7 +24,6 @@ pageable: true
 <% if paginate %>
 <nav>
   <ul class="pager">
-    <% binding.pry %>
     <% opt = {}; opt[:class] = 'disabled' if prev_page.nil? %>
     <% content_tag(:li, opt) do; link_to('Prev', prev_page); end %>
     <% opt = {}; opt[:class] = 'disabled' if next_page.nil? %>

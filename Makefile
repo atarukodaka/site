@@ -14,3 +14,8 @@ server:
 
 kancolle:
 	cp source/kancolle.html.md source/articles/hobby
+
+clean:
+	rm -rf build
+	rake clean
+

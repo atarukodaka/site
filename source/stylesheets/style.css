@@ -5,7 +5,7 @@ body {
     background-color: #dddddd;
     background-repeat: repeat-x;
 
-    /* IE10 Consumer Preview */ 
+    /* gradient background */
     background-image: -ms-linear-gradient(top, #FDFFE3 0%, #DDD8AA 100%);
     background-image: -moz-linear-gradient(top, #FDFFE3 0%, #DDD8AA 100%);
     background-image: -o-linear-gradient(top, #FDFFE3 0%, #DDD8AA 100%);
@@ -23,18 +23,26 @@ footer {
 /*    border: solid 1px #cccccc;*/
 }
 
-/* スマホ横画面用 */
-@media screen and (max-width: 480px) {
-  .container{padding:0}
-  div[class^="col-"] {padding:0}
+/* responsive style */
+/* Extra small devices: Phones (<768px) */
+@media (max-width: 767px) {
+  .container{width: 100%; padding:0}
   .row {margin:0;}
-}
-/* スマホ縦画面用 */
-@media screen and (max-width: 320px) {
-  .container{padding:0}
   div[class^="col-"] {padding:0}
-  .row {margin:0;}
 }
+
+/* Small devices: Tablets (≥768px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .container{width: 100%; padding:0}
+  .row {margin:0;}
+  div[class^="col-"] {padding:0}
+}
+
+/* Medium devices: Desktops (≥992px) */
+@media (min-width: 992px) and (max-width: 1199px) {}
+
+/* Large devices: Desktops (≥1200px) */
+@media (min-width: 1200px) {}
 
 /*****************************************************************/
 /* eye-catch */

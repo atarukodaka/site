@@ -1,25 +1,20 @@
 ################################################################
+# amazon_helper
 
 require 'amazon/ecs'
-require 'erb'
-require 'i18n'
 require 'pry-byebug'
 
-#AMAZON_SECRET_KEY=fGfitoQzfLRXOpntDD/fkgOhs0t8AAPAmz+LMjSF
-
-
-################################################################
 module AmazonHelper
   @@templates = {
     title: %Q{<span><a href="%{detail_url}" target="_blank">%{title}</a></span>},
     detail:
 %(
 <div class="amazon_item">
-<a href="%{detail_url}" target="_blank"><img src="%{image_medium}"></a>
-<a href="%{detail_url}" target="_blank">%{title}</a><br/>
-<div class="item_detail">
-  %{author} / %{publisher} / %{date}
-</div>
+  <a href="%{detail_url}" target="_blank"><img src="%{image_medium}"></a>
+  <a href="%{detail_url}" target="_blank">%{title}</a><br/>
+  <div class="item_detail">
+    %{author} / %{publisher} / %{date}
+  </div>
 </div>)
   }
   def amazon(asin, type = :title)
@@ -36,11 +31,14 @@ module AmazonHelper
       @data = data
     end
     def item_lookup_caching(asin)
-      cache = AmazonHelper::AmazonCache.new
-      hash = cache.get(asin)
+      hash = nil
+      if @data.amazon.use_cache
+        cache = AmazonHelper::AmazonCache.new(@data.amazon.cache_dir)
+        hash = cache.get(asin)
+      end
       if hash.nil?
         hash = item_lookup(asin)
-        cache.put(asin, hash)
+        cache.put(asin, hash) if @data.amazon.use_cache
       end
       hash
     end
@@ -91,7 +89,7 @@ module AmazonHelper
 end
 module AmazonHelper
   class AmazonCache
-    def initialize(cache_dir = "./_caches/amazon")
+    def initialize(cache_dir = "./.caches/amazon")
       @cache_dir = cache_dir
       if File.exists?(@cache_dir) == false
         #dputs "mkpath: #{@cache_dir}"
@@ -119,9 +117,6 @@ module AmazonHelper
     end
   end
 end
-
-
-#Liquid::Template.register_tag('amazon', Jekyll::AmazonTag)
 
 ################################################################
 if __FILE__ == $0
