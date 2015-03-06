@@ -1,7 +1,12 @@
 require 'webrick'
+require 'optparse'
 
-port = 5000
-s = WEBrick::HTTPServer.new(:Port => 5000, :DocumentRoot => File.join(Dir::pwd, "build"))
+opt = ARGV.getopts('p:', 'port:')
+
+
+port = opt['p'] || opt['port'] || 5000
+$stderr.puts "served in #{port}"
+s = WEBrick::HTTPServer.new(:Port => port, :DocumentRoot => File.join(Dir::pwd, "build"))
 trap("INT"){ s.shutdown }
 s.start
 
