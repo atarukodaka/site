@@ -1,13 +1,16 @@
 <% wrap_layout :layout do %>
-<section class="page">
-  <h1 class="page_header">
-    <%= h(current_page.data.title) %>
-  </h1>
-  <hr>
+<article>
+  <header>
+    <%= partial("partials/crumbs") %>
+    <h1><%= h(current_page.data.title) %></h1>
+  </header>
+
   <section class="page_content">
     <%= yield %>
   </section>
-  <hr>
-</section>
+
+  <footer>
+  </footer>
+</article>
 <% end %>
 

@@ -21,52 +21,55 @@
     <div class="container">
       <div class="row">
 	<!-- header eyecatch -->
-	<header class="eyecatch">
-	  <span class="sitename"><%= h(data.config.site_info.title) %></span>
-	  <span class="description"><%= h(data.config.site_info.description) %></span>
-	</header>
-
-        <!-- navbar -->	
-	<nav class="navbar navbar-default">
-	  <div class="navbar-header">
-	    <button type="button" data-toggle="collapse" data-target="#topHeader" class="navbar-toggle">
-	      <span class="sr-only">Toggle navigation</span>
-	      <span class="icon-bar"></span>
-	      <span class="icon-bar"></span>
-	      <span class="icon-bar"></span>
-	    </button>
-	    <%= link_to("Top", top_page(), {"class" => "navbar-brand"}) %>
-	  </div>
-	  <div class="collapse navbar-collapse" id="topHeader">
-	    <ul class="nav navbar-nav">
-	      <% sitemap.resources.select {|p| p.data.group == "navigation"}.each do |page| %>
- 	      <li><%= link_to(h(page.data.title), page) %></li>
-	      <% end %>
-	    </ul>
-	  </div>
-	</nav>
+	<div class="pane">
+	  <header class="eyecatch pane" id="header">
+	    <div class="sitename"><%= link_to(h(data.config.site_info.title), top_page())  %></div>
+	  </header>
+	</div>
+	<!-- navbar -->
+	<div class="pane">
+	  <%= partial("partials/navbar") %>
+	</div>
       </div>
 
       <!-- sidebar / main -->
       <div class="row">
-	<div class="sidebar col-sm-3">  <!--  hidden-xs hidden-sm" -->
-	  <%= partial "partials/sidebar" %>
-	</div>
-	<div class="main col-sm-9">
+	<div class="pane col-sm-9" id="main">
 	  <%= yield %>
+	</div>
+	<div class="pane col-sm-3">  <!--  hidden-xs hidden-sm" -->
+	  <%= partial "partials/sidebar" %>
 	</div>
       </div>
       <!-- footer -->
       <div class="row">
-	<footer id="footer">
-	  <span>
+	<footer id="footer" class="pane">
+	  <div class="copyright">
 	    &copy; <%= h data.config.site_info.author %> 
 	    (<%= h data.config.site_info.email %>) 
-	    powered by middleman and twitter-bootstrap</span>
+	    powered by middleman and twitter-bootstrap
+	  </div>
 	</footer>
-      </div>
-    </div>
+      </div> <!-- row -->
+    </div> <!-- container -->
     <%= google_analytics_tag() %>
+
+<!-- NINJA ANALYZE -->
+<script type="text/javascript">
+//<![CDATA[
+(function(d) {
+  var sc=d.createElement("script"),
+      ins=d.getElementsByTagName("script")[0];
+  sc.type="text/javascript";
+  sc.src=("https:"==d.location.protocol?"https://":"http://") + "code.analysis.shinobi.jp" + "/ninja_ar/NewScript?id=00344800&hash=644890e0&zone=36";
+  sc.async=true;
+  ins.parentNode.insertBefore(sc, ins);
+})(document);
+//]]>
+</script>
+<!-- /NINJA ANALYZE -->
+
+
   </body>
 </html>
 

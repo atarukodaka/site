@@ -1,5 +1,5 @@
 ---
-title: amazon_helper.rb
+title: Amazon Helper for Middleman (amazon_helper.rb)
 date: 2015-03-05
 category: software
 tags: middleman

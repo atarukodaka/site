@@ -14,7 +14,7 @@ set :images_dir, 'images'
 set :layout, :page
 
 ################
-# Extensions
+# Blog Extensions
 activate :blog do |blog|
   blog.layout = "article"
   blog.prefix = "articles"
@@ -30,10 +30,26 @@ activate :blog do |blog|
   blog.per_page = 10
 end
 
+# categories
+ready do
+  #binding.pry
+  #sitemap.resources.group_by {|p| p.data["category"] }.each do |category, pages|
+  blog.articles.group_by {|p| p.data["category"]}.each do |category, articles|
+    next if category.nil?
+    proxy("/categories/#{category}.html", "category.html",
+          :locals => { :category => category, :articles => articles, :ignore => true })
+  end
+  ignore "/category.html"
+end
+
+################
+# Other Extensions
+
 activate :bootstrap_navbar do |bootstrap_navbar|
   bootstrap_navbar.bootstrap_version = '3.0.3'
 end
 
+#activate :directory_indexes
 activate :syntax
 activate :google_analytics, :tracking_id => "UA-56531446-2"
 activate :alias

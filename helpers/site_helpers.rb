@@ -30,12 +30,17 @@ module SiteHelpers
 
   ################
   def page_info(page)
+    category = page.data.category
     ["", 
-     (!page.data.category.nil?) ? link_to(h(page.data.category), "/categories.html\#" + page.data.category)  : "",
-     link_to(page.date.strftime("%d %b %Y %Z"), page),
-     prose_edit_link(page, data.config.site_info.github, "site") +
-     share_twitter(data.config.site_info.twitter)
-     ].join(" | ")
+     (category.nil?) ? "-" : link_to(h(category), "/categories/#{h(category)}.html"),
+     page.date.strftime("%d %b %Y %Z"),
+     link_to("permlink", page),
+     ""      # prose_edit_link(page, data.config.site_info.github, "site")
+    ].join(" | ")
+  end
+
+  def share_sns(page)
+    [share_twitter(data.config.site_info.twitter), share_haten_bookmark(page)].join("")
   end
 
   def prose_edit_link(page, github_username, github_repo, branch="master")

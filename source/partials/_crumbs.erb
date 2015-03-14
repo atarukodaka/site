@@ -1,0 +1,12 @@
+<% page ||= current_article || current_page %>
+<% raise "the given page is nil" if page.nil? %>
+
+   <nav class="crumbs">
+      <ol class="breadcrumb">
+  	<li><%= link_to("Home", top_page()) %>
+	<% if category = page.data.category %>
+	  <li><%= link_to(h(category), "/categories/#{h(category)}.html") %>
+        <% end %>
+	<li class="active"><%= h(page.data.title) %></li>
+      </ol>
+    </nav>

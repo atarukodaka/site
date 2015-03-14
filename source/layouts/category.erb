@@ -1,0 +1,22 @@
+<% wrap_layout :layout do %>
+<article>
+  <header>
+    <nav class="crumbs">
+      <ol class="breadcrumb">
+  	<li><%= link_to("Home", top_page()) %>
+	<li><%= link_to("Categories", "/categories.html") %>
+	<li class="active"><%= h(category) %></li>
+      </ol>
+    </nav>
+    
+    <h1>Category: <%= h(category) %></h1>
+  </header>
+  
+  <section class="page_content">
+    <%= yield %>
+  </section>
+
+  <footer>
+  </footer>
+</article>
+<% end %>

@@ -1,28 +1,30 @@
 <% wrap_layout :layout do %>
 <article>
   <header>
-    <h1>
-      <% if content_for?(:title) %>
-      <%= yield_content(:title) %>
-      <% else %>
-      <%= h(current_article.title) %>
-      <% end %>
-    </h1>
+    <%= partial("partials/crumbs") %>
 
+    <h1><%= h(current_page.data.title) %></h1>
     <section class="page_info">
       <%= page_info(current_article) %>
     </section>
   </header>
 
-  <hr>
-
-  <section class="page_content">
+  <section class="page_content numbering_headings">
     <%= yield %>
   </section>
 
-  <hr>
-
   <footer>
+    <div>
+      Posted by <%= h(data.config.site_info.author) %> 
+      <% if category = current_article.data.category %>
+      in <%= link_to(h(category), "/categories/#{h(category)}.html") %>
+      <% end %>
+      at <%= current_article.date.strftime("%d %b %Y %Z") %> 
+      on <%= link_to("this permlink", current_article) %>.
+    </div>
+    <div class="share_sns">
+	<%= [share_twitter(current_article), share_hatena_bookmark(current_article)].join(" ") %>
+    </div>
     <ul class="tag_box inline">
       <% blog.tags.each do |tag, pages| %>
         <% if current_article.tags.include? tag %>
@@ -34,22 +36,6 @@
       <% end %>
     </ul>
   </footer>
-<!-- 
-  <h2>debug</h2>
-  <% page = current_article %>
-  <ul>
-    <li>source_file: <%= h page.source_file %>
-    <li>path: <%= h page.path %>
-    <li>destination_path: <%= h page.destination_path %>
-    <li>url: <%= h page.url %>
-    <li>data.class: <%= h page.data.class %>
-    <li>data: <%= h page.data %>
-    <li>data(hashed): <%= h page.data.to_hash %>
-    <li>data.title: <%= h page.data.title %>
-    <li>.root <%= Middleman::Application.root %>
-    <li>.root_path <%= Middleman::Application.root_path %>
-  </ul>
--->
 </article>
 <% end %>
 
