@@ -41,6 +41,11 @@ module Middleman
       def category
         return self.data.category || self.metadata[:page]["category"]
       end
+
+      #def series_number
+      #  self.path =~ Regexp.new("/([0-9]+)\-[^/]+\.html$")
+      #  return $1.to_i
+      #end
     end
     ################
     class Extension < Middleman::Extension
