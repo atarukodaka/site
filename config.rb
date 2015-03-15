@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
 
 ################
+# load .env for private settings
+
+require 'dotenv'
+Dotenv.load
+
+################
 ## set directories
 
 set :css_dir, 'stylesheets'

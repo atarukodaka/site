@@ -34,6 +34,7 @@ gem "middleman-syntax"
 gem 'middleman-disqus'
 
 gem "amazon-ecs"
+gem 'dotenv'
 
 ## debug
 gem 'pry-byebug'

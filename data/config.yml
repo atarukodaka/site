@@ -8,9 +8,16 @@ site_info:
   email: ataru.kodaka@gmail.com
   description: Figureskating / Software / Kancolle
 
+amazon:
+  aws_access_key_id: AKIAJUDCZXLDLISYWRHQ
+  associate_tag: myhoney0079-22
+  country: jp
+  locale: ja
+  use_cache: true
+  cache_dir: .caches/amazon
+
 google_analytics:
   tracking_id: "UA-56531446-2"
-
 
 disqus:
   shortname: 'atarukodakasite'

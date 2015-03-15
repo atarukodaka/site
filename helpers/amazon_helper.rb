@@ -18,6 +18,7 @@ module AmazonHelper
 </div>)
   }
   def amazon(asin, type = :title)
+    #binding.pry
     amazon_tag = AmazonHelper::AmazonTag.new(data)
     hash =  amazon_tag.item_lookup_caching(asin)
     
@@ -27,28 +28,28 @@ module AmazonHelper
 
   ################
   class AmazonTag
+    attr_reader :data
     def initialize(data)
       @data = data
     end
     def item_lookup_caching(asin)
       hash = nil
-      if @data.amazon.use_cache
-        cache = AmazonHelper::AmazonCache.new(@data.amazon.cache_dir)
+      if data.config.amazon.use_cache
+        cache = AmazonHelper::AmazonCache.new(data.config.amazon.cache_dir)
         hash = cache.get(asin)
       end
       if hash.nil?
         hash = item_lookup(asin)
-        cache.put(asin, hash) if @data.amazon.use_cache
+        cache.put(asin, hash) if data.config.amazon.use_cache
       end
-      hash
+      return hash
     end
     def item_lookup(asin)
       Amazon::Ecs.options= {
-
-        associate_tag: @data.amazon.associate_tag,
-        AWS_access_key_id: @data.amazon.access_key_id,
-        AWS_secret_key: @data.amazon.secret_key,
-        country: @data.amazon['country'] || 'jp',
+        associate_tag: data.config.amazon.associate_tag,
+        AWS_access_key_id: data.config.amazon.aws_access_key_id,
+        AWS_secret_key: data.config.amazon.aws_secret_key || ENV['AWS_SECRET_KEY'],
+        country: data.config.amazon.country || 'jp',
         response_group: 'Images,ItemAttributes'
       }
       cnt = 0

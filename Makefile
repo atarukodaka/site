@@ -21,7 +21,8 @@ clean:
 	rake clean
 
 template-aks:
-	cp -r Gemfile Gemfile.lock Makefile config.rb extensions helpers Procfile $(TEMPLATE_DIR)
+	cp Gemfile Gemfile.lock config.rb Procfile $(TEMPLATE_DIR)
+	cp -r extensions helpers  $(TEMPLATE_DIR)
 	cp -r source/layouts $(TEMPLATE_DIR)/source
 	cp -r source/partials $(TEMPLATE_DIR)/source
 	cp -r source/stylesheets $(TEMPLATE_DIR)/source
