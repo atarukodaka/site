@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 module Middleman
   module BlogEnhanced
+    ################################################################
+    # blog.* へのヘルパーメソッド
+    #
     module ResourceIncludedToBlogData
       def categories
         articles.group_by {|p| p.category }
@@ -27,13 +30,14 @@ module Middleman
       end
     end  
     ################################################################
-    # article.category で指定カテゴリを取れるように
-    #   - frontmatter で指定：article.data.category
-    #   - 配置ディレクトリで暗黙に指定： metadata[:page]["category"]
-    #
-    # 前者を優先
-    #
+    # blog.articles.* への追加メソッド
     module ResourceIncludedToBlogArticle
+      #  article.category で指定カテゴリを取れるように
+      #   - frontmatter で指定：article.data.category
+      #   - 配置ディレクトリで暗黙に指定： metadata[:page]["category"]
+      #
+      # 前者を優先
+      #
       def category
         return self.data.category || self.metadata[:page]["category"]
       end
@@ -50,27 +54,4 @@ module Middleman
   end
 end
 
-__END__
 Middleman::BlogEnhanced::Extension.register :blog_enhanced
-
-module Middleman
-  module AddCategoryToArticle
-    module ResourceIncluded
-      def category
-        return self.data.category || self.metadata[:page]["category"]
-      end
-    end
-
-    ################
-    class Extension < Middleman::Extension
-      def after_configuration
-#        Middleman::Sitemap::Resource.class_eval do
-        ::Middleman::Blog::BlogArticle.class_eval do
-          include ResourceIncluded
-        end
-      end
-    end
-  end
-end
-
-Middleman::AddCategoryToArticle::Extension.register :add_category_to_article
