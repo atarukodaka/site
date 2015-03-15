@@ -7,10 +7,12 @@ set :css_dir, 'stylesheets'
 set :js_dir, 'javascripts'
 set :images_dir, 'images'
 
+
+#set :source, 'source-dev'    ## for debug
+
 ################
 # layout
 
-#set :layout, :article
 set :layout, :page
 
 ################
@@ -32,9 +34,7 @@ end
 
 # categories
 ready do
-  #binding.pry
-  #sitemap.resources.group_by {|p| p.data["category"] }.each do |category, pages|
-  blog.articles.group_by {|p| p.data["category"]}.each do |category, articles|
+  blog.articles.group_by {|p| p.metadata[:page]["category"]}.each do |category, articles|
     next if category.nil?
     proxy("/categories/#{category}.html", "category.html",
           :locals => { :category => category, :articles => articles, :ignore => true })
@@ -51,15 +51,20 @@ end
 
 #activate :directory_indexes
 activate :syntax
-activate :google_analytics, :tracking_id => "UA-56531446-2"
+activate :google_analytics, :tracking_id => data.config.google_analytics.tracking_id
 activate :alias
-#activate :vcs_time
-#activate :i18n
 
-require './extensions/series'
-activate :series
+#require './extensions/series'
+#activate :series
+
 require './extensions/middleman-blog-enhanced'
 activate :blog_enhanced
+#require './extensions/add_category_to_article'
+#activate :add_category_to_article
+
+activate :disqus do |d|
+  d.shortname = data.config.disqus.shortname
+end
 
 ################
 # deploy to github proj-page
@@ -76,10 +81,12 @@ configure :build do
 end
 
 Time.zone = "Tokyo"
+
 set :relative_links, true
 
 ################
 # Reload the browser automatically whenever files change
+
 configure :development do
   activate :livereload
 end
@@ -87,12 +94,11 @@ end
 ################
 # markdown
 
-set :markdown_engine, :kramdown #:redcarpet
+#set :markdown_engine, :kramdown #:redcarpet
 set :markdown_engine, :redcarpet
 set :markdown, :fenced_code_blocks => true, :autolink => true, :smartypants => true, :tables => true
 
-set :org, :layout_engine => :org
- 
+#set :org, :layout_engine => :org
 
 ################
 # Build-specific configuration
@@ -145,3 +151,4 @@ end
 
 # Automatic image dimensions on image_tag helper
 # activate :automatic_image_sizes
+

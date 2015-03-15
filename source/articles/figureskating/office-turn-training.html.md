@@ -1,7 +1,6 @@
 ---
 title: スリーターンの陸上イメトレ
 date: 2015-03-14
-category: figureskating
 
 ---
 

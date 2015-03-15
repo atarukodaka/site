@@ -1,7 +1,7 @@
 <% wrap_layout :layout do %>
 <article>
   <header>
-    <%= partial("partials/crumbs") %>
+    <%= partial("partials/crumbs", locals: {type: :page}) %>
     <h1><%= h(current_page.data.title) %></h1>
   </header>
 

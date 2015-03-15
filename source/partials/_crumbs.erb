@@ -1,12 +1,24 @@
 <% page ||= current_article || current_page %>
 <% raise "the given page is nil" if page.nil? %>
+<% type ||= :page %>
 
    <nav class="crumbs">
       <ol class="breadcrumb">
-  	<li><%= link_to("Home", top_page()) %>
-	<% if category = page.data.category %>
-	  <li><%= link_to(h(category), "/categories/#{h(category)}.html") %>
-        <% end %>
-	<li class="active"><%= h(page.data.title) %></li>
+	<% case type %>
+	<% when :page %>
+  	  <% if page == top_page() %>
+	    <li class="active"><%= h(page.data.title) %></li>
+	  <% else %>
+  	    <li><%= link_to_page(top_page()) %>
+	      <% if category = page.metadata[:page]['category'] %>
+	        <li><%= link_to(h(category), category_summary_page(category)) %>
+	      <% end %>
+	    <li class="active"><%= h(page.data.title) %></li>
+	  <% end %>
+	<% when :category %>
+  	  <li><%= link_to_page(top_page()) %>
+	  <li><%= link_to_page(categories_page()) %>
+	  <li class="active"><%= h(category) %></li>
+	<% end %> 
       </ol>
     </nav>

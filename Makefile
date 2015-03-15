@@ -1,4 +1,5 @@
 MM = bundle exec middleman
+TEMPLATE_DIR = ../middleman-template-aks
 
 bld:
 	$(MM) build
@@ -19,5 +20,11 @@ clean:
 	rm -rf build
 	rake clean
 
-aks:
-	cp -r Gemfile Gemfile.lock Makefile config.rb helpers extensions Procfile ../middleman-aks
+template-aks:
+	cp -r Gemfile Gemfile.lock Makefile config.rb extensions helpers Procfile $(TEMPLATE_DIR)
+	cp -r source/layouts $(TEMPLATE_DIR)/source
+	cp -r source/partials $(TEMPLATE_DIR)/source
+	cp -r source/stylesheets $(TEMPLATE_DIR)/source
+	cp -r source/javascripts $(TEMPLATE_DIR)/source
+	cp -r source/images $(TEMPLATE_DIR)/source
+	cp source/categories.html.erb source/sitemap.html.erb source/tags.html.erb source/recent.html.erb source/index.html.erb source/category.html.erb $(TEMPLATE_DIR)/source

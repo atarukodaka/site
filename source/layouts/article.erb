@@ -16,8 +16,8 @@
   <footer>
     <div>
       Posted by <%= h(data.config.site_info.author) %> 
-      <% if category = current_article.data.category %>
-      in <%= link_to(h(category), "/categories/#{h(category)}.html") %>
+      <% if category = current_article.category %>
+      in <%= link_to_page(category_summary_page(category)) %>
       <% end %>
       at <%= current_article.date.strftime("%d %b %Y %Z") %> 
       on <%= link_to("this permlink", current_article) %>.
@@ -35,6 +35,12 @@
 	<% end %>
       <% end %>
     </ul>
+
+
+<!--    <%= disqus %>
+    <%= disqus_count %>
+-->
+
   </footer>
 </article>
 <% end %>

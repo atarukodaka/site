@@ -1,14 +1,7 @@
 <% wrap_layout :layout do %>
 <article>
   <header>
-    <nav class="crumbs">
-      <ol class="breadcrumb">
-  	<li><%= link_to("Home", top_page()) %>
-	<li><%= link_to("Categories", "/categories.html") %>
-	<li class="active"><%= h(category) %></li>
-      </ol>
-    </nav>
-    
+    <%= partial("partials/crumbs", locals: {type: :category, category: category}) %>
     <h1>Category: <%= h(category) %></h1>
   </header>
   

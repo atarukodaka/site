@@ -31,6 +31,7 @@ gem 'org-ruby'
 
 gem "middleman-syntax"
 #gem 'rouge'
+gem 'middleman-disqus'
 
 gem "amazon-ecs"
 

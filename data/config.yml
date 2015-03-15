@@ -7,3 +7,10 @@ site_info:
   github: atarukodaka
   email: ataru.kodaka@gmail.com
   description: Figureskating / Software / Kancolle
+
+google_analytics:
+  tracking_id: "UA-56531446-2"
+
+
+disqus:
+  shortname: 'atarukodakasite'

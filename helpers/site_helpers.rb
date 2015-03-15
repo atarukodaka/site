@@ -6,11 +6,25 @@ module SiteHelpers
   def top_page
     sitemap.find_resource_by_path("/index.html")    # page
   end
+  def link_to_page(page)
+    if ! page.is_a?(Middleman::Sitemap::Resource)
+      page = sitemap.find_resource_by_path(page) || raise("no such resource: #{page}") # yet
+    end
+    link_to(h(page.data.title), page)
+  end
+
   def select_html_pages
     sitemap.resources.select {|p| p.ext == ".html"}   # .each {|page|
   end
   def select_resources_by(key, value)
     sitemap.resources.select {|p| p.send(key.to_sym) == value}
+  end
+
+  def categories_page
+    sitemap.find_resource_by_path("/categories.html")
+  end
+  def category_summary_page(category)
+    sitemap.find_resource_by_path("/categories/#{h(category)}.html")
   end
 
   ################
@@ -30,9 +44,12 @@ module SiteHelpers
 
   ################
   def page_info(page)
-    category = page.data.category
+    #category = page.metadata[:page]["category"]
+    category = page.category
+    #category_page = sitemap.find_resource_by_path("categories/#{category}.html")
+    
     ["", 
-     (category.nil?) ? "-" : link_to(h(category), "/categories/#{h(category)}.html"),
+     (category.nil?) ? "-" : link_to(h(category), category_summary_page(category)),
      page.date.strftime("%d %b %Y %Z"),
      link_to("permlink", page),
      ""      # prose_edit_link(page, data.config.site_info.github, "site")

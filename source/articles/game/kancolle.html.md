@@ -12,6 +12,10 @@ category: game
 ## 攻略サイト
 
 - [艦これ攻略 Wiki](http://wikiwiki.jp/kancolle/)
+  - [艦船](http://wikiwiki.jp/kancolle/?%B4%CF%C1%A5)
+  - [任務](http://wikiwiki.jp/kancolle/?%C7%A4%CC%B3)
+  - [遠征](http://wikiwiki.jp/kancolle/?%B1%F3%C0%AC)
+  - [海域](http://wikiwiki.jp/kancolle/?%BD%D0%B7%E2)
 - [あ艦これ日和](http://akankorebiyori.blog.fc2.com)
 - [艦ろぐ](http://blog.gamelogbook.com)
 - [ぜかましねっと](http://zekamashi.net/)
@@ -21,13 +25,14 @@ category: game
 ### 任務達成必要艦
 
 - 若葉、初霜
-- 古鷹
 
 ### 育成
 
+- 古鷹1/25,65
+- 加古1/25
 - 山雲 29/35
 - U-511 27/35,55
-- 天城 32/40+設計図
+- 天城 32/50+設計図
 - 吹雪改二 56/70
 - 初春改二 56/65
 
@@ -47,15 +52,15 @@ category: game
 
 ## マップ
 
-### 1-5（勲章）
+### Map:1-5（勲章）
 航空戦艦、航空巡洋艦、軽巡、駆逐
 
-### 2-5（勲章、マンスリー第五戦隊クエ）
+### Map:2-5（勲章、マンスリー第五戦隊クエ）
 高速戦艦（探照灯）、航巡（瑞雲２）、軽巡、駆逐３（連撃、電探）
 
 http://zekamashi.net/kancolle-kouryaku/2-5-okinotorioki-syoukai/
 
-### 3-3（菱餅）
+### Map:3-3（菱餅）
 http://akankorebiyori.blog.fc2.com/blog-entry-144.html
 http://akankorebiyori.blog.fc2.com/blog-entry-120.html
 
@@ -63,14 +68,14 @@ http://akankorebiyori.blog.fc2.com/blog-entry-120.html
 - 空母２必須
 -装備はあまり気にしなくても大丈夫
 
-### 4-2（輸送艦、潜水艦、あ号クエ）
+### Map:4-2（輸送艦、潜水艦、あ号クエ）
 
 http://zekamashi.net/kancolle-kouryaku/4-2-syuukai/
 
 - 編成：空母（艦戦）、戦艦、重巡、軽空母（艦戦３、艦攻１）、駆逐２（連撃、対潜）
 - 陣形：全縦（初戦下ルートは単横）
 
-### 4-3（対潜、中小艦育成）
+### Map:4-3（対潜、中小艦育成）
 
 http://zekamashi.net/kancolle-kouryaku/4-3-s-syuukai/
 
@@ -79,22 +84,23 @@ http://zekamashi.net/kancolle-kouryaku/4-3-s-syuukai/
 - 単縦－輪形（単横）－輪形(単縦）－輪形
 
 
-### 5-1（マンスリー水上打撃部隊クエ）
+### Map:5-1（マンスリー水上打撃部隊クエ）
 航巡２駆逐２でボス直行
 
 ## 任務
 
 ### 単発
 
-####	「第十一駆逐隊」を編成せよ！（初雪待ち）
-特Ⅰ型駆逐艦「吹雪」「白雪」「初雪」「叢雲」4隻による第十一駆逐隊を編成せよ！
-※表記4隻「のみ」の艦隊を作ると達成
-
-#### 「第六戦隊」南西海域へ出撃せよ！（古鷹待ち）
+#### 「第六戦隊」南西海域へ出撃せよ！（実行中）
 - 「古鷹」「加古」「青葉」「衣笠」を基幹とした「第六戦隊」で、沖ノ島沖の敵艦隊を撃滅せよ！
 - ※「敵主力艦隊」（2-5ボス戦）にS勝利で達成
 - 「第六戦隊」の4隻（「古鷹」「加古」「青葉」「衣笠」）+他に艦がいてもOK
 - ※古鷹・衣笠は改二でも達成可能
+
+
+####	「第十一駆逐隊」を編成せよ！（初雪待ち）
+特Ⅰ型駆逐艦「吹雪」「白雪」「初雪」「叢雲」4隻による第十一駆逐隊を編成せよ！
+※表記4隻「のみ」の艦隊を作ると達成
 
 #### 二十一駆逐艦（十一駆逐艦達成後：若葉、初霜待ち）
 - 「第二一駆逐隊」を含む艦隊で出撃し、北方海域モーレイ海の敵を撃滅せよ！
@@ -160,7 +166,7 @@ http://zekamashi.net/kancolle-kouryaku/suizyoudagekibutai-nanpou/
 ### 2015冬
 
 
-<a data-toggle="collapse" data-target="#c1">event</a>
+<a data-toggle="collapse" data-target="#c1">[expand]</a>
 <div id="c1" class="collapse">
 
 ~~~
@@ -215,6 +221,4 @@ AEHJKルート
 五十鈴改二　Lv72 20.3ｃｍ（3号）　20.3ｃｍ　FuMO25レーダー
 雪風改　Lv88 艦首魚雷　5連装魚雷×２
 ~~~
-
-
 </div>
