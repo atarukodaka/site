@@ -10,6 +10,7 @@ site_info:
 
 amazon:
   aws_access_key_id: AKIAJUDCZXLDLISYWRHQ
+  #aws_secret_key: xxxx
   associate_tag: myhoney0079-22
   country: jp
   locale: ja

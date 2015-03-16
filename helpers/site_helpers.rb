@@ -10,7 +10,7 @@ module SiteHelpers
     if ! page.is_a?(Middleman::Sitemap::Resource)
       page = sitemap.find_resource_by_path(page) || raise("no such resource: #{page}") # yet
     end
-    link_to(h(page.data.title), page)
+    link_to(h(page.data.title) || "(untitled)", page)
   end
 
   def select_html_pages
@@ -54,6 +54,39 @@ module SiteHelpers
      link_to("permlink", page),
      ""      # prose_edit_link(page, data.config.site_info.github, "site")
     ].join(" | ")
+  end
+  
+  def short_title(article)
+    num_charactors = 30
+
+    if article.nil?
+      ""
+    else
+      s = h(article.data.title)
+      if s.size > num_charactors        
+        s[0..num_charactors] + "..."
+      else
+        s
+      end
+    end
+  end
+  def article_pager(direction, nav_article)
+    title = (nav_article.nil?) ? "" : h(nav_article.data.title)
+    nav_str_w_arr = 
+      case direction
+      when :previous
+        "&larr;" + short_title(nav_article)
+      when :next
+        short_title(nav_article) + "&rarr;"
+      else
+        raise "unknown direction: #{direction}"
+      end
+    css_class = direction.to_s
+    css_class += " disabled" if nav_article.nil?
+    
+    content_tag(:li, :class => css_class) do 
+      link_to(nav_str_w_arr, nav_article, {"data-toggle" => "tooltip", "title" => title})
+    end
   end
 
   def share_sns(page)

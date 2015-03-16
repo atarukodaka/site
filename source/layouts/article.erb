@@ -17,7 +17,7 @@
     <div>
       Posted by <%= h(data.config.site_info.author) %> 
       <% if category = current_article.category %>
-      in <%= link_to_page(category_summary_page(category)) %>
+      in <%= link_to(h(category), category_summary_page(category)) %>
       <% end %>
       at <%= current_article.date.strftime("%d %b %Y %Z") %> 
       on <%= link_to("this permlink", current_article) %>.
@@ -36,10 +36,24 @@
       <% end %>
     </ul>
 
-
-<!--    <%= disqus %>
-    <%= disqus_count %>
+    <nav>
+      <ul class="pager">
+	<%= article_pager(:previous, current_article.previous_article) %>
+	<%= article_pager(:next, current_article.next_article) %>
+<!--
+	<% opt = {class: "previous"}; opt[:class] += ' disabled' if current_article.previous_article.nil? %>
+	<% content_tag(:li, opt) do; link_to('Prev', current_article.previous_article); end %>
+	<% opt = {class: "next"}; opt[:class] += 'disabled' if current_article.next_article.nil? %>
+	<% content_tag(:li, opt) do; link_to('Next', current_article.next_article); end %>
 -->
+      </ul>
+    </nav>
+
+
+    <% if extensions.has_key?(:disqus) %>
+      <%= disqus %>
+      <%= disqus_count %>
+    <% end %>
 
   </footer>
 </article>

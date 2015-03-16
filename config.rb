@@ -13,8 +13,7 @@ set :css_dir, 'stylesheets'
 set :js_dir, 'javascripts'
 set :images_dir, 'images'
 
-
-#set :source, 'source-dev'    ## for debug
+#set :source, 'src-dev'    ## for debug
 
 ################
 # layout
@@ -27,8 +26,8 @@ activate :blog do |blog|
   blog.layout = "article"
   blog.prefix = "articles"
   blog.sources = "{category}/{title}.html"
-#  blog.sources = "{category}/{year}-{month}-{day}-{title}.html"
   blog.permalink = "{category}/{title}.html"
+#  blog.sources = "{category}/{year}-{month}-{day}-{title}.html"
 #  blog.permalink = "{category}/{year}-{month}-{day}-{title}.html"
   blog.default_extension = ".md"
 
@@ -47,6 +46,7 @@ ready do
   end
   ignore "/category.html"
 end
+Time.zone = "Tokyo"
 
 ################
 # Other Extensions
@@ -56,21 +56,27 @@ activate :bootstrap_navbar do |bootstrap_navbar|
 end
 
 #activate :directory_indexes
-activate :syntax
 activate :google_analytics, :tracking_id => data.config.google_analytics.tracking_id
+activate :syntax
 activate :alias
-
-#require './extensions/series'
-#activate :series
 
 require './extensions/middleman-blog-enhanced'
 activate :blog_enhanced
-#require './extensions/add_category_to_article'
-#activate :add_category_to_article
 
-activate :disqus do |d|
-  d.shortname = data.config.disqus.shortname
+require './extensions/amazon-link'
+activate :amazon_link do |amazon|
+  amazon.associate_tag = data.config.amazon.associate_tag
+  amazon.aws_access_key_id = data.config.amazon.aws_access_key_id
+  amazon.aws_secret_key = data.config.amazon.aws_secret_id || ENV['AWS_SECRET_KEY']
+  amazon.country = data.config.amazon.country
+
+  amazon.use_cache = data.config.amazon.use_cache
+  amazon.cache_dir = data.config.amazon.cache_dir
 end
+
+#activate :disqus do |d|
+#  d.shortname = data.config.disqus.shortname
+#end
 
 ################
 # deploy to github proj-page
@@ -85,8 +91,6 @@ configure :build do
     activate :asset_host, :host => ah
   end
 end
-
-Time.zone = "Tokyo"
 
 set :relative_links, true
 
