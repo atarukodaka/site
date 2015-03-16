@@ -23,6 +23,8 @@ clean:
 merge_develto_master:
 	git status
 	read confirm
+	git checkout master
+	git merge devel
 
 template-aks:
 	cp Gemfile Gemfile.lock config.rb Procfile server.rb $(TEMPLATE_DIR)
