@@ -28,4 +28,4 @@ template-aks:
 	cp -r source/stylesheets $(TEMPLATE_DIR)/source
 	cp -r source/javascripts $(TEMPLATE_DIR)/source
 	cp -r source/images $(TEMPLATE_DIR)/source
-	cp source/categories.html.erb source/sitemap.html.erb source/tags.html.erb source/recent.html.erb source/index.html.erb source/category.html.erb $(TEMPLATE_DIR)/source
+	cp source/categories.html.erb source/sitemap.html.erb source/tags.html.erb source/archives.html.erb source/archive_summary.html.erb source/index.html.erb source/category_summary.html.erb $(TEMPLATE_DIR)/source

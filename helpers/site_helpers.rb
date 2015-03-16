@@ -55,6 +55,40 @@ module SiteHelpers
      ""      # prose_edit_link(page, data.config.site_info.github, "site")
     ].join(" | ")
   end
+
+  def crumbs(page, type=:page)
+    #crumb_type:
+    #  top: *Home*
+    #  page: [Home] / *page*
+    #  article: [Home] / [category] / *page*
+
+    #  category: [Home] / Category: *category*
+    #  archives: [Home] / Archives in year / *month*
+    
+    content_tag(:nav, :class => "crumbs") do
+      content_tag(:ol, :class => "breadcrumb") do
+        case type
+        when :page
+          if page == top_page()    ## only if top page
+            content_tag(:li, :class => "active") do
+              h(page.data.title)
+            end
+          else                   ## normal pages
+            [
+             content_tag(:li, link_to_page(top_page())),
+             content_tag(:li, h(page.data.title || yield_content(:title)), :class => "active")
+            ].join('').html_safe
+          end
+        when :article
+          [content_tag(:li, link_to_page(top_page())),
+           content_tag(:li, link_to(h(page.category), category_summary_page(page.category))),
+           content_tag(:li, h(page.data.title), :class => "active")].join('').html_safe
+        else
+          raise "no such crumbs type: #{type}"
+        end  ## case
+      end
+    end
+  end
   
   def short_title(article)
     num_charactors = 30
@@ -66,7 +100,7 @@ module SiteHelpers
       if s.size > num_charactors        
         s[0..num_charactors] + "..."
       else
-        s
+        s[0..-1]
       end
     end
   end
@@ -75,9 +109,9 @@ module SiteHelpers
     nav_str_w_arr = 
       case direction
       when :previous
-        "&larr;" + short_title(nav_article)
+        "<span>&larr;</span>" + short_title(nav_article)
       when :next
-        short_title(nav_article) + "&rarr;"
+        short_title(nav_article) + "<span>&rarr;</span>"
       else
         raise "unknown direction: #{direction}"
       end

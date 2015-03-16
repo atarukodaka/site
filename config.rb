@@ -31,7 +31,13 @@ activate :blog do |blog|
 #  blog.permalink = "{category}/{year}-{month}-{day}-{title}.html"
   blog.default_extension = ".md"
 
-  ## summary
+  # archives
+  #blog.month_template = "archives_monthly.html"
+  #blog.calendar_template = "calendar.html"
+  blog.month_template = "archive_monthly.html"
+  blog.month_link = "../archives/{year}/{month}.html"
+
+  # pagination
   blog.paginate = true
   blog.page_link = "p{num}"
   blog.per_page = 10
@@ -41,10 +47,10 @@ end
 ready do
   blog.articles.group_by {|p| p.metadata[:page]["category"]}.each do |category, articles|
     next if category.nil?
-    proxy("/categories/#{category}.html", "category.html",
+    proxy("/categories/#{category}.html", "category_summary.html",
           :locals => { :category => category, :articles => articles, :ignore => true })
   end
-  ignore "/category.html"
+  ignore "/category_summary.html"
 end
 Time.zone = "Tokyo"
 

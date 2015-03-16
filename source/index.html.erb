@@ -1,22 +1,10 @@
 ---
 title: Home
 pageable: true
+layout: page
 ---
 
-<% page_articles.each do | article | %>
-  <article class="summary">
-    <header>
-      <h1><%= link_to(h(article.title), article) %></h1>
-      <section class="page_info">
-        <%= page_info(article) %>
-      </section>
-    </header>
-    <section class="page_content">
-      <%= Nokogiri::HTML(article.summary(250)).text %>
-      <%= link_to("... read more", article) %>
-    </section>
-  </article>
-<% end %>
+<%= partial("partials/summary", locals: {articles: page_articles}) %>
 
 <% if paginate %>
   <nav>
@@ -29,22 +17,3 @@ pageable: true
   </nav>
 <% end %>
 
-<!--
-
-<h2><%= h(data.config.site_info.title) %></h2>
-ソフトウェア開発、フィギュアスケートなどについての情報をまとめています。
-
-<h3>連載記事</h3>
-<ul>
-  <li>middleman と org-mode でサイト構築
-    <%= summary("series", "middleman と org-mode でサイト構築", {list_type: "ol"}) %>
-
-  </li>
-</ul>
-
-<h3>ソフトウェア開発</h3>
-<%= summary("category", "software", {caption_template: "%{title}"}) %>
-
-<h3>フィギュアスケート</h3>
-<%= summary("category", "figureskating") %>
--->

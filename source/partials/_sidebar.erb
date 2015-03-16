@@ -45,6 +45,18 @@
   </aside>
   <!-- ================ -->  
   <aside>
+    <h2>Archives</h2>
+    <ul>
+      <% blog.articles.group_by {|a| sprintf("%04d%02d", a.date.year, a.date.month) }.each do |year, articles| %>
+      <% article = articles.first %>
+      <% num_articles = articles.size %>
+      <li><%= link_to(article.date.strftime("%b %Y"), blog_month_path(article.date.year, article.date.month)) + sprintf("  (%d)", num_articles) %></li>
+      <% end %>
+    </ul>
+  </aside>
+  
+  <!-- ================ -->  
+  <aside>
     <h2><%= link_to("Recent Articles", "/recent.html") %></h2>
     
     <% blog.recent_articles_with_date.each do |date, pages| %>

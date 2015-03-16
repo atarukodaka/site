@@ -1,10 +1,20 @@
 <% page ||= current_article || current_page %>
 <% raise "the given page is nil" if page.nil? %>
-<% type ||= :page %>
+<% crumbs_type ||= (current_article.nil?) ? :page : :article%>
+
+<!--
+crumb_type:
+  top: *Home*
+  page: [Home] / *page*
+  article: [Home] / [category] / *page*
+  category: [Home] / Category: *category*
+  archives: [Home] / Archives in year / *month*
+-->
+
 
    <nav class="crumbs">
       <ol class="breadcrumb">
-	<% case type %>
+	<% case crumbs_type %>
 	<% when :page %>
   	  <% if page == top_page() %>
 	    <li class="active"><%= h(page.data.title) %></li>
@@ -17,7 +27,7 @@
 	  <% end %>
 	<% when :category %>
   	  <li><%= link_to_page(top_page()) %>
-	  <li><%= link_to_page(categories_page()) %>
+	  <li>Category: <%= link_to_page(categories_page()) %>
 	  <li class="active"><%= h(category) %></li>
 	<% end %> 
       </ol>

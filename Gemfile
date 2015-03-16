@@ -30,9 +30,13 @@ gem 'middleman-disqus'
 gem "amazon-ecs"
 gem 'dotenv'
 
+#gem "amazon-link", :path => File.join(ext_dir, "amazon-link")
+
 ## debug
 gem 'pry-byebug'
 gem 'rb-readline'   # for pry
+
+
 
 # For faster file watcher updates on Windows:
 gem "wdm", "~> 0.1.0", :platforms => [:mswin, :mingw]

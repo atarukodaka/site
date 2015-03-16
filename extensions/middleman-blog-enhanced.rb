@@ -41,6 +41,9 @@ module Middleman
       def category
         return self.data.category || self.metadata[:page]["category"]
       end
+      def summary_text(length = 250, separator = nil, leading_message = "...read more")
+        Nokogiri::HTML(self.summary(length, separator)).text + app.link_to(leading_message, self)
+      end
 
       #def series_number
       #  self.path =~ Regexp.new("/([0-9]+)\-[^/]+\.html$")

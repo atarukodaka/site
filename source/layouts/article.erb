@@ -1,8 +1,8 @@
 <% wrap_layout :layout do %>
 <article>
   <header>
-    <%= partial("partials/crumbs") %>
-
+    <!-- %= partial("partials/crumbs") % -->
+    <%= crumbs(current_article, :article) %>
     <h1><%= h(current_page.data.title) %></h1>
     <section class="page_info">
       <%= page_info(current_article) %>

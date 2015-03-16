@@ -1,8 +1,9 @@
 <% wrap_layout :layout do %>
+
 <article>
   <header>
-    <%= partial("partials/crumbs", locals: {type: :page}) %>
-    <h1><%= h(current_page.data.title) %></h1>
+    <%= crumbs(current_page, :page) %>
+    <h1><%= h(current_page.data.title || yield_content(:title)) %></h1>
   </header>
 
   <section class="page_content">
