@@ -2,6 +2,15 @@
   <%= partial("partials/_google_custom_search") %>
   <!-- ================ -->
   <aside>
+    <h2>Hot Topics</h2>
+    <ul class="article_list">
+      <% blog.articles.select {|a| a.data.priority.to_s.downcase == "high"}.each do |article| %>
+      <li><%= link_to_page(article) %></li>
+      <% end %>
+    </ul>
+  </aside>
+  <!-- ================ -->
+  <aside>
     <h2><%= link_to("Profile", "/profile.html") %></h2>
     <p>
       <%= h(data.config.site_info.author) %> 
@@ -10,13 +19,13 @@
     <p><%= h(data.config.site_info.description) %></p>
   </aside>
   <!-- ================ -->
-  <aside class="categories">
+  <aside>
     <h2><%= link_to("Categories", "/categories.html") %></h2>
     <div>
       <% blog.articles.group_by {|p| p.data.category }.each do |category, pages| %>
       <% next if category.to_s == "" %>
       <h3><%= link_to(h(category), "/categories/#{h(category)}.html") %></h3>
-      <ul>
+      <ul class="article_list">
 	<% num = 10 %>
 	<% pages[0..num-1].each do |page| %>
 	<li>

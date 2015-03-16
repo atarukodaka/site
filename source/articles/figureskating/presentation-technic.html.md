@@ -1,7 +1,8 @@
 ---
 title: 「表現力」と表現技術
 date: 2015-02-13
-category: figureskating
+priority: high
+
 ---
 
 twitter でつぶやいたの（[夜のフィギュアスケート語り部：「表現技術」(2015/2/11)](http://togetter.com/li/782106)）をまとめなおしました：

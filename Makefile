@@ -20,6 +20,10 @@ clean:
 	rm -rf build
 	rake clean
 
+merge_develto_master:
+	git status
+	read confirm
+
 template-aks:
 	cp Gemfile Gemfile.lock config.rb Procfile server.rb $(TEMPLATE_DIR)
 	cp -r extensions helpers  $(TEMPLATE_DIR)
