@@ -12,6 +12,17 @@ module SiteHelpers
     end
     link_to(h(page.data.title) || "(untitled)", page)
   end
+  def link_to_page_formatted(page, format=nil)
+    format ||= "%{page_link}...<small>[%{category_summary}] at %{date}</small>"
+    
+    hash = {
+      page_link: link_to_page(page),
+      page_title: h(page.data.title),
+      category_summary: link_to(h(page.category), category_summary_page(page.category)) || "-",
+      date: page.date.strftime("%d %b %Y")
+    }
+    format % hash
+  end
 
   def select_html_pages
     sitemap.resources.select {|p| p.ext == ".html"}   # .each {|page|

@@ -1,9 +1,8 @@
 
-## 0.0.1 Initial Version / 2014-11-27
+### 2015/3/16
 
-- hoge
-- asef
-- saef
+- hot topics
+- middleman-amazon-link: put into gem
 
 
 

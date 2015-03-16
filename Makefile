@@ -20,11 +20,15 @@ clean:
 	rm -rf build
 	rake clean
 
-merge_develto_master:
+merge_devel_to_master:
 	git status
+	echo "ok ?"
 	read confirm
 	git checkout master
 	git merge devel
+	git checkout devel
+	git push origin master
+	git push origin devel
 
 template-aks:
 	cp Gemfile Gemfile.lock config.rb Procfile server.rb $(TEMPLATE_DIR)

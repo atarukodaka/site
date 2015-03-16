@@ -9,9 +9,10 @@ group: navigation
   <% pages.each do |page| %>
     <% next if page.ext != ".html" %>
   <li>
-    <%= (category) ? "[" + h(category) + "] " : "" %>
-    <%= link_to(h(page.data.title), page) %>
-    ...<small><%= page.date.strftime("%Y/%m/%d") %></small>
+    <%= link_to_page(page) %>
+    ...
+    <%= (category) ? "[" + link_to(h(category), category_summary_page(category)) + "] " : "" %>
+    <small><%= page.date.strftime("%Y/%m/%d") %></small>
   </li>
   <% end %>
 <% end %>
