@@ -69,7 +69,7 @@ activate :alias
 require './extensions/middleman-blog-enhanced'
 activate :blog_enhanced
 
-require './extensions/amazon-link'
+#require './extensions/amazon-link'
 activate :amazon_link do |amazon|
   amazon.associate_tag = data.config.amazon.associate_tag
   amazon.aws_access_key_id = data.config.amazon.aws_access_key_id

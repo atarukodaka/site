@@ -2,7 +2,7 @@
 module Middleman
   module BlogEnhanced
     ################################################################
-    # blog.* へのヘルパーメソッド
+    # additional helper methods to blog.*
     #
     module ResourceIncludedToBlogData
       def categories
@@ -30,13 +30,11 @@ module Middleman
       end
     end  
     ################################################################
-    # blog.articles.* への追加メソッド
+    # additional helper methods to blog.articles.*
     module ResourceIncludedToBlogArticle
-      #  article.category で指定カテゴリを取れるように
-      #   - frontmatter で指定：article.data.category
-      #   - 配置ディレクトリで暗黙に指定： metadata[:page]["category"]
-      #
-      # 前者を優先
+      #  to get category by 'article.category'
+      #   - specify in frontmatter：article.data.category
+      #   - specify with directory located： metadata[:page]["category"]
       #
       def category
         return self.data.category || self.metadata[:page]["category"]

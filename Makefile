@@ -10,8 +10,8 @@ serve:
 deploy:
 	ASSET_HOST=/site $(MM) deploy -b
 
-server:
-	ruby server.rb >& /dev/null&
+webrick:
+	ruby webrick.rb >& /dev/null&
 
 kancolle:
 	cp source/kancolle.html.md source/articles/game

@@ -85,6 +85,7 @@ GEM
       uglifier (~> 2.5)
     middleman-alias (0.0.9)
       middleman-core (~> 3.2)
+    middleman-amazon-link (0.0.2)
     middleman-blog (3.5.3)
       addressable (~> 2.3.5)
       middleman-core (~> 3.2)
@@ -211,6 +212,7 @@ DEPENDENCIES
   i18n
   middleman (~> 3.3.7)
   middleman-alias
+  middleman-amazon-link
   middleman-blog
   middleman-bootstrap-navbar
   middleman-deploy

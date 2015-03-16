@@ -2,12 +2,13 @@
 # the following line to use "http://" instead
 source 'https://rubygems.org'
 
-ext_dir = "../extensions/"
+#ext_dir = "../extensions/"
+ext_dir = "extensions/"
 
 gem "middleman", "~>3.3.7"
 gem 'middleman-blog'
 gem 'middleman-deploy'
-gem 'middleman-google-analytics'
+gem 'middleman-google-analytics'  #, :path => File.join(ext_dir, "middleman-google-analytics")
 gem 'middleman-alias'
 gem 'therubyracer'
 gem 'middleman-bootstrap-navbar'
@@ -30,7 +31,7 @@ gem 'middleman-disqus'
 gem "amazon-ecs"
 gem 'dotenv'
 
-#gem "amazon-link", :path => File.join(ext_dir, "amazon-link")
+gem "middleman-amazon-link" # , :path => File.join(ext_dir, "middleman-amazon-link")
 
 ## debug
 gem 'pry-byebug'

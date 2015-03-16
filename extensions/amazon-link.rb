@@ -88,7 +88,7 @@ module Middleman
   </div>
 </div>)
       }
-      def amazon(asin, type_or_string = :detail)
+      def ___amazon(asin, type_or_string = :detail)
         #binding.pry
 
         amazon_opts = amazon_link_settings
