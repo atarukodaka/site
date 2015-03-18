@@ -4,7 +4,7 @@ category: figureskating
 date: 2014-11-27
 ---
 
-大会リザルト：[[http://www.jsfresults.com/National/2014-2015/fs_j/national_jr/index.htm]]
+大会リザルト: http://www.jsfresults.com/National/2014-2015/fs_j/national_jr/index.htm
 
 
 男子は上位６名、女子は上位８名よりノービスの本田 真凜 、青木 祐奈選手を除いた６名：
@@ -24,7 +24,7 @@ date: 2014-11-27
  - 三原 舞依
  - 新田谷 凜
 
-[[http://twitter.com/soleil_yk22/status/536841204013342720]]、
-[[http://twitter.com/deepedgenet/status/536841232597524481]]、
-[[http://twitter.com/catalina_tcat/status/536841057653116929]]
+http://twitter.com/soleil_yk22/status/536841204013342720、
+http://twitter.com/deepedgenet/status/536841232597524481、
+http://twitter.com/catalina_tcat/status/536841057653116929
 より。

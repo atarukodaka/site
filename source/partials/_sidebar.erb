@@ -22,7 +22,7 @@
   <aside>
     <h2><%= link_to("Categories", "/categories.html") %></h2>
     <div>
-      <% blog.articles.group_by {|p| p.data.category }.each do |category, pages| %>
+      <% blog.articles.group_by {|p| p.category }.each do |category, pages| %>
       <% next if category.to_s == "" %>
       <h3><%= link_to(h(category), "/categories/#{h(category)}.html") %></h3>
       <ul class="article_list">

@@ -1,0 +1,221 @@
+@import "compass";
+
+//=require responsible
+
+/*****************************************************************/
+/* layout */
+
+body {    
+    background-color: #eeeeee;
+    font-family: "Segoe UI", MeiryoKe_PGothic, "Meiryo", "Meiryo UI", Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif
+}
+
+body > .container {
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  background-color: white;
+}
+
+.pane {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+footer#footer {
+    background-color: white;
+    padding: 20px;
+
+    .copyright {
+	border-top: 1px solid black;
+	padding: 10px;
+    }
+}
+  
+/*****************************************************************/
+/* general */
+
+$color_link_visited: rgb(68, 68, 169);
+$color_link_unvisited: rgb(100, 100, 222);
+
+a {
+    color: $color_link_unvisited;
+}
+a:visited, a:hover {
+    color: $color_link_visited;
+    text-decoration: none;
+}
+
+/*****************************************************************/
+/* header eye-catch */
+
+header.eyecatch {
+    height: 100px;
+    background-color: black;
+    margin-top: 10px;
+
+    .sitename {
+	padding: 20px 0 0 20px;
+	
+	font-weight: lighter;
+	font-size: x-large;
+	color: #aaa;
+	a { color: #aaa; }
+    }
+}
+/*****************************************************************/
+/* navbar */
+
+.navbar-default {
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+/*****************************************************************/
+/* sidebar */
+
+.sidebar {
+    margin-top: 30px;
+
+    aside {
+	border-top: 1px solid #eeeeee; 
+	padding-bottom: 10px;
+	padding-top: 5px;
+
+	h2 {
+	    font-size: medium;
+	}
+	h3 {
+	    font-size: small;
+	    a { color: black; }
+	}
+    }
+    .article_list li {
+	margin-left: -1em;
+    }
+}
+
+/*****************************************************************/
+/* breakcrumbs */
+
+nav.crumbs {
+    border: {
+	top: 1px solid #ddd;
+	bottom: 1px solid #ddd;
+    }
+    margin: {
+	top: 30px;
+	bottom: 20px;
+    }
+    padding: {
+	top: 5px;
+	bottom: 5px;
+    }
+}
+
+ol.breadcrumb {
+    background-color: white; 
+
+    margin-bottom: 0;
+    padding-top: 0; 
+    padding-bottom: 0;
+    
+    li.active {
+	font-weight: bold;
+    }
+}
+
+/*****************************************************************/
+/* article  */
+
+$border_color_dec: #222;
+$margin_for_content: 30px;
+
+article {
+    header { 
+	h1 {
+	    font-weight: bold;
+	    border-bottom: 1px solid #888;
+	    margin: 0px 0 0px 0;
+	    padding: 0px 0px 1px 10px;
+	}
+	.page_info {
+	    text-align: right;
+	}
+    }
+    .page_content {
+	margin-left: $margin_for_content;
+
+	@for $i from 1 through 6 {
+	    h#{$i} {
+		font-weight: bold;
+		border-bottom: 1px solid #888;
+		margin: {
+		    top: 30px;
+		    bottom: 20px;
+		    left: -$margin_for_content;
+		}
+		padding: 0px 0px 1px 10px;
+	    }
+	}
+	h1, h2 { margin-top: 40px; }
+
+	img {
+	    max-width: 90%;
+	}
+	img.shadow {
+	    box-shadow: 1px 1px 4px rgba(0,0,0,.5);
+	}
+	img.centering {
+	    display: block;
+	    margin: 20px auto 20px auto;
+	}
+	dl {
+	    dt, dd { margin: 10px 0 10px 0;}
+	    dd { padding-left: 20px; }
+	}
+    }
+    footer {
+	padding: 10px;
+	margin-top: 50px;
+	border-top: 1px solid lightgray;
+	
+	.share_sns {
+	    padding: 10px 0 10px 0;
+	}
+    }
+}
+
+/* article summary */
+
+article.summary {
+    h1 {
+	font-size: medium;
+	margin-bottom: 5px;
+    }
+    .page_content {
+	padding: 10px 0px 10px 0px;  
+    }
+}
+
+/*****************************************************************/
+/* numbering headings */
+
+body {
+ counter-reset: h1;
+}
+.numbering_headings {
+    @for $i from 1 through 5 {
+	h#{$i} {
+	    counter-increment:h#{$i};
+	    counter-reset:h#{$i+1};
+	}
+	h#{$i}:before {
+	    color: #888;  font-size: large; 
+	}
+    }
+    h2:before{content: counter(h2) ". ";}
+    h3:before{content: counter(h2) "." counter(h3) ". "; }
+    h4:before{content: counter(h2) "." counter(h3) "." counter(h4) ". "; }
+    h5:before{content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". "; }
+}
+
+/*****************************************************************/

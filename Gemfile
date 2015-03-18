@@ -2,10 +2,14 @@
 # the following line to use "http://" instead
 source 'https://rubygems.org'
 
-#ext_dir = "../extensions/"
-ext_dir = "extensions/"
+################
+ext_dir = "../extensions"
+#ext_dir = "extensions/"
 
-gem "middleman", "~>3.3.7"
+## middleman
+
+gem 'middleman', '~/3.3.7'
+#gem "middleman", "~>3.3.7", :path => File.join(ext_dir, "middleman")
 gem 'middleman-blog'
 gem 'middleman-deploy'
 gem 'middleman-google-analytics'  #, :path => File.join(ext_dir, "middleman-google-analytics")
@@ -15,29 +19,37 @@ gem 'middleman-bootstrap-navbar'
 
 gem 'nokogiri'   # for middleman-blog summary
 
-# Live-reloading plugin
-gem "middleman-livereload", "~> 3.1.0"
+gem 'middleman-livereload', "~> 3.1.0"
 
-gem 'i18n'
+gem 'middleman-disqus'
+gem "middleman-syntax"
+#gem 'rouge'
+
+## layout engine
 
 gem 'redcarpet'
 #gem 'org-ruby'
 #gem 'org-ruby', :path =>File.join(ext_dir, "org-ruby")
 
-gem "middleman-syntax"
-#gem 'rouge'
-gem 'middleman-disqus'
+## sass/compass
+
+gem 'sass'
+gem 'compass'
+
+## amazon-link
 
 gem "amazon-ecs"
+gem "middleman-amazon-link" # , :path => File.join(ext_dir, "middleman-amazon-link")
 gem 'dotenv'
 
-gem "middleman-amazon-link" # , :path => File.join(ext_dir, "middleman-amazon-link")
+## guard
+
+gem 'guard'
+gem 'guard-livereload'
 
 ## debug
 gem 'pry-byebug'
 gem 'rb-readline'   # for pry
-
-
 
 # For faster file watcher updates on Windows:
 gem "wdm", "~> 0.1.0", :platforms => [:mswin, :mingw]
@@ -45,4 +57,4 @@ gem "wdm", "~> 0.1.0", :platforms => [:mswin, :mingw]
 # Windows does not come with time zone data
 gem "tzinfo-data", platforms: [:mswin, :mingw]
 
-gem 'twitter'
+#gem 'twitter'

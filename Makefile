@@ -4,7 +4,7 @@ TEMPLATE_DIR = ../middleman-template-aks
 bld:
 	$(MM) build
 
-serve:
+server:
 	$(MM) server --force-polling &
 
 deploy:

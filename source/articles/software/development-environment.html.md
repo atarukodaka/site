@@ -4,11 +4,11 @@ category: software
 date: 2014/11/01
 ---
 
-** 仮想OSのインストール
+## 仮想OSのインストール
 
 http://dotinstall.com/lessons/basic_local_development_v2/24803 を参考に。
 
-*** VirtualBox, Vigrant
+### VirtualBox, Vigrant
 
 VirtualBox と Vigrant をwindows上にインストール。
 
@@ -19,37 +19,37 @@ box を持ってきて加える：
 
 centos6.4:
 
-#+BEGIN_SRC 
+```
 % vagrant box add centos64box http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20131103.box
 % vagrant init centos64box
-#+END_SRC
+```
 
 centos6.5:
 
 
-#+BEGIN_SRC 
+```
 % vagrant box add centos65box https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box
 % vagrant init centos65box
-#+END_SRC
+```
 
 vi Vagrantfile で private_network 部分のコメントアウトを外す
 
-#+BEGIN_SRC 
+``` 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
    config.vm.network "private_network", ip: "192.168.33.10"
-#+END_SRC
+```
 
 そして up, ssh
 
-#+BEGIN_SRC 
+``` 
 % vagrant up （時間かかる）
 % vagrant ssh
-#+END_SRC
+```
 
 ホスト側から % ssh vagrant@193.168.33.10 を確かめる
 
-** 開発環境
+## 開発環境
 *** 最新にアップデート
 
 ```
@@ -60,36 +60,36 @@ vi Vagrantfile で private_network 部分のコメントアウトを外す
 % sudo chkconfig iptables off
 ```
 
-*** ssh
-#+BEGIN_SRC 
+### ssh
+``` 
 % ssh-keygen -t rsa
 % eval `ssh-agent`
 % ssh-add ~/.ssh/id_rsa
-#+END_SRC
+```
 
-*** init files
+### init files
 
-#+BEGIN_SRC 
+``` 
 git init
 git remote add origin git@github.com:atarukodaka/dotfiles.git
 git fetch origin
 git merge origin/master
-#+END_SRC
+```
 
-*** ruby のインストール
+### ruby のインストール
 rbenv でruby のヴァージョンを切り替える
 
 先にopenssl を入れておく。
 
-#+BEGIN_SRC 
+``` 
 % sudo yum -y install openssl-devel
-#+END_SRC
+```
 
 
 https://github.com/sstephenson/rbenv にあるとおりやる。
 
 
-#+BEGIN_SRC 
+``` 
 % git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
 % echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
 % echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
@@ -101,13 +101,13 @@ open new terminal
 % rbenv rehash
 % rbenv global 2.1.4
 % rbenv versions
-#+END_SRC
+```
 
 % sudo yum install ruby-devel もしておく。
 
-** その他開発環境のセットアップ
+## その他開発環境のセットアップ
 
-*** yum install 
+### yum install 
 
 - git
 - tree
@@ -115,30 +115,30 @@ open new terminal
 - curl
 - ruby-devel
 
-*** gems
+### gems
 
 gem install bundle
 
-*** heroku
+### heroku
 
 https://toolbelt.heroku.com/ より "standalone"でインストール。
 'readline' がないとか言われた場合は、
 gem install rb-readline
 する。
 
-*** timezone の設定
-#+BEGIN_SRC 
+### timezone の設定
+``` 
 sudo cp -p  /usr/share/zoneinfo/Japan /etc/localtime
-#+END_SRC
+```
 
-** 共有フォルダ
+## 共有フォルダ
 
 hostで Vagrantfile があるディレクトリ（~/vagrant/centos64とする）が仮想側の /vagrant と共有されるので、
 元ソースを host:~/vagrant/centos64/source におき、guest:~/ で
 
-#+BEGIN_SRC 
+``` 
 % cd ~/; ln -s /vagrant/source .
-#+END_SRC
+```
 
 とすると、host 側の ~/vagrant/centos64/source/*を emacs で編集しつつ guest 側の ~/source で参照することができる。
 

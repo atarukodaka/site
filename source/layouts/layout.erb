@@ -8,11 +8,19 @@
    
     <%= javascript_include_tag "jquery-1.11.0.min.js" %>
     <%= javascript_include_tag "bootstrap.min.js" %>
+
     <%= stylesheet_link_tag "normalize.css" %>
     <%= stylesheet_link_tag "bootstrap.min.css" %>
-    <%= stylesheet_link_tag "style.css" %>
     <%= stylesheet_link_tag "amazon.css" %>
     <%= stylesheet_link_tag "pygment_trac.css" %>
+
+    <%= stylesheet_link_tag "all" %>
+
+<!--
+    <%= stylesheet_link_tag "style.css" %>
+-->
+
+
   </head>
   
   <body>
@@ -44,9 +52,8 @@
       <div class="row">
 	<footer id="footer" class="pane">
 	  <div class="copyright">
-	    &copy; <%= h data.config.site_info.author %> 
-	    (<%= h data.config.site_info.email %>) 
-	    powered by middleman and twitter-bootstrap
+	    <%= copyright() %>
+	    powered by <a href="https://middlemanapp.com">middleman</a> and <a href="http://getbootstrap.com/">twitter-bootstrap</a>.
 	  </div>
 	</footer>
       </div> <!-- row -->
