@@ -10,12 +10,19 @@
 
 
 ## TODO
-- gem
+- style
+  - article.page_content: 上マージンがちょいほしい？
+- template のgem化
   - [Middlemanでwikiっぽいことができたら便利だなと思ったからmiddleman-tansu v0.1.0をリリースした | e2esound.com業務日誌](http://blogged.e2esound.com/2015/01/31/middleman-tansu_v0-1-0_is_released/)
     - https://github.com/yterajima/middleman-tansu
-	
 
-- syntax: to check if it works
+- 単なる "category" ではなく、ファイル階層
+  - figureskating/rules/....
+  -              /play
+  - game/kancolle/index.html
+  -              /event.html
+  - game/wows
+  
 - page.title
 - series ???
 - youtube responsible
@@ -33,6 +40,7 @@
 
 ## done
 
+- syntax: to check if it works => rouge-syntax
 - google custom search
 - amazon. secret key
 - index.html crumbs

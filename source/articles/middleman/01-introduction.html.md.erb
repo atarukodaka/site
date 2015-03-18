@@ -76,7 +76,7 @@ ruby でいじくれるといっても使えなきゃ意味がない。
 
 まず middleman 自体のインストールをし、あたし作のテンプレートを落としてきます：
 
-```
+```sh
 % gem install middleman
 % git clone git@github.com:atarukodaka/middleman-template-aks.git ~/.middleman/template-aks
 ```
@@ -84,24 +84,33 @@ ruby でいじくれるといっても使えなきゃ意味がない。
 その後、「プロジェクト」、つまり開設するサイトなりブログなり用の一式ファイル群を作ります。
 ここでは "site" としておきます：
 
+```sh
+% pwd
+/home/foo
+% middleman init site --template template-aks && cd site
 ```
-% middleman init site --template template-aks
-```
 
-
-
+これで site/ 以下に一式作られました。
 
 
 ### ファイル群の作成
 
 middleman の build コマンドを使います。
 
-```
+```sh
 % bundle exec middleman build
 ```
 
 そうすると、source/* のファイルがいろいろと加工されて build/ 以下に出力されます。
 build/index.html などを覗いてみるといいかもしれません。
+
+ちなみに "bundle exec middleman" はよく使うので、alias に加えておくと便利です。
+
+```sh
+alias ru="rackup"
+alias be="bundle exec"
+alias mm="bundle exec middleman"
+```
 
 ### ローカルサーバーの立ち上げ
 とはいえ生 html は読みにくいので、 middleman server コマンドを使ってローカルサーバーを立ち上げます。

@@ -63,7 +63,7 @@ end
 
 #activate :directory_indexes
 activate :google_analytics, :tracking_id => data.config.google_analytics.tracking_id
-activate :rouge_syntax, :lineanchor => 'line'
+activate :rouge_syntax    # , :lineanchor => 'line'
 #activate :syntax
 activate :alias
 

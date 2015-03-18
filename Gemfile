@@ -22,8 +22,7 @@ gem 'middleman-livereload', "~> 3.1.0"
 gem 'middleman-dotenv'
 
 gem 'middleman-disqus'
-gem "middleman-syntax"
-#gem 'rouge'
+gem 'middleman-rouge'
 
 ## layout engine
 
