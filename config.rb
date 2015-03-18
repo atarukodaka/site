@@ -63,7 +63,8 @@ end
 
 #activate :directory_indexes
 activate :google_analytics, :tracking_id => data.config.google_analytics.tracking_id
-activate :syntax
+activate :rouge_syntax, :lineanchor => 'line'
+#activate :syntax
 activate :alias
 
 require './extensions/middleman-blog-enhanced'
@@ -93,6 +94,8 @@ activate :deploy do |deploy|
 end
 
 configure :build do
+  activate :dotenv
+
   if asset_host = ENV['ASSET_HOST']
     activate :asset_host, :host => asset_host
   end

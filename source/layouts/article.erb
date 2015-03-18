@@ -1,9 +1,9 @@
 <% wrap_layout :layout do %>
 <article>
   <header>
-    <!-- %= partial("partials/crumbs") % -->
+    <%= breadcrumbs(current_page) %>
     <%= crumbs(current_article, :article) %>
-    <h1><%= h(current_page.data.title) %></h1>
+    <h1><%= yield_content(:title) || h(current_page.title) %></h1>
     <section class="page_info">
       <%= page_info(current_article) %>
     </section>
@@ -36,12 +36,7 @@
       <% end %>
     </ul>
 
-    <!-- series -->
-    <% if current_article.data.series %>
-    <nav>
-    </nav>
-    <% end %>
-
+    <!-- pager -->
     <nav>
       <ul class="pager">
 	<%= article_pager(:previous, current_article.previous_article) %>

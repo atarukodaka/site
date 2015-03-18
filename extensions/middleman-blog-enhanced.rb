@@ -30,12 +30,15 @@ module Middleman
       end
     end  
     ################################################################
-    # additional helper methods to blog.articles.*
+    # additional helper methods to BlogArticle (blog.articles.*)
     module ResourceIncludedToBlogArticle
       #  to get category by 'article.category'
       #   - specify in frontmatter：article.data.category
       #   - specify with directory located： metadata[:page]["category"]
       #
+      def title   ### yet: warning: overriding core method which does refer simply data[:title]
+        data[:title] || metadata[:page]["title"] || yield_content(:title)
+      end
       def category
         return self.data.category || self.metadata[:page]["category"]
       end
@@ -43,10 +46,11 @@ module Middleman
         Nokogiri::HTML(self.summary(length, separator)).text + app.link_to(leading_message, self)
       end
 
-      #def series_number
-      #  self.path =~ Regexp.new("/([0-9]+)\-[^/]+\.html$")
-      #  return $1.to_i
-      #end
+      ## yet. considering how to implement this feature.....
+      def series_number
+        self.path =~ Regexp.new("/([0-9]+)\-[^/]+\.html$")
+        return $1.to_i
+      end
     end
     ################
     class Extension < Middleman::Extension

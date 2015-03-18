@@ -39,7 +39,7 @@ GEM
     compass-import-once (1.0.5)
       sass (>= 3.2, < 3.5)
     debugger-linecache (1.2.0)
-    dotenv (2.0.0)
+    dotenv (1.0.2)
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
@@ -103,6 +103,9 @@ GEM
       ptools
     middleman-disqus (1.0.0)
       middleman-core (~> 3.1)
+    middleman-dotenv (1.1.1)
+      dotenv (~> 1.0)
+      middleman-core (>= 3.2)
     middleman-google-analytics (1.0.2)
       middleman-core (~> 3.2)
       uglifier (>= 2.1, < 3.0)
@@ -111,6 +114,9 @@ GEM
       middleman-core (>= 3.0.2)
       multi_json (~> 1.0)
       rack-livereload
+    middleman-pry (0.0.4)
+      middleman-core (~> 3.2)
+      pry (~> 0.9)
     middleman-sprockets (3.3.10)
       middleman-core (~> 3.3)
       sprockets (~> 2.12.1)
@@ -187,7 +193,6 @@ PLATFORMS
 DEPENDENCIES
   amazon-ecs
   compass
-  dotenv
   middleman (~> 3.3.7)
   middleman-alias
   middleman-amazon-link
@@ -195,8 +200,10 @@ DEPENDENCIES
   middleman-bootstrap-navbar
   middleman-deploy
   middleman-disqus
+  middleman-dotenv
   middleman-google-analytics
   middleman-livereload (~> 3.1.0)
+  middleman-pry
   middleman-syntax
   nokogiri
   pry-byebug

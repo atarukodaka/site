@@ -10,6 +10,13 @@
 
 
 ## TODO
+- gem
+  - [Middlemanでwikiっぽいことができたら便利だなと思ったからmiddleman-tansu v0.1.0をリリースした | e2esound.com業務日誌](http://blogged.e2esound.com/2015/01/31/middleman-tansu_v0-1-0_is_released/)
+    - https://github.com/yterajima/middleman-tansu
+	
+
+- syntax: to check if it works
+- page.title
 - series ???
 - youtube responsible
 - sass, less
