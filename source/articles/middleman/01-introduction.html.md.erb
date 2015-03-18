@@ -1,20 +1,21 @@
 ---
 title: Middlemanのススメ：イントロダクション
 date: 2015-03-17
+series: middleman
 
 ---
 
 ## middleman とは
 
 
-[「Middleman: 作業を効率化するフロントエンド開発ツール」](https://middlemanapp.com/jp/)
+[Middleman: 作業を効率化するフロントエンド開発ツール](https://middlemanapp.com/jp/)
 
 静的サイトを構築するフレームワーク。静的ファイルファイルジェネレーターやブログツールとしても使える。
 
 markdown や erb で元ファイルをつらつら書いてコマンド一発で html 郡が出力でき、
 お手軽にサイトやブログを運営することができる。
 
-似たようなのに Jekyll があるが、後述のとおり自由度的には middleman が上回る。
+似たようなのに [Jekyll](http://jekyllrb.com/) があるが、後述のとおり自由度的には middleman が上回る。
 
 ### いいところ
 
@@ -29,7 +30,7 @@ extension で結構込み入ったこともできるし、
 ベースとなるフレームワークもsintra/padrino なので、理解しやすい。
 <p>
 同じようなツールとしてjekyll があるが、
-これは本体は ruby だけど、プラグインは xx なので自由度が欠ける。
+これは本体は ruby だけど、プラグインは Liquid なので自由度が欠ける。
 github 上で jekyll が動くとはいえ自作プラグインはダメだし。
 </dd>
 <dt>慣れたエディタとコンソールで完結</dt>
@@ -63,36 +64,52 @@ ruby でいじくれるといっても使えなきゃ意味がない。
 
 ## インストールと起動
 
-とりあえずローカルサーバーで動かすところまで。
+### インストール
+とりあえず準備から外部サーバーに公開するまで。
+
 普通は gem intall middleman して % middleman init NAME とかだが、
-ここでは、私の作ったテンプレートから作るやり方で。
+ここでは、私の作ったテンプレートから作るやり方でいってみます。
 
 ```
 % pwd
 /home/foo
 % git clone git@github.com:atarukodaka/middleman-template-aks.git site && cd site
-% bundle install --path vendor/bundler 
-% bundle exec middleman build       （build/ 以下にファイルが作られる）
-% bundle exec middleman server     （localhost:4567 にウェブサーバーが立ち上がる）
+% bundle install --path vendor/bundler
 ```
 
-するとこんな感じに(http://localhost:4567)：
+まずこれで準備が整いました。
 
-<%= image_tag(asset_path(:images, "middleman/sample_image.png"), style: "width: 80%;", class: "shadow centering") %>
+### ファイル群の作成
+
+middleman の build コマンドを使います。
+
+```
+% bundle exec middleman build
+```
+
+そうすると、source/* のファイルがいろいろと加工されて build/ 以下に出力されます。
+build/index.html などを覗いてみるといいかもしれません。
+
+### ローカルサーバーの立ち上げ
+とはいえ生 html は読みにくいので、 middleman server コマンドを使ってローカルサーバーを立ち上げます。
+
+```
+% bundle exec middleman server
+```
+
+すると http://localhost:4567 にこんな感じで：
+
+<%= image_tag("/images/middleman/sample_image.png", style: "width: 80%;", class: "shadow centering") %>
 
 テンプレートではlivereload を入れているので、サーバーを background で立ち上げたままにしておいても、元ファイルを変更すればサーバー上で生成しなおしてくれます。
 
-
 ただし vagrant では middleman server に --force-polling オプションを付けてあげないと
 うまく変更を検知してくれないことがあるので、つけたほうがよいでしょう。
-または、別に [build/ 以下を参照する簡単な webrick サーバー](https://github.com/atarukodaka/middleman-template-aks/blob/master/webrick.rb)を立ち上げてしまって、
-build したのちそちらで見る、というほうが確実かもしれません。
 
-[Makefile のサンプル](https://github.com/atarukodaka/middleman-template-aks/blob/master/Makefile)を作っておきましたので、ご参照ください。
+ちなみにローカルサーバーで稼働させるだけなら build する必要はありません（データはサーバーが保持）。
 
-## サーバーへのアップロード
-build/ 以下にファイル群が出力されているため、
-ftp で geocities （死語）に上げるなりしてもいいのですが、
+### 外部サーバーへのアップロード
+build/ 以下のファイル群をftp で geocities （死語）に上げるなりしてもいいのですが、
 ここは github にあげます。
 
 まず、github のアカウントを取得し、サイト公開用のレポジトリを作成してください（ここでは "site" とする）。
@@ -100,7 +117,7 @@ ftp で geocities （死語）に上げるなりしてもいいのですが、
 ```
 % pwd
 /home/foo/site
-% git remote set-url origin git@github.com:<i>your-github-acct</i>/site.git
+% git remote set-url origin git@github.com:_your-github-acct_/site.git
 % ASSET_HOST=/site bundle exec middleman deploy -b
 （github のパスワードを聞かれたら入力）
 

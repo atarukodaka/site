@@ -4,18 +4,17 @@ source 'https://rubygems.org'
 
 ################
 ext_dir = "../extensions"
-#ext_dir = "extensions/"
 
 ## middleman
 
-gem 'middleman', '~/3.3.7'
+gem "middleman", "~>3.3.7"
 #gem "middleman", "~>3.3.7", :path => File.join(ext_dir, "middleman")
 gem 'middleman-blog'
 gem 'middleman-deploy'
 gem 'middleman-google-analytics'  #, :path => File.join(ext_dir, "middleman-google-analytics")
 gem 'middleman-alias'
-gem 'therubyracer'
 gem 'middleman-bootstrap-navbar'
+gem 'therubyracer'
 
 gem 'nokogiri'   # for middleman-blog summary
 
@@ -41,11 +40,6 @@ gem 'compass'
 gem "amazon-ecs"
 gem "middleman-amazon-link" # , :path => File.join(ext_dir, "middleman-amazon-link")
 gem 'dotenv'
-
-## guard
-
-gem 'guard'
-gem 'guard-livereload'
 
 ## debug
 gem 'pry-byebug'

@@ -3,11 +3,30 @@
 //=require responsible
 
 /*****************************************************************/
+/* responsive  */
+
+.row { margin: 0; }
+.container { padding: 0; }
+
+/* Extra small (Phones) and Small devices: Tablets (≥768px) */
+@media (max-width: 991px) {
+    .container{width: 100%;}
+    div[class^="col-"] {padding:0}
+}
+
+/* Medium and Large devices: Desktops (≥992px) */
+@media (min-width: 992px) {
+    .container{width: 70%; }
+}
+
+
+/*****************************************************************/
 /* layout */
 
 body {    
-    background-color: #eeeeee;
-    font-family: "Segoe UI", MeiryoKe_PGothic, "Meiryo", "Meiryo UI", Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif
+    background-color: #eee;
+    font-family: "Segoe UI", MeiryoKe_PGothic, "Meiryo", "Meiryo UI", Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+    font-size: medium;
 }
 
 body > .container {
@@ -15,9 +34,13 @@ body > .container {
   background-color: white;
 }
 
+pre code, .breadcrumb, .navbar, #footer, .page_info, footer {
+    font-size: small;
+}
+
 .pane {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 footer#footer {
@@ -31,7 +54,7 @@ footer#footer {
 }
   
 /*****************************************************************/
-/* general */
+/* link */
 
 $color_link_visited: rgb(68, 68, 169);
 $color_link_unvisited: rgb(100, 100, 222);
@@ -80,16 +103,16 @@ header.eyecatch {
 	padding-bottom: 10px;
 	padding-top: 5px;
 
-	h2 {
-	    font-size: medium;
-	}
 	h3 {
-	    font-size: small;
 	    a { color: black; }
 	}
-    }
-    .article_list li {
-	margin-left: -1em;
+	li {
+	    font-size: small;
+	}
+	
+	.article_list li {
+	    margin-left: -1em;
+	}
     }
 }
 
@@ -188,7 +211,7 @@ article {
 
 article.summary {
     h1 {
-	font-size: medium;
+	font-size: large;
 	margin-bottom: 5px;
     }
     .page_content {

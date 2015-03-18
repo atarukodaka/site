@@ -10,6 +10,7 @@
 
 
 ## TODO
+- series ???
 - youtube responsible
 - sass, less
   - [静的サイト開発にmiddlemanを使う - ワシはワシが育てる](http://washiiku.hatenablog.com/entry/2013/12/01/035808)

@@ -2,15 +2,6 @@
   <%= partial("partials/_google_custom_search") %>
   <!-- ================ -->
   <aside>
-    <h2>Hot Topics</h2>
-    <ul class="article_list">
-      <% blog.articles.select {|a| a.data.priority.to_s.downcase == "high"}.each do |article| %>
-      <li><%= link_to_page(article) %></li>
-      <% end %>
-    </ul>
-  </aside>
-  <!-- ================ -->
-  <aside>
     <h2><%= link_to("Profile", "/profile.html") %></h2>
     <p>
       <%= h(data.config.site_info.author) %> 
