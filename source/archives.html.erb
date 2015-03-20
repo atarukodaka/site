@@ -8,7 +8,7 @@ per_page: 100
 
 
 <% page_articles.group_by {|a| a.date.year }.each do |year, year_articles| %>
-<h2><%= year %></h2>
+<h2><%= link_to(year, blog_year_path(year)) %></h2>
 <% year_articles.group_by {|a| a.date.month }.each do |month, month_articles| %>
 <h3><%= link_to(Date.new(year, month, 1).strftime("%b"), blog_month_path(year, month)) %></h3>
 <ul>

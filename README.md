@@ -10,8 +10,10 @@
 
 
 ## TODO
-- style
-  - article.page_content: 上マージンがちょいほしい？
+
+- archives helper, extension
+- content_for を data.title 扱いに
+- source/articles 以下は別repoにするか？
 - template のgem化
   - [Middlemanでwikiっぽいことができたら便利だなと思ったからmiddleman-tansu v0.1.0をリリースした | e2esound.com業務日誌](http://blogged.e2esound.com/2015/01/31/middleman-tansu_v0-1-0_is_released/)
     - https://github.com/yterajima/middleman-tansu
@@ -28,11 +30,9 @@
 - youtube responsible
 - sass, less
   - [静的サイト開発にmiddlemanを使う - ワシはワシが育てる](http://washiiku.hatenablog.com/entry/2013/12/01/035808)
-- livereload, guard
 
 - logger
 - tilt .md: erb, markdown integrated
-- archives y/m on layout
 - summary layout
 
 - 表示してるのの近くの記事一覧：カテゴリ？日付？ -> archives

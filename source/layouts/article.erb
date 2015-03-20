@@ -1,14 +1,15 @@
 <% wrap_layout :layout do %>
+
 <article>
   <header>
-    <%= crumbs(current_article, :article) %>
+    <%= breadcrumbs(current_article) %>
     <h1><%= yield_content(:title) || h(current_page.title) %></h1>
     <section class="page_info">
       <%= page_info(current_article) %>
     </section>
   </header>
 
-  <section class="page_content numbering_headings">
+  <section class="content numbering_headings">
     <%= yield %>
   </section>
 

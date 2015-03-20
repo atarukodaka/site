@@ -34,7 +34,10 @@ activate :blog do |blog|
   # archives
   #blog.month_template = "archives_monthly.html"
   #blog.calendar_template = "calendar.html"
-  blog.month_template = "archive_monthly.html"
+
+  blog.year_template = "archives_yearly_template.html"
+  blog.month_template = "archives_monthly_template.html"
+  blog.year_link = "../archives/{year}/index.html"
   blog.month_link = "../archives/{year}/{month}.html"
 
   # pagination
@@ -43,12 +46,43 @@ activate :blog do |blog|
   blog.per_page = 10
 end
 
+# archives
+
+=begin
+ready do
+  archives_proxy = {
+    yearly: {
+      template: "archives_yearly_template.html",
+      path_template: "/archives/%{year}.html",
+      link_to: lamdba {|year| archives_proxy[:yearly][:path_template] % [year: year]}
+    }
+    monthly: {
+      template: "archives_yearly_template.html",
+      path_template: "/archives/%{year}/%{month}.html",
+      link_to: lamdba {|year| archives_proxy[:yearly][:path_template] % [year: year, month: month.rjust(2, "0")]}
+    }
+  }
+  blog.articles.group_by {|a| a.date.year }.each do |year, year_articles|
+    proxy("/archives/%04d/index.html" % [year], blog.options[:year_template],
+          :locals => {:year => year, :articles => year_articles})
+    year_articles.group_by {|a| a.date.month }.each do |month, month_articles|
+      proxy("/archives/%04d/%02d.html" % [year, month], blog.options[:month_template],
+            :locals => {:year => year, :month => month, :articles => month_articles})
+    end
+  end
+end
+
+=end
+
 # categories
 ready do
-  blog.articles.group_by {|p| p.metadata[:page]["category"]}.each do |category, articles|
+  blog.articles.group_by {|a| a.category}.each do |category, articles|
     next if category.nil?
-    proxy("/categories/#{category}.html", "category_summary.html",
+    proxy(category_summary_page_path(category), "category_summary.html",
           :locals => { :category => category, :articles => articles, :ignore => true })
+
+#    proxy("/categories/#{category}.html", "category_summary.html",
+#          :locals => { :category => category, :articles => articles, :ignore => true })
   end
   ignore "/category_summary.html"
 end

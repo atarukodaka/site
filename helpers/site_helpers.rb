@@ -25,8 +25,7 @@ end
 module SiteHelpers
   module SelectPageHelpers
     def top_page
-     # binding.pry
-      sitemap.find_resource_by_path("/index.html")    # page
+      sitemap.find_resource_by_path("/" + index_file()) 
     end
 
     def select_html_pages
@@ -39,8 +38,15 @@ module SiteHelpers
     def categories_page
       sitemap.find_resource_by_path("/categories.html")
     end
+    def category_summary_page_path(category)
+      "/categories/#{category}.html"
+#      "#{blog.options[:prefix]}/#{category}/index.html"
+    end
+    def link_to_category_summary_page(category)
+      link_to(h(category), category_summary_page(category))
+    end
     def category_summary_page(category)
-      sitemap.find_resource_by_path("/categories/#{h(category)}.html")
+      sitemap.find_resource_by_path(category_summary_page_path(category))
     end
 
     ################
@@ -73,6 +79,43 @@ module SiteHelpers
        link_to("permlink", page),
        ""      # prose_edit_link(page, data.config.site_info.github, "site")
       ].join(" | ")
+    end
+
+    def breadcrumbs(page)
+      lists = []
+
+      if page == top_page
+        lists << content_tag(:li, h(page.data.title), :class => 'active')
+      elsif page.blog_controller
+        lists << [content_tag(:li, link_to_page(top_page)),
+                  content_tag(:li, link_to(h(page.category), category_summary_page(page.category))),
+                  content_tag(:li, h(page.title), :class => 'active')
+                 ]
+      else
+        lists << [content_tag(:li, link_to_page(top_page))]
+
+        parts = page.path.split("/")
+        parts.pop     ## take out filename on the last of the parts array
+        parts.pop if page.path =~ /\/#{index_file()}/  ## take it out if .../index.html
+
+        parts_tmp = parts.dup
+
+        lists << parts.reverse.map {|d| 
+          p = nil
+          [File.join(parts_tmp.join("/"), index_file()), 
+           parts_tmp.join("/") + ".html"].each do |path|
+            p = sitemap.find_resource_by_path(path)
+            break if p
+          end
+          parts_tmp.pop
+          content_tag(:li, (p) ? link_to(d, p) : d)
+        }.reverse
+        lists << content_tag(:li, h(page.data.title || yield_content(:title)), :class => "active")
+      end
+ 
+      content_tag(:nav, :class=>"crumbs") do
+        content_tag(:ol, lists.flatten.join("").html_safe, :class=>"breadcrumb")
+      end
     end
 
     def crumbs(page, type=:page)
@@ -161,6 +204,7 @@ end
 ################################################################
 module SiteHelpers
   include ERB::Util
+
   include LinktoHelpers
   include SelectPageHelpers
   include ArticleContentHelpers

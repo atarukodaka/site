@@ -1,17 +1,18 @@
 <% wrap_layout :layout do %>
 
-<article>
+<section class="page">
   <header>
-    <%= crumbs(current_page, :page) %>
+    <%= breadcrumbs(current_page) %>
     <h1><%= h(current_page.data.title || yield_content(:title)) %></h1>
   </header>
 
-  <section class="page_content">
+  <section class="content">
     <%= yield %>
   </section>
 
   <footer>
   </footer>
-</article>
+</section>
+
 <% end %>
 
