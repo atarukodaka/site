@@ -20,6 +20,9 @@ clean:
 	rm -rf build
 	rake clean
 
+commit-articles:
+	cd source/articles; git add . ; git commit -a -m update
+
 merge_devel_to_master:
 	git status
 	echo "ok ?"

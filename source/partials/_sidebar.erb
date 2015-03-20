@@ -61,7 +61,6 @@
 
     <% num_recent_articles = 10 %>
     <% blog.articles.group_by {|a| a.date}.each do |date, articles| %>
-    <!-- % blog.recent_articles_with_date.each do |date, pages| % -->
     <h4><%= date.strftime("%d %b %Y") %></h4>
     <ul>
       <% articles.each do |article| %>

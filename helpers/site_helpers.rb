@@ -35,20 +35,6 @@ module SiteHelpers
       sitemap.resources.select {|p| p.send(key.to_sym) == value}
     end
 
-    def categories_page
-      sitemap.find_resource_by_path("/categories.html")
-    end
-    def category_summary_page_path(category)
-      "/categories/#{category}.html"
-#      "#{blog.options[:prefix]}/#{category}/index.html"
-    end
-    def link_to_category_summary_page(category)
-      link_to(h(category), category_summary_page(category))
-    end
-    def category_summary_page(category)
-      sitemap.find_resource_by_path(category_summary_page_path(category))
-    end
-
     ################
     def __recent_pages(num_display = 10)
   #    binding.pry
@@ -88,7 +74,7 @@ module SiteHelpers
         lists << content_tag(:li, h(page.data.title), :class => 'active')
       elsif page.blog_controller
         lists << [content_tag(:li, link_to_page(top_page)),
-                  content_tag(:li, link_to(h(page.category), category_summary_page(page.category))),
+                  content_tag(:li, link_to_category_summary_page(page.category)),
                   content_tag(:li, h(page.title), :class => 'active')
                  ]
       else

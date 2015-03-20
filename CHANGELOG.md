@@ -1,3 +1,7 @@
+### 2015/3/20
+
+- blog_category_enhanced extension を作り、カテゴリ関連をそこに
+
 ### 2015/3/19
 
 - (categories/*.html を articles/<category>/index.html に：やめた)

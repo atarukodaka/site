@@ -75,17 +75,16 @@ end
 =end
 
 # categories
+=begin
 ready do
   blog.articles.group_by {|a| a.category}.each do |category, articles|
     next if category.nil?
     proxy(category_summary_page_path(category), "category_summary.html",
           :locals => { :category => category, :articles => articles, :ignore => true })
-
-#    proxy("/categories/#{category}.html", "category_summary.html",
-#          :locals => { :category => category, :articles => articles, :ignore => true })
   end
   ignore "/category_summary.html"
 end
+=end
 Time.zone = "Tokyo"
 
 ################
@@ -103,6 +102,12 @@ activate :alias
 
 require './extensions/middleman-blog-enhanced'
 activate :blog_enhanced
+require './extensions/middleman-blog-category-enhanced'
+activate :blog_category_enhanced do |c|
+  #c.category_summary_template = "/category_summary.html"
+  #c.category_summary_path_template = "/category/%{category}.html"
+end
+
 
 #require './extensions/amazon-link'
 activate :amazon_link do |amazon|
