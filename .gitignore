@@ -19,7 +19,10 @@
 
 *~
 
+a.md
 a.rb
+a.txt
+src-dev/
 #source/*
 .env
 Gemfile.lock
