@@ -1,0 +1,22 @@
+/* line 3, /home/vagrant/src/site/source/stylesheets/amazon.css.scss */
+.amazon_item {
+  padding: 10px;
+  border: 1px solid #E3E3E3;
+  overflow: hidden;
+  background-color: rgba(246, 246, 246, 0.5);
+  margin-bottom: 1em; }
+  /* line 10, /home/vagrant/src/site/source/stylesheets/amazon.css.scss */
+  .amazon_item img {
+    width: 120px;
+    vertical-align: top;
+    border: 0px none;
+    padding: 1px;
+    float: left; }
+  /* line 17, /home/vagrant/src/site/source/stylesheets/amazon.css.scss */
+  .amazon_item .item_detail {
+    padding: 1em;
+    float: left;
+    margin-left: 5px; }
+  /* line 23, /home/vagrant/src/site/source/stylesheets/amazon.css.scss */
+  .amazon_item:after {
+    clear: both; }

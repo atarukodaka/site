@@ -1,0 +1,38 @@
+/*****************************************************************/
+/* tag_box */
+/* line 6, /home/vagrant/src/site/source/stylesheets/tag-box.css.scss */
+.tag_box {
+  list-style: none;
+  margin: 0;
+  overflow: hidden; }
+  /* line 11, /home/vagrant/src/site/source/stylesheets/tag-box.css.scss */
+  .tag_box li {
+    line-height: 28px; }
+    /* line 14, /home/vagrant/src/site/source/stylesheets/tag-box.css.scss */
+    .tag_box li i {
+      opacity: 0.9; }
+    /* line 17, /home/vagrant/src/site/source/stylesheets/tag-box.css.scss */
+    .tag_box li a {
+      padding: 3px 6px;
+      margin: 2px;
+      background: #eee;
+      color: #555;
+      border-radius: 3px;
+      text-decoration: none;
+      border: 1px dashed #cccccc; }
+      /* line 26, /home/vagrant/src/site/source/stylesheets/tag-box.css.scss */
+      .tag_box li a span {
+        vertical-align: super;
+        font-size: 0.8em; }
+    /* line 31, /home/vagrant/src/site/source/stylesheets/tag-box.css.scss */
+    .tag_box li a:hover {
+      background-color: #e5e5e5; }
+    /* line 34, /home/vagrant/src/site/source/stylesheets/tag-box.css.scss */
+    .tag_box li a.active {
+      background: #57A957;
+      border: 1px solid #4c964d;
+      color: #FFF; }
+
+/* line 41, /home/vagrant/src/site/source/stylesheets/tag-box.css.scss */
+.tag_box.inline li {
+  float: left; }
